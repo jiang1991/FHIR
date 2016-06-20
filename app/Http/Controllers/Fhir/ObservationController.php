@@ -22,7 +22,7 @@ class ObservationController extends Controller
     /*查询用户id*/
     $user = Auth::user();
     $userId = $user->id;
-    
+
     // return "upload success";
 
     $observationJson = file_get_contents("php://input");
@@ -55,19 +55,19 @@ class ObservationController extends Controller
     $result1 = DB::insert('INSERT INTO Observation (resourceType, id, identifier_system, identifier_value, category_system, category_code, category_display, code_system, code_code, code_display, subject_reference, subject_display, effectiveDateTime, interpretation_system, interpretation_code, interpretation_display, interpretation_text) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$resourceType, $id, $identifier_system, $identifier_value, $category_system, $category_code, $category_display, $code_system, $code_code, $code_display, $subject_reference, $subject_display, $effectiveDateTime, $interpretation_system, $interpretation_code, $interpretation_display, $interpretation_text]);
 
     // 查询上传的observationId
-    
+
     $observationId = DB::table('Observation')->WHERE('identifier_value', "$identifier_value")->first()->observationId;
     // echo json_encode($observationId);
 
     $com_num = count($component);
-    for ($i=0; $i < $com_num; $i++) { 
+    for ($i=0; $i < $com_num; $i++) {
       // valueQuantity or valueSampledData
       // 写入Observation Component
       $componentCode_system = $component[$i]->code->coding->system;
       $componentCode_code = $component[$i]->code->coding->code;
       $componentCode_display = $component[$i]->code->coding->display;
 
-      if (array_key_exists("valueQuantity",$component[$i])) {        
+      if (array_key_exists("valueQuantity",$component[$i])) {
         $valueQuantity_value = $component[$i]->valueQuantity->value;
         $valueQuantity_unit = $component[$i]->valueQuantity->unit;
         $valueQuantity_system = $component[$i]->valueQuantity->system;
@@ -91,7 +91,7 @@ class ObservationController extends Controller
           'valueSampledDataData' => "$valueSampledDataData",
           ]);
       }
-      
+
     }
 
     /*写入可被查询的record*/
@@ -117,6 +117,7 @@ class ObservationController extends Controller
   */
   function ObservationRead($observationId)
   {
+    // TODO： 简化语法
     $query = DB::select('SELECT * FROM Observation WHERE observationId = :id', ['id' => $observationId]);
     // 这里应该判断是否存在并返回
     $response["ResourceType"] = $query["0"]->resourceType;
@@ -135,6 +136,7 @@ class ObservationController extends Controller
     $response["interpretation"]["coding"]["display"] = $query["0"]->interpretation_display;
     $response["interpretation"]["text"] = $query["0"]->interpretation_text;
 
+    // TODO: 使用16进制数据，简化格式
     $query2 = DB::select('SELECT * FROM Observation_component WHERE observationId = :id', ['id' => $observationId]);
     $com_num = count($query2);
     for ($i=0; $i < $com_num; $i++) {
