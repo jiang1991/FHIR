@@ -1,0 +1,18 @@
+{
+  "resourceType": "Patient",
+  "userId": "1",
+  "identifier":
+  {
+    "system": "http://www.viatomtech.com.cn:8080/fhir/public",
+    "value": "CS0010401",
+    "medicalId": "420381199108136270"
+  },
+  "active": 1,
+  "name": "Wang Jiang",
+  "gender": "male",
+  "birthDate": "1991-11-14",
+  "height": "179cm",
+  "weight": "56kg",
+  "stepSize": "50cm"
+}
+// 上传的时候不用传userId,查询会有

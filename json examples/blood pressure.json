@@ -1,0 +1,73 @@
+{
+  "resourceType": "Observation",
+  "id": "blood-pressure",
+  "identifier":
+    {
+      "system": "urn:ietf:rfc:3986",
+      "value": "urn:uuid:187e0c12-8dd2-67e2-99b2-bf273c878281"
+    },
+  "category": {
+    "coding":
+      {
+        "system": "http://hl7.org/fhir/observation-category",
+        "code": "vital-signs",
+        "display": "Vital Signs"
+      }
+  },
+  "code": {
+    "coding":
+      {
+        "system": "http://loinc.org",
+        "code": "55284-4",
+        "display": "Blood pressure systolic & diastolic"
+      }
+  },
+  "effectiveDateTime": "2016-05-31",
+  "subject": {
+    "reference": "1",
+    "display": "Wang Jiang"
+  },
+  "interpretation": {
+    "coding":
+      {
+        "system": "http://hl7.org/fhir/v2/0078",
+        "code": "L",
+        "display": "low"
+      },
+    "text": "Below low normal"
+  },
+  "component": [
+    {
+      "code": {
+        "coding":
+          {
+            "system": "http://loinc.org",
+            "code": "8480-6",
+            "display": "Systolic blood pressure"
+          }
+      },
+      "valueQuantity": {
+        "value": 107,
+        "unit": "mmHg",
+        "system": "http://unitsofmeasure.org",
+        "code": "mm[Hg]"
+      }
+    },
+    {
+      "code": {
+        "coding":
+          {
+            "system": "http://loinc.org",
+            "code": "8462-4",
+            "display": "Diastolic blood pressure"
+          }
+      },
+      "valueQuantity": {
+        "value": 60,
+        "unit": "mmHg",
+        "system": "http://unitsofmeasure.org",
+        "code": "mm[Hg]"
+      }
+    }
+  ]
+}

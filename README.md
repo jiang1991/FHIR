@@ -165,5 +165,3 @@ PUT https://example.com/path/{resourceType}/{id}
 }
 ```
 
-
-
