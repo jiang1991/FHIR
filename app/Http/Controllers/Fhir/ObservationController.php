@@ -143,10 +143,21 @@ class ObservationController extends Controller
       $component["code"]["coding"]["system"] = $query2[$i]->code_system;
       $component["code"]["coding"]["code"] = $query2[$i]->code_code;
       $component["code"]["coding"]["display"] = $query2[$i]->code_display;
-      $component["valueQuantity"]["value"] = $query2[$i]->valueQuantity_value;
-      $component["valueQuantity"]["unit"] = $query2[$i]->valueQuantity_unit;
-      $component["valueQuantity"]["system"] = $query2[$i]->valueQuantity_system;
-      $component["valueQuantity"]["code"] = $query2[$i]->valueQuantity_code;
+
+      // valueQuantity 非空 ?
+      if (!empty($query2[$i]->valueQuantity_value)) {
+        $component["valueQuantity"]["value"] = $query2[$i]->valueQuantity_value;
+        $component["valueQuantity"]["unit"] = $query2[$i]->valueQuantity_unit;
+        $component["valueQuantity"]["system"] = $query2[$i]->valueQuantity_system;
+        $component["valueQuantity"]["code"] = $query2[$i]->valueQuantity_code;
+      } else {
+        $component["valueSampledData"]["samplingRate"] = $query2[$i]->valueSampledDataRate;
+        $component["valueSampledData"]["samplingAccuracy"] = $query2[$i]->valueSampledDataAccuracy;
+        $component["valueSampledData"]["referenceVoltage"] = $query2[$i]->valueSampledDataVoltage;
+        $component["valueSampledData"]["data"] = $query2[$i]->valueSampledDataData;
+      }
+
+
       $response["component"][$i] = $component;
     }
 
