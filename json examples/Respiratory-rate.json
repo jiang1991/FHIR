@@ -1,0 +1,54 @@
+{
+  "resourceType": "Observation",
+  "id": "Respiratory rate",
+  "identifier":{
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:187e0c12-8dd3-67e3-99b2-bf273c878281"
+  },
+  "category": {
+    "coding":
+      {
+        "system": "http://hl7.org/fhir/observation-category",
+        "code": "vital-signs",
+        "display": "Vital Signs"
+      }
+  },
+  "code": {
+    "coding":
+      {
+        "system": "http://loinc.org",
+        "code": "9279-1",
+        "display": "Respiratory rate"
+      }
+  },
+  "effectiveDateTime": "2016-06-23 11:35:15",
+  "subject":{
+    "reference": "1",
+    "display": "Wang Jiang"
+  },
+  "interpretation": {
+    "coding":{
+      "system": "http://hl7.org/fhir/v2/0078",
+      "code": "N",
+      "display": "normal"
+    },
+    "text": "Below low normal"
+  },
+  "component": [
+    {
+      "code":{
+        "coding": {
+          "system": "http://loinc.org",
+          "code": "9279-1",
+          "display": "Respiratory rate"
+        }
+      },
+      "valueQuantity": {
+        "value": 16,
+        "unit": "{breaths}/min",
+        "system": "http://unitsofmeasure.org",
+        "code": "breaths/m"
+      }
+    }
+  ]
+}

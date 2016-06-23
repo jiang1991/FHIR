@@ -28,6 +28,7 @@ class ObservationController extends Controller
     $observationJson = file_get_contents("php://input");
     $observationData = json_decode($observationJson);
 
+    // TODO: 当结果只有一个 component 时，单独放
     $category = $observationData->category->coding;
     $observationCode = $observationData->code->coding;
     $interpretation = $observationData->interpretation->coding;
@@ -119,7 +120,8 @@ class ObservationController extends Controller
   {
     // TODO： 简化语法
     $query = DB::select('SELECT * FROM Observation WHERE observationId = :id', ['id' => $observationId]);
-    // 这里应该判断是否存在并返回
+    // TODO: 这里应该判断是否存在并返回
+    // TODO: effectiveDateTime or effectivePeriod
     $response["ResourceType"] = $query["0"]->resourceType;
     $response["id"] = $query["0"]->id;
     $response["identifier"]["system"] = $query["0"]->identifier_system;
@@ -137,6 +139,7 @@ class ObservationController extends Controller
     $response["interpretation"]["text"] = $query["0"]->interpretation_text;
 
     // TODO: 使用16进制数据，简化格式
+    // TODO: 只有一个结果时就不应该有 component
     $query2 = DB::select('SELECT * FROM Observation_component WHERE observationId = :id', ['id' => $observationId]);
     $com_num = count($query2);
     for ($i=0; $i < $com_num; $i++) {

@@ -1,0 +1,54 @@
+{
+  "resourceType": "Observation",
+  "id": "Body temperature",
+  "identifier":{
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:187e0c12-8dd3-67e2-99b2-bf273c878281"
+  },
+  "category": {
+    "coding":
+      {
+        "system": "http://hl7.org/fhir/observation-category",
+        "code": "vital-signs",
+        "display": "Vital Signs"
+      }
+  },
+  "code": {
+    "coding":
+      {
+        "system": "http://loinc.org",
+        "code": "8310-5",
+        "display": "Body temperature"
+      }
+  },
+  "effectiveDateTime": "2016-06-23 10:32:15",
+  "subject":{
+    "reference": "1",
+    "display": "Wang Jiang"
+  },
+  "interpretation": {
+    "coding":{
+      "system": "http://hl7.org/fhir/v2/0078",
+      "code": "L",
+      "display": "low"
+    },
+    "text": "Below low normal"
+  },
+  "component": [
+    {
+      "code":{
+        "coding": {
+          "system": "http://loinc.org",
+          "code": "8310-5",
+          "display": "Body temperature"
+        }
+      },
+      "valueQuantity": {
+        "value": 36,
+        "unit": "Cel",
+        "system": "http://unitsofmeasure.org",
+        "code": "deg C"
+      }
+    }
+  ]  
+}

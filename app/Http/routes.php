@@ -32,7 +32,7 @@ Route::get('observation/{observation}', 'Fhir\ObservationController@ObservationR
 
 /* Fhir Delete * Delete = DELETE https://example.com/path/{resourceType}/{id} */
 
-/* Search * Search = GET https://example.com/path/{resourceType}?search parameters… */
+/* Search * Search = GET https://example.com/path/{resourceType}?search parameters.. */
 
 /* Create Patient*/
 Route::post('patient', [
@@ -53,10 +53,7 @@ Route::post('shareto', [
   ]);
 
 /* search */
-Route::get('search', 'Fhir\SearchController@Search');
-
-// 测试用户认证
-Route::get('authtest', [
-    'middleware' => 'auth.basic',
-    'uses' => 'Fhir\ObservationAuthController@authenticate'
+Route::get('search', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Fhir\SearchController@Search'
   ]);
