@@ -109,7 +109,7 @@ class ObservationController extends Controller
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir')
-      ->header('Location', 'http://api.viatomtech.com.cn:8080/fhir/public/observation/' . $observationId);
+      ->header('Location', 'http://api.viatomtech.com.cn/observation/' . $observationId);
   }
 
   /*

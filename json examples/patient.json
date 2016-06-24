@@ -3,7 +3,7 @@
   "userId": "1",
   "identifier":
   {
-    "system": "http://www.viatomtech.com.cn:8080/fhir/public",
+    "system": "http://www.viatomtech.com.cn",
     "value": "CS0010401",
     "medicalId": "420381199108136270"
   },

@@ -8,6 +8,8 @@ use Auth;
 /**
  * shareTo
  */
+
+ // TODO: 被分享的用户不一定要求注册，直接分享 or 发邮件通知
 class shareToController extends Controller
 {
 

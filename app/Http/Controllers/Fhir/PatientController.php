@@ -53,7 +53,7 @@ class PatientController extends Controller
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir')
-      ->header('Location', 'http://api.viatomtech.com.cn:8080/fhir/public/patient' . $patientId);
+      ->header('Location', 'http://api.viatomtech.com.cn/patient/' . $patientId);
   }
 
   function PatientRead($patientId)
