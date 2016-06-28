@@ -1,0 +1,90 @@
+{
+  "resourceType": "Observation",
+  "id": "SaO2",
+  "identifier":
+  {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:187e0c1a-8dd2-67e2-99b2-bf273c878281"
+  },
+  "category": {
+    "coding":
+    {
+      "system": "http://hl7.org/fhir/observation-category",
+      "code": "vital-signs",
+      "display": "Vital Signs"
+    }
+  },
+  "code": {
+    "coding":
+    {
+      "system": "http://loinc.org",
+      "code": "20564-1",
+      "display": "Oxygen saturation in Blood"
+    }
+  },
+  "effectiveDateTime": "2016-06-28",
+  "subject":
+  {
+    "reference": "3",
+    "display": "Wang Jiang"
+  },
+  "interpretation": {
+    "coding":
+    {
+      "system": "http://hl7.org/fhir/v2/0078",
+      "code": "L",
+      "display": "Low"
+    },
+    "text": "Below the normal Oxygen saturation"
+  },
+  "component": [
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "20564-1",
+          "display": "Oxygen saturation in Blood"
+        }
+      },
+      "valueQuantity": {
+        "value": 99,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "8889-8",
+          "display": "Heart rate by Pulse oximetry"
+        }
+      },
+      "valueQuantity": {
+        "value": 65,
+        "unit": "{beats}/min",
+        "system": "http://unitsofmeasure.org",
+        "code": "{beats}/min"
+      }
+    },
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "61006-3",
+          "display": "Perfusion index Tissue by Pulse oximetry"
+        }
+      },
+      "valueQuantity": {
+        "value": 1.0,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+  ]
+}
