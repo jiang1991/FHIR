@@ -36,6 +36,7 @@ class ObservationController extends Controller
 
     $resourceType = $observationData->resourceType;
     $id = $observationData->id; //其实是observation Type
+    // TODO: 判断是否已经上传
     $identifier_system = $observationData->identifier->system;
     $identifier_value = $observationData->identifier->value;
     $category_system = $category->system;
