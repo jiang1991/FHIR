@@ -57,3 +57,6 @@ Route::get('search', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\SearchController@Search'
   ]);
+
+/* pulsebit O2 update service */
+Route::get('update', 'Update\UpdateController@update');

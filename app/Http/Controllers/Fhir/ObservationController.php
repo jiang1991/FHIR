@@ -58,7 +58,7 @@ class ObservationController extends Controller
 
     // 查询上传的observationId
 
-    $observationId = DB::table('Observation')->WHERE('identifier_value', "$identifier_value")->first()->observationId;
+    $observationId = DB::table('observations')->WHERE('identifier_value', "$identifier_value")->first()->observationId;
     // echo json_encode($observationId);
 
     $com_num = count($component);
@@ -82,7 +82,7 @@ class ObservationController extends Controller
         $valueSampledDataVoltage = $component[$i]->valueSampledData->referenceVoltage;
         $valueSampledDataData = $component[$i]->valueSampledData->data;
 
-        $result2 = DB::table('Observation_component')->insert([
+        $result2 = DB::table('observation_components')->insert([
           'observationId' => "$observationId",
           'code_system' => "$componentCode_system",
           'code_code' => "$componentCode_code",
@@ -97,7 +97,7 @@ class ObservationController extends Controller
     }
 
     /*写入可被查询的record*/
-    DB::table('record')->insert([
+    DB::table('records')->insert([
       'userId' => "$userId",
       'patientId' => "$subject_reference",
       'observationId' => "$observationId",

@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers\Fhir;
 
-use DB;
+use App\Patient;
+// use DB;
 use Illuminate\Routing\Controller;
 use Auth;
+
 
 /**
  * Patient
@@ -31,7 +33,7 @@ class PatientController extends Controller
     $weight = $patientData->weight;
     $stepSize = $patientData->stepSize;
 
-    $result1 = DB::table('Patient')->insert([
+    $result1 = DB::table('patients')->insert([
       'resourceType' => "$resourceType",
       'userId' => "$userId",
       'identifier_system' => "$identifier_system",
@@ -46,7 +48,7 @@ class PatientController extends Controller
       'stepSize' => "$stepSize"
     ]);
 
-    $patientId = DB::table('Patient')->WHERE('medicalId', "$medicalId")
+    $patientId = DB::table('patients')->WHERE('medicalId', "$medicalId")
                 ->first()->patientId;
     $response["patientId"] = "$patientId";
     $response["userId"] = "$userId";
@@ -58,10 +60,10 @@ class PatientController extends Controller
 
   function PatientRead($patientId)
   {
-    // TODO: 这里先判断该 patient 是否存在
     // TODO: 判断该 user 是否有权限获取该 patient 信息
 
-    $query = DB::table('Patient')->WHERE('patientId', "$patientId")->first();
+    /** Eloquent Model 查询不到则404 **/
+    $query = Patient::findOrFail($patientId);
 
     $response["resourceType"] = $query->resourceType;
     $response["userId"] = $query->userId;

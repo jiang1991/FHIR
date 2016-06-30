@@ -11,14 +11,14 @@ class searchController extends Controller
   {
     /*查询 user id*/
     $user = Auth::user();
-    $userId = $user->id;
+    $user_id = $user->id;
 
     /**
     * Response 分为 user 自身上传的和 分享给他的
     * $response->self   $response->share
     **/
 
-    $userResults = DB::table('record')->WHERE('userId', "$userId")->get();
+    $userResults = DB::table('records')->WHERE('user_id', "$user_id")->get();
     // $userResults->isEmpty()
     if (!empty($userResults)) {
       $i = 0;
@@ -29,13 +29,13 @@ class searchController extends Controller
     }
 
     /*查询分享给这个 user 的 patient Id */
-    $patientIds = DB::table('ShareTo')->WHERE('userId', "$userId")->value('patientId');
+    $patient_ids = DB::table('shares')->WHERE('user_id', "$user_id")->value('patient_id');
 
-    // !$patientIds->isEmpty()
-    if (!empty($patientIds)) {
+    // !$patient_ids->isEmpty()
+    if (!empty($patient_ids)) {
       $i = 0;
-      foreach ($patientIds as $patientId) {
-        $patientResults = DB::table('record')->WHERE('patientId', "$patientId")->get();
+      foreach ($patient_ids as $patient_id) {
+        $patientResults = DB::table('records')->WHERE('patient_id', "$patient_id")->get();
         foreach ($patientResults as $patientResult) {
           $Response["share"][$i] = $patientResult;
           $i++;

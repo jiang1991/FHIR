@@ -24,7 +24,7 @@ class shareToController extends Controller
     $patientId = $shareToData->PatientId;
     $toEmail = $shareToData->toEmail;
 
-    DB::table('ShareTo')->insert([
+    DB::table('shares')->insert([
       'userId' => "$userId",
       'patientId' => "$patientId",
       'active' => "1",
