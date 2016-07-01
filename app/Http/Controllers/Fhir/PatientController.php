@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Fhir;
 
 use App\Patient;
-// use DB;
 use Illuminate\Routing\Controller;
 use Auth;
 
@@ -16,57 +15,47 @@ class PatientController extends Controller
   function PatientCreate()
   {
     $user = Auth::user();
-    $userId = $user->id;
+    $user_id = $user->id;
 
     $patientJson = file_get_contents("php://input");
     $patientData = json_decode($patientJson);
 
-    $resourceType = $patientData->resourceType;
-    $identifier_system = $patientData->identifier->system;
-    $identifier_value = $patientData->identifier->value;
     $medicalId = $patientData->identifier->medicalId;
-    $active = $patientData->active;
-    $name = $patientData->name;
-    $gender = $patientData->gender;
-    $birthDate = $patientData->birthDate;
-    $height = $patientData->height;
-    $weight = $patientData->weight;
-    $stepSize = $patientData->stepSize;
 
-    $result1 = DB::table('patients')->insert([
-      'resourceType' => "$resourceType",
-      'userId' => "$userId",
-      'identifier_system' => "$identifier_system",
-      'identifier_value' => "$identifier_value",
-      'medicalId' => "$medicalId",
-      'active' => "$active",
-      'name' => "$name",
-      'gender' => "$gender",
-      'birthDate' => "$birthDate",
-      'height' => "$height",
-      'weight' => "$weight",
-      'stepSize' => "$stepSize"
-    ]);
+    $patient = new Patient;
+    $patient->resourceType = $patientData->resourceType;
+    $patient->user_id = $user_id;
+    $patient->identifier_system = $patientData->identifier->system;
+    $patient->identifier_value = $patientData->identifier->value;
+    $patient->medicalId = $patientData->identifier->medicalId;
+    $patient->active = $patientData->active;
+    $patient->name = $patientData->name;
+    $patient->gender = $patientData->gender;
+    $patient->birthDate = $patientData->birthDate;
+    $patient->height = $patientData->height;
+    $patient->weight = $patientData->weight;
+    $patient->stepSize = $patientData->stepSize;
 
-    $patientId = DB::table('patients')->WHERE('medicalId', "$medicalId")
-                ->first()->patientId;
-    $response["patientId"] = "$patientId";
-    $response["userId"] = "$userId";
+    $patient->save();
+
+    $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
+    $response["patient_id"] = "$patient_id";
+    $response["user_id"] = "$user_id";
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir')
-      ->header('Location', 'http://api.viatomtech.com.cn/patient/' . $patientId);
+      ->header('Location', 'http://api.viatomtech.com.cn/patient/' . $patient_id);
   }
 
-  function PatientRead($patientId)
+  function PatientRead($patient_id)
   {
     // TODO: 判断该 user 是否有权限获取该 patient 信息
 
     /** Eloquent Model 查询不到则404 **/
-    $query = Patient::findOrFail($patientId);
+    $query = Patient::firstOrFail($patient_id);
 
     $response["resourceType"] = $query->resourceType;
-    $response["userId"] = $query->userId;
+    $response["user_id"] = $query->user_id;
     $response["identifier"]["system"] = $query->identifier_system;
     $response["identifier"]["value"] = $query->identifier_value;
     $response["identifier"]["medicalId"] = $query->medicalId;

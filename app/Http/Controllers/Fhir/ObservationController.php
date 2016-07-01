@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Fhir;
 
 // error_reporting(0);
 
+use App\Observation;
 use DB;
 use Illuminate\Routing\Controller;
 use Auth;
@@ -54,12 +55,12 @@ class ObservationController extends Controller
     $interpretation_text = $observationData->interpretation->text;
 
     // 写入Observation
-    $result1 = DB::insert('INSERT INTO Observation (resourceType, id, identifier_system, identifier_value, category_system, category_code, category_display, code_system, code_code, code_display, subject_reference, subject_display, effectiveDateTime, interpretation_system, interpretation_code, interpretation_display, interpretation_text) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$resourceType, $id, $identifier_system, $identifier_value, $category_system, $category_code, $category_display, $code_system, $code_code, $code_display, $subject_reference, $subject_display, $effectiveDateTime, $interpretation_system, $interpretation_code, $interpretation_display, $interpretation_text]);
+    $result1 = DB::insert('INSERT INTO observations (resourceType, resourceId, identifier_system, identifier_value, category_system, category_code, category_display, code_system, code_code, code_display, subject_reference, subject_display, effectiveDateTime, interpretation_system, interpretation_code, interpretation_display, interpretation_text) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$resourceType, $id, $identifier_system, $identifier_value, $category_system, $category_code, $category_display, $code_system, $code_code, $code_display, $subject_reference, $subject_display, $effectiveDateTime, $interpretation_system, $interpretation_code, $interpretation_display, $interpretation_text]);
 
-    // 查询上传的observationId
+    // 查询上传的observation_id
 
-    $observationId = DB::table('observations')->WHERE('identifier_value', "$identifier_value")->first()->observationId;
-    // echo json_encode($observationId);
+    $observation_id = DB::table('observations')->WHERE('identifier_value', "$identifier_value")->first()->id;
+    // echo json_encode($observation_id);
 
     $com_num = count($component);
     for ($i=0; $i < $com_num; $i++) {
@@ -75,22 +76,16 @@ class ObservationController extends Controller
         $valueQuantity_system = $component[$i]->valueQuantity->system;
         $valueQuantity_code = $component[$i]->valueQuantity->code;
 
-        $result2 = DB::insert('INSERT INTO Observation_component (observationId, code_system, code_code, code_display, valueQuantity_value, valueQuantity_unit, valueQuantity_system, valueQuantity_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [$observationId, $componentCode_system, $componentCode_code, $componentCode_display, $valueQuantity_value, $valueQuantity_unit, $valueQuantity_system, $valueQuantity_code]);
+        $result2 = DB::insert('INSERT INTO observation_components (observation_id, code_system, code_code, code_display, valueQuantity_value, valueQuantity_unit, valueQuantity_system, valueQuantity_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [$observation_id, $componentCode_system, $componentCode_code, $componentCode_display, $valueQuantity_value, $valueQuantity_unit, $valueQuantity_system, $valueQuantity_code]);
       } else {
-        $valueSampledDataRate = $component[$i]->valueSampledData->samplingRate;
-        $valueSampledDataAccuracy = $component[$i]->valueSampledData->samplingAccuracy;
-        $valueSampledDataVoltage = $component[$i]->valueSampledData->referenceVoltage;
-        $valueSampledDataData = $component[$i]->valueSampledData->data;
+        $valueString = $component[$i]->valueString;
 
         $result2 = DB::table('observation_components')->insert([
-          'observationId' => "$observationId",
+          'observation_id' => "$observation_id",
           'code_system' => "$componentCode_system",
           'code_code' => "$componentCode_code",
           'code_display' => "$componentCode_display",
-          'valueSampledDataRate' => "$valueSampledDataRate",
-          'valueSampledDataAccuracy' => "$valueSampledDataAccuracy",
-          'valueSampledDataVoltage' => "$valueSampledDataVoltage",
-          'valueSampledDataData' => "$valueSampledDataData",
+          'valueString' => "$valueString",
           ]);
       }
 
@@ -100,48 +95,48 @@ class ObservationController extends Controller
     DB::table('records')->insert([
       'userId' => "$userId",
       'patientId' => "$subject_reference",
-      'observationId' => "$observationId",
+      'observation_id' => "$observation_id",
       'observationType' => "$id",
       ]);
 
     $response["userId"] = "$userId";
-    $response["observationId"] = "$observationId";
+    $response["observation_id"] = "$observation_id";
     $response["status"] = "generated";
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir')
-      ->header('Location', 'http://api.viatomtech.com.cn/observation/' . $observationId);
+      ->header('Location', 'http://api.viatomtech.com.cn/observation/' . $observation_id);
   }
 
   /*
   * Fhir Read
   * Read = GET https://example.com/path/{resourceType}/{id}
   */
-  function ObservationRead($observationId)
+  function ObservationRead($observation_id)
   {
     // TODO： 简化语法
-    $query = DB::select('SELECT * FROM Observation WHERE observationId = :id', ['id' => $observationId]);
-    // TODO: 这里应该判断是否存在并返回
+    $query = Observation::firstOrFail($observation_id);
+    // $query = DB::select('SELECT * FROM observations WHERE id = :id', ['id' => $observation_id]);
     // TODO: effectiveDateTime or effectivePeriod
-    $response["ResourceType"] = $query["0"]->resourceType;
-    $response["id"] = $query["0"]->id;
-    $response["identifier"]["system"] = $query["0"]->identifier_system;
-    $response["identifier"]["value"] = $query["0"]->identifier_value;
-    $response["category"]["coding"]["system"] = $query["0"]->category_system;
-    $response["category"]["coding"]["code"] = $query["0"]->category_code;
-    $response["category"]["coding"]["display"] = $query["0"]->category_display;
-    $response["code"]["coding"]["system"] = $query["0"]->code_system;
-    $response["code"]["coding"]["code"] = $query["0"]->code_code;
-    $response["code"]["coding"]["display"] = $query["0"]->code_display;
+    $response["ResourceType"] = $query->resourceType;
+    $response["id"] = $query->id;
+    $response["identifier"]["system"] = $query->identifier_system;
+    $response["identifier"]["value"] = $query->identifier_value;
+    $response["category"]["coding"]["system"] = $query->category_system;
+    $response["category"]["coding"]["code"] = $query->category_code;
+    $response["category"]["coding"]["display"] = $query->category_display;
+    $response["code"]["coding"]["system"] = $query->code_system;
+    $response["code"]["coding"]["code"] = $query->code_code;
+    $response["code"]["coding"]["display"] = $query->code_display;
     $response["effectiveDateTime"] = $query["0"]->effectiveDateTime;
-    $response["interpretation"]["coding"]["system"] = $query["0"]->interpretation_system;
-    $response["interpretation"]["coding"]["code"] = $query["0"]->interpretation_code;
-    $response["interpretation"]["coding"]["display"] = $query["0"]->interpretation_display;
-    $response["interpretation"]["text"] = $query["0"]->interpretation_text;
+    $response["interpretation"]["coding"]["system"] = $query->interpretation_system;
+    $response["interpretation"]["coding"]["code"] = $query->interpretation_code;
+    $response["interpretation"]["coding"]["display"] = $query->interpretation_display;
+    $response["interpretation"]["text"] = $query->interpretation_text;
 
     // TODO: 使用16进制数据，简化格式
     // TODO: 只有一个结果时就不应该有 component
-    $query2 = DB::select('SELECT * FROM Observation_component WHERE observationId = :id', ['id' => $observationId]);
+    $query2 = DB::select('SELECT * FROM observation_components WHERE observation_id = :id', ['id' => $observation_id]);
     $com_num = count($query2);
     for ($i=0; $i < $com_num; $i++) {
       $component["code"]["coding"]["system"] = $query2[$i]->code_system;
@@ -155,10 +150,7 @@ class ObservationController extends Controller
         $component["valueQuantity"]["system"] = $query2[$i]->valueQuantity_system;
         $component["valueQuantity"]["code"] = $query2[$i]->valueQuantity_code;
       } else {
-        $component["valueSampledData"]["samplingRate"] = $query2[$i]->valueSampledDataRate;
-        $component["valueSampledData"]["samplingAccuracy"] = $query2[$i]->valueSampledDataAccuracy;
-        $component["valueSampledData"]["referenceVoltage"] = $query2[$i]->valueSampledDataVoltage;
-        $component["valueSampledData"]["data"] = $query2[$i]->valueSampledDataData;
+        $component["valueString"] = $query2[$i]->valueString;
       }
 
 
