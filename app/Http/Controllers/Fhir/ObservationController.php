@@ -114,12 +114,10 @@ class ObservationController extends Controller
   */
   function ObservationRead($observation_id)
   {
-    // TODO： 简化语法
-    $query = Observation::firstOrFail($observation_id);
-    // $query = DB::select('SELECT * FROM observations WHERE id = :id', ['id' => $observation_id]);
+    $query = Observation::findOrFail($observation_id);
     // TODO: effectiveDateTime or effectivePeriod
     $response["ResourceType"] = $query->resourceType;
-    $response["id"] = $query->id;
+    $response["id"] = $query->resourceId;
     $response["identifier"]["system"] = $query->identifier_system;
     $response["identifier"]["value"] = $query->identifier_value;
     $response["category"]["coding"]["system"] = $query->category_system;
@@ -128,37 +126,35 @@ class ObservationController extends Controller
     $response["code"]["coding"]["system"] = $query->code_system;
     $response["code"]["coding"]["code"] = $query->code_code;
     $response["code"]["coding"]["display"] = $query->code_display;
-    $response["effectiveDateTime"] = $query["0"]->effectiveDateTime;
+    $response["effectiveDateTime"] = $query->effectiveDateTime;
     $response["interpretation"]["coding"]["system"] = $query->interpretation_system;
     $response["interpretation"]["coding"]["code"] = $query->interpretation_code;
     $response["interpretation"]["coding"]["display"] = $query->interpretation_display;
     $response["interpretation"]["text"] = $query->interpretation_text;
 
-    // TODO: 使用16进制数据，简化格式
-    // TODO: 只有一个结果时就不应该有 component
-    $query2 = DB::select('SELECT * FROM observation_components WHERE observation_id = :id', ['id' => $observation_id]);
-    $com_num = count($query2);
+    $Qcomponents = Observation::find($observation_id)->observation_components;
+    $Qcomponent = $Qcomponents->toArray();
+
+    $com_num = count($Qcomponent);
     for ($i=0; $i < $com_num; $i++) {
-      $component["code"]["coding"]["system"] = $query2[$i]->code_system;
-      $component["code"]["coding"]["code"] = $query2[$i]->code_code;
-      $component["code"]["coding"]["display"] = $query2[$i]->code_display;
+      $component["code"]["coding"]["system"] = $Qcomponent[$i]['code_system'];
+      $component["code"]["coding"]["code"] = $Qcomponent[$i]['code_code'];
+      $component["code"]["coding"]["display"] = $Qcomponent[$i]['code_display'];
 
       // valueQuantity 非空 ?
-      if (!empty($query2[$i]->valueQuantity_value)) {
-        $component["valueQuantity"]["value"] = $query2[$i]->valueQuantity_value;
-        $component["valueQuantity"]["unit"] = $query2[$i]->valueQuantity_unit;
-        $component["valueQuantity"]["system"] = $query2[$i]->valueQuantity_system;
-        $component["valueQuantity"]["code"] = $query2[$i]->valueQuantity_code;
+      if (!empty($Qcomponent[$i]['valueQuantity_value'])) {
+        $component["valueQuantity"]["value"] = $Qcomponent[$i]['valueQuantity_value'];
+        $component["valueQuantity"]["unit"] = $Qcomponent[$i]['valueQuantity_unit'];
+        $component["valueQuantity"]["system"] = $Qcomponent[$i]['valueQuantity_system'];
+        $component["valueQuantity"]["code"] = $Qcomponent[$i]['valueQuantity_code'];
       } else {
-        $component["valueString"] = $query2[$i]->valueString;
+        $component["valueString"] = $Qcomponent[$i]['valueString'];
       }
 
 
       $response["component"][$i] = $component;
     }
-
     return response($response)
       ->header('Content-Type', 'application/json+fhir');
-    // echo json_encode($result);
   }
 }
