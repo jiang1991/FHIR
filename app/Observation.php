@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Observation extends Model
 {
-    public function observation_components()
-    {
-      return $this->hasMany('App\Observation_component');
-    }
+  /**
+     * 表明模型是否应该被打上时间戳
+     *
+     * @var bool
+     */
+  public $timestamps = false;
+  public function observation_components()
+  {
+    return $this->hasMany('App\Observation_component');
+  }
 }
