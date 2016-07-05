@@ -11,11 +11,11 @@ class UpdateController extends Controller
 
   function update()
   {
-    $response["o2"]["version"] = "0.2.4";
+    $response["o2"]["version"] = "0.2.6";
     $response["o2"]["hardware_version"] = "AA";
     $response["o2"]["model"] = "1611";
     $response["o2"]["region"] = "CE";
-    $response["o2"]["fileLocate"] = "http://api.viatomtech.com.cn/download/software/CE_1611_AA_024.bin";
+    $response["o2"]["fileLocate"] = "http://api.viatomtech.com.cn/download/software/CE_1611_AA_026.bin";
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir');
