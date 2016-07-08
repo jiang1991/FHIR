@@ -11,9 +11,13 @@ class Observation extends Model
      *
      * @var bool
      */
-  public $timestamps = false;
   public function observation_components()
   {
     return $this->hasMany('App\Observation_component');
+  }
+
+  public function patient()
+  {
+    return $this->belongsTo('App\Patient');
   }
 }

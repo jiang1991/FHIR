@@ -18,6 +18,8 @@ class searchController extends Controller
     * $response->self   $response->share
     **/
 
+    // TODO: 不使用table records，直接查询observation
+
     $userResults = DB::table('records')->WHERE('user_id', "$user_id")->get();
     // $userResults->isEmpty()
     if (!empty($userResults)) {

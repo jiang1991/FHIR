@@ -20,6 +20,30 @@
             </div>
           </table>
         </div>
+
+        <div class="panel-heading">Observations</div>
+        @if (count($observations) > 0)
+        <div class="panel-body">
+          <table class="table table-striped">
+            @foreach ($observations as $observation)
+              <tr>
+                <td>
+                  <table>
+                    <tr>
+                      <div class="row">
+                        <div class="col-md-4">Check Type: {{ $observation->resourceId }}</div>
+                        <div class="col-md-4">Check Time: {{ $observation->effectiveDateTime }}</div>
+                        <div class="col-md-4">Check Notes: {{ $observation->interpretation_text }}</div>
+                      </div>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            @endforeach
+          </table>
+        </div>
+        @endif
+
       </div>
     </div>
   </div>
