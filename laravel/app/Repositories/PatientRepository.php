@@ -16,6 +16,12 @@ class PatientRepository{
   {
     return Patient::where('user_id', $user->id)->get();
   }
+
+  // $id = Patient ID
+  public function patient($id)
+  {
+    return Patient::find($id);
+  }
 }
 
  ?>

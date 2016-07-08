@@ -37,8 +37,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('home',[
-          'patients' => $this->patients->forUser($request->user()),
-        ]);
+      return view('home',[
+        'patients' => $this->patients->forUser($request->user()),
+      ]);
     }
 }
