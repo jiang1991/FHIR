@@ -2,13 +2,9 @@
 namespace App\Http\Controllers;
 
 use App\Observation;
-// use App\Http\Requests;
 use Illuminate\Routing\Controller;
-// use Illuminate\Http\Request;
 use Auth;
-// use App\Http\Controllers\Controller;
 use App\Repositories\PatientRepository;
-// use App\Repositories\ObservationRepository;
 
 /**
  * a patient

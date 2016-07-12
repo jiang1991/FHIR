@@ -12,10 +12,10 @@ use App\Observation_component;
  */
 class ObservationRepository
 {
-  // $id is Patient ID
-  public function observation($id)
+  // $observation_id
+  public function observation($observation_id)
   {
-    return Patient::find($id)->observations;
+    return Observation::find($observation_id);
   }
 }
 

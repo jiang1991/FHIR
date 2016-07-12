@@ -31,7 +31,7 @@ Basic Auth
 #### 新增一个病人信息
 
 ```http
-POST http://api.viatomtech.com/patient
+POST http://api.viatomtech.com.cn/patient
 ```
 
 post example:
@@ -70,7 +70,7 @@ Server →Apache/2.4.10 (Debian)
 #### 读取一个病人信息
 
 ```http
-GET http://api.viatomtech.com/patient/{id}
+GET http://api.viatomtech.com.cn/patient/{id}
 ```
 
 get example:
@@ -122,13 +122,13 @@ Server →Apache/2.4.10 (Debian)
 #### 新增一个Observation 信息
 
 ```http
-POST http://api.viatomtech.com/observation
+POST http://api.viatomtech.com.cn/observation
 ```
 
 #### 读取一个Observation
 
 ```http
-GET http://api.viatomech.com/observation/{id}
+GET http://api.viatomech.com.cn/observation/{id}
 ```
 
 ### 分享
@@ -136,7 +136,7 @@ GET http://api.viatomech.com/observation/{id}
 新增一个分享
 
 ```http
-POST http://api.viatomtech.com/shareto
+POST http://api.viatomtech.com.cn/shareto
 ```
 
 被分享的patient & 分享到一个账号
@@ -151,7 +151,7 @@ POST http://api.viatomtech.com/shareto
 ### 查询
 
 ```http
-GET http://api.viatomtech.com/search
+GET http://api.viatomtech.com.cn/search
 ```
 
 这里会返回此 user 所有上传的记录 和 分享给他的记录
