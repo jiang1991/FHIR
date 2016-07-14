@@ -38,6 +38,7 @@ class PatientController extends Controller
 
     $patient->save();
 
+    // 判断medical id 是否已经上传过
     $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
     $response["patient_id"] = "$patient_id";
     $response["user_id"] = "$user_id";

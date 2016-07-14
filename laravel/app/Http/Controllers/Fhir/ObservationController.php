@@ -40,7 +40,7 @@ class ObservationController extends Controller
 
     $observation = new Observation;
 
-    $observation->user_id = $$user_id;
+    $observation->user_id = $user_id;
     $observation->patient_id = $subject_reference;
     $observation->resourceType = $observationData->resourceType;
     $observation->resourceId = $observationData->id;

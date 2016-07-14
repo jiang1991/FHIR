@@ -15,7 +15,7 @@ class shareToController extends Controller
 
   function shareTo()
   {
-    $user Auth::user();
+    $user = Auth::user();
     $userId = $user->id;
 
     $shareToJson = file_get_contents("php://input");

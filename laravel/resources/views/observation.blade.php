@@ -25,7 +25,7 @@
           <table class="table table-striped">
             @foreach ($observation_components as $bservation_component)
               @if ($bservation_component->valueString)
-
+              <!-- TODO: ECG waveform -->
               @else
               <tr>
                 <td>
