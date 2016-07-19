@@ -23,9 +23,7 @@ Route::any('/mypatient/{id}', 'MyController@MyPatient');
 
 Route::any('/myobservation/{id}', 'ObservationController@MyObservation');
 
-Route::any('plot', function (){
-  return view('plot');
-});
+Route::any('/plot', 'PlotController@Plot');
 
 /* Fhir Create * Create = POST https://example.com/path/{resourceType} */
 Route::post('observation', [

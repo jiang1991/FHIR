@@ -22,24 +22,35 @@ class PatientController extends Controller
 
     $medicalId = $patientData->identifier->medicalId;
 
-    $patient = new Patient;
-    $patient->resourceType = $patientData->resourceType;
-    $patient->user_id = $user_id;
-    $patient->identifier_system = $patientData->identifier->system;
-    $patient->identifier_value = $patientData->identifier->value;
-    $patient->medicalId = $patientData->identifier->medicalId;
-    $patient->active = $patientData->active;
-    $patient->name = $patientData->name;
-    $patient->gender = $patientData->gender;
-    $patient->birthDate = $patientData->birthDate;
-    $patient->height = $patientData->height;
-    $patient->weight = $patientData->weight;
-    $patient->stepSize = $patientData->stepSize;
+    /**
+     * 判断是否上传过 上传过则更改 user_id 为当前 用户
+     */
+    if ($patient = Patient::where('medicalId', "$medicalId")) {
+      $patient->user_id = $user_id;
+      $patient->save();
 
-    $patient->save();
+      $patient_id = $patient->id;
+    } else {
+      $patient = new Patient;
+      $patient->resourceType = $patientData->resourceType;
+      $patient->user_id = $user_id;
+      $patient->identifier_system = $patientData->identifier->system;
+      $patient->identifier_value = $patientData->identifier->value;
+      $patient->medicalId = $patientData->identifier->medicalId;
+      $patient->active = $patientData->active;
+      $patient->name = $patientData->name;
+      $patient->gender = $patientData->gender;
+      $patient->birthDate = $patientData->birthDate;
+      $patient->height = $patientData->height;
+      $patient->weight = $patientData->weight;
+      $patient->stepSize = $patientData->stepSize;
 
-    // 判断medical id 是否已经上传过
-    $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
+      $patient->save();
+
+      // 判断medical id 是否已经上传过
+      $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
+    }
+
     $response["patient_id"] = "$patient_id";
     $response["user_id"] = "$user_id";
 
