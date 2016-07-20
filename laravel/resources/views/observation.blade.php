@@ -23,16 +23,27 @@
         @if (count($observation_components) > 0)
         <div class="panel-body">
           <table class="table table-striped">
-            @foreach ($observation_components as $bservation_component)
-              @if ($bservation_component->valueString)
+            @foreach ($observation_components as $observation_component)
+              @if ($observation_component->valueString)
               <!-- TODO: ECG waveform -->
+              <tr>
+                <td>
+                  <table>
+                    <tr>
+                      <div>
+                        <image src="/plot/{{ $observation_component->id }}" class="img-responsive">
+                      </div>
+                    </tr>
+                  </table>
+                <td>
+              </tr>
               @else
               <tr>
                 <td>
                   <table>
                     <tr>
                       <div class="row">
-                        <div class="col-md-12">{{ $bservation_component->code_display }} : <strong>{{ $bservation_component->valueQuantity_value }} {{ $bservation_component->valueQuantity_unit }}</strong></div>
+                        <div class="col-md-12">{{ $observation_component->code_display }} : <strong>{{ $observation_component->valueQuantity_value }} {{ $observation_component->valueQuantity_unit }}</strong></div>
                       </div>
                     </tr>
                   </table>
