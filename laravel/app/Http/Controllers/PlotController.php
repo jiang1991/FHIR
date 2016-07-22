@@ -40,10 +40,10 @@ class PlotController extends Controller
       /* 解压缩，还原为500Hz*/
       /* 采样值转px  X*4033/(32767*12*8)*400 */
       for ($i=0; $i < count($dot)-1; $i++) {
-        $dots[] = 400 - $dot[$i] * 0.51238;
-        $dots[] = 400 - ($dot[$i] + $dot[$i+1])/2 * 0.51238;
+        $dots[] = 650 - $dot[$i] * 0.51238;
+        $dots[] = 650 - ($dot[$i] + $dot[$i+1])/2 * 0.51238;
       }
-      $dots[] = 400 - $dot[count($dot)-1] * 0.51238;
+      $dots[] = 650 - $dot[count($dot)-1] * 0.51238;
 
       return($dots);
     }
@@ -82,15 +82,15 @@ class PlotController extends Controller
     $dot = array_chunk($dots, 3500);
     $rows = count($dot);
 
-    $width = 3500;
-    $height = 800 * $rows;
+    $width = 4000;
+    $height = 800 * $rows + 500;
 
     $image = imagecreatetruecolor($width, $height);
-    $white = imagecolorallocatealpha($image, 255, 255, 255, 100);
-    $yellow = imagecolorallocatealpha($image,255,255,0,100);
-    $red    = imagecolorallocatealpha($image,255,0,0,100);
-    $red2    = imagecolorallocatealpha($image,255,0,0,50);
-    $black   = imagecolorallocatealpha($image,0,0,0,100);
+    $white = imagecolorallocate($image, 255, 255, 255);
+    $yellow = imagecolorallocate($image,255,255,0);
+    $red    = imagecolorallocate($image,255,0,0);
+    // $red2    = imagecolorallocate($image,255,0,0);
+    $black   = imagecolorallocate($image,0,0,0);
 
     imagefill($image, 0, 0, $white);
 
@@ -98,37 +98,48 @@ class PlotController extends Controller
     *背景框
     */
     for ($i=0; $i < 175; $i++) {
-      imageline($image, $i * 20, 0, $i * 20, $rows * 800, $red2);
+      imageline($image, $i * 20 + 250, 250, $i * 20 + 250, $rows * 800 + 250, $red);
     }
     for ($i=0; $i < 40 * $rows; $i++) {
-      imageline($image, 0, $i * 20, 3500, $i * 20, $red2);
+      imageline($image, 250, $i * 20 + 250, 3500 + 250, $i * 20 + 250, $red);
     }
 
     for ($i=0; $i < 35; $i++) {
-      imagelinethick($image, $i * 100, 0, $i * 100, $rows * 800, $red, 2);
+      imagelinethick($image, $i * 100 + 250, 250, $i * 100 + 250, $rows * 800 + 250, $red, 2);
     }
     for ($i=0; $i < 8 * $rows; $i++) {
-      imagelinethick($image, 0, $i * 100, 3500, $i * 100, $red, 2);
+      imagelinethick($image, 250, $i * 100 + 250, 3500 + 250, $i * 100 + 250, $red, 2);
     }
 
     for ($i=0; $i < 8; $i++) {
-      imagelinethick($image, $i * 500, 0, $i * 500, $rows * 800, $red, 4);
+      imagelinethick($image, $i * 500 + 250, 250, $i * 500 + 250, $rows * 800 + 250, $red, 4);
     }
     for ($i=0; $i < 2 * $rows + 1; $i++) {
-      imagelinethick($image, 0, $i * 400, 3500, $i * 400, $red, 4);
+      imagelinethick($image, 250, $i * 400 + 250, 3500 + 250, $i * 400 + 250, $red, 4);
     }
 
+    imagelinethick($image, 250, 150, 250, 250, $black, 4);
+    imagelinethick($image, 750, 150, 750, 250, $black, 4);
+    imagelinethick($image, 250, 200, 420, 200, $black, 4);
+    imagelinethick($image, 580, 200, 750, 200, $black, 4);
+    imagefttext($image, 50, 0, 470, 220, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "1s");
+
+    imagelinethick($image, 50, 650, 90, 650, $black, 4);
+    imagelinethick($image, 90, 650, 90, 450, $black, 4);
+    imagelinethick($image, 90, 450, 170, 450, $black, 4);
+    imagelinethick($image, 170, 450, 170, 650, $black, 4);
+    imagelinethick($image, 170, 650, 210, 650, $black, 4);
+    imagefttext($image, 50, 0, 70, 725, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "1mv");
 
 
-
-
+    // 心电波形
     for ($i=0; $i < $rows; $i++) {
       // 每一行纵坐标加800
       $row = $dot[$i];
       for ($j=0; $j < (count($row) - 1); $j++) {
         $y1 = $row[$j] + 800*$i;
         $y2 = $row[$j+1] + 800*$i;
-        imagelinethick($image, $j, $y1, $j+1, $y2, $black, 4);
+        imagelinethick($image, $j + 250, $y1, $j+251, $y2, $black, 4);
       }
     }
 

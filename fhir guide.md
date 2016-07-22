@@ -148,6 +148,39 @@ POST http://api.viatomtech.com.cn/shareto
 }
 ```
 
+
+
+查询分享
+
+```http
+GET http://api.viatomtech.com.cn/shareto
+```
+
+返回所有被分享 Patient 信息
+
+```json
+[
+  {
+    "resourceType": "Patient",
+    "user_id": "1",
+    "identifier": {
+      "system": "http://www.viatomtech.com.cn",
+      "value": "CS0010403",
+      "medicalId": "420381199108136272"
+    },
+    "active": "1",
+    "name": "Du Fu",
+    "gender": "female",
+    "birthDate": "1991-11-14",
+    "height": "179cm",
+    "weight": "56kg",
+    "stepSize": "50cm"
+  }
+]
+```
+
+这里是分享了一个patient
+
 ### 查询
 
 ```http

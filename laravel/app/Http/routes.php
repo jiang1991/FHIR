@@ -58,6 +58,15 @@ Route::post('shareto', [
   'uses' => 'Fhir\shareToController@shareTo'
   ]);
 
+/* 查询分享
+* return all shared patient
+* 没有则返回空json
+*/
+Route::get('shareto', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Fhir\shareToController@getShare'
+]);
+
 /* search */
 Route::get('search', [
   'middleware' => 'auth.basic',
