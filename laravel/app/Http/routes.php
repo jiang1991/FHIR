@@ -19,6 +19,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::post('/user/login', 'LoginController@UserLogin');
+
+Route::post('/user/signin', 'UserController@login');
+
 Route::any('/mypatient/{id}', 'MyController@MyPatient');
 
 Route::any('/myobservation/{id}', 'ObservationController@MyObservation');
