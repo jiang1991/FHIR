@@ -14,7 +14,7 @@ FHIR/json examples
 
 - [ecg example](./json examples/ecg.json) 心电
 - [blood pressure example](./json examples/blood pressure.json) 血压
-- TODO: 血氧
+- [SpO2 Exmaple](./json examples/SaO2.json): 血氧
 - [temperature example](./json examples/temperature.json) 体温
 - [Respiratory rate example](./json examples/Respiratory-rate.json) 呼吸率
 
@@ -25,6 +25,37 @@ FHIR/json examples
 Basic Auth
 
 ![Basic Auth](./imgs/fhir.basic auth.png)
+
+### 登录
+
+```http
+POST http://api.viatomtech.com.cn/user/login
+
+header:
+Content-Type: application/x-www-form-urlencoded
+```
+
+字段： email, password
+
+正确返回：(200)
+
+```json
+{
+  "user_id": 3,
+  "name": "Jiang",
+  "email": "408861086@qq.com"
+}
+```
+
+错误返回： (401)
+
+```json
+{
+  "error": "Email or Password invalid!"
+}
+```
+
+
 
 ### Patient
 
