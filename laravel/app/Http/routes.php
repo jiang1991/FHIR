@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::post('/user/login', 'LoginController@UserLogin');
 
-Route::post('/user/signin', 'UserController@login');
+Route::post('/user/signup', 'UserController@signup');
 
 Route::any('/mypatient/{id}', 'MyController@MyPatient');
 
