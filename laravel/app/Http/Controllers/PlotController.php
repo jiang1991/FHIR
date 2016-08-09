@@ -67,12 +67,12 @@ class PlotController extends Controller
         }
 
         /* 解压缩，还原为500Hz*/
-        /* 采样值转px  X*4033/(32767*12*8)*400 */
+        /* 采样值转px  X*4033/(32767*12*8)*200 */
         for ($i=0; $i < count($dot)-1; $i++) {
-          $dots[] = 650 - $dot[$i] * 0.51238;
-          $dots[] = 650 - ($dot[$i] + $dot[$i+1])/2 * 0.51238;
+          $dots[] = 650 - $dot[$i] * 0.25642;
+          $dots[] = 650 - ($dot[$i] + $dot[$i+1])/2 * 0.25642;
         }
-        $dots[] = 650 - $dot[count($dot)-1] * 0.51238;
+        $dots[] = 650 - $dot[count($dot)-1] * 0.25642;
 
         return($dots);
       }
@@ -90,9 +90,9 @@ class PlotController extends Controller
       $image = imagecreatetruecolor($width, $height);
       $white = imagecolorallocate($image, 255, 255, 255);
       $yellow = imagecolorallocate($image,255,255,0);
-      $red    = imagecolorallocate($image,255,0,0);
-      // $red2    = imagecolorallocate($image,255,0,0);
-      $black   = imagecolorallocate($image,0,0,0);
+      $blue    = imagecolorallocate($image,255,0,0);
+      // $blue2    = imagecolorallocate($image,255,0,0);
+      $green   = imagecolorallocate($image,0,0,0);
 
       imagefill($image, 0, 0, $white);
 
@@ -100,38 +100,38 @@ class PlotController extends Controller
       *背景框
       */
       for ($i=0; $i < 175; $i++) {
-        imageline($image, $i * 20 + 250, 250, $i * 20 + 250, $rows * 800 + 250, $red);
+        imageline($image, $i * 20 + 250, 250, $i * 20 + 250, $rows * 800 + 250, $blue);
       }
       for ($i=0; $i < 40 * $rows; $i++) {
-        imageline($image, 250, $i * 20 + 250, 3500 + 250, $i * 20 + 250, $red);
+        imageline($image, 250, $i * 20 + 250, 3500 + 250, $i * 20 + 250, $blue);
       }
 
       for ($i=0; $i < 35; $i++) {
-        imagelinethick($image, $i * 100 + 250, 250, $i * 100 + 250, $rows * 800 + 250, $red, 2);
+        imagelinethick($image, $i * 100 + 250, 250, $i * 100 + 250, $rows * 800 + 250, $blue, 2);
       }
       for ($i=0; $i < 8 * $rows; $i++) {
-        imagelinethick($image, 250, $i * 100 + 250, 3500 + 250, $i * 100 + 250, $red, 2);
+        imagelinethick($image, 250, $i * 100 + 250, 3500 + 250, $i * 100 + 250, $blue, 2);
       }
 
       for ($i=0; $i < 8; $i++) {
-        imagelinethick($image, $i * 500 + 250, 250, $i * 500 + 250, $rows * 800 + 250, $red, 4);
+        imagelinethick($image, $i * 500 + 250, 250, $i * 500 + 250, $rows * 800 + 250, $blue, 4);
       }
       for ($i=0; $i < 2 * $rows + 1; $i++) {
-        imagelinethick($image, 250, $i * 400 + 250, 3500 + 250, $i * 400 + 250, $red, 4);
+        imagelinethick($image, 250, $i * 400 + 250, 3500 + 250, $i * 400 + 250, $blue, 4);
       }
 
-      imagelinethick($image, 250, 150, 250, 250, $black, 4);
-      imagelinethick($image, 750, 150, 750, 250, $black, 4);
-      imagelinethick($image, 250, 200, 420, 200, $black, 4);
-      imagelinethick($image, 580, 200, 750, 200, $black, 4);
-      imagefttext($image, 50, 0, 470, 220, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "1s");
+      imagelinethick($image, 250, 150, 250, 250, $green, 4);
+      imagelinethick($image, 750, 150, 750, 250, $green, 4);
+      imagelinethick($image, 250, 200, 420, 200, $green, 4);
+      imagelinethick($image, 580, 200, 750, 200, $green, 4);
+      imagefttext($image, 50, 0, 470, 220, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "1s");
 
-      imagelinethick($image, 50, 650, 90, 650, $black, 4);
-      imagelinethick($image, 90, 650, 90, 450, $black, 4);
-      imagelinethick($image, 90, 450, 170, 450, $black, 4);
-      imagelinethick($image, 170, 450, 170, 650, $black, 4);
-      imagelinethick($image, 170, 650, 210, 650, $black, 4);
-      imagefttext($image, 50, 0, 70, 725, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "1mv");
+      imagelinethick($image, 50, 650, 90, 650, $green, 4);
+      imagelinethick($image, 90, 650, 90, 450, $green, 4);
+      imagelinethick($image, 90, 450, 170, 450, $green, 4);
+      imagelinethick($image, 170, 450, 170, 650, $green, 4);
+      imagelinethick($image, 170, 650, 210, 650, $green, 4);
+      imagefttext($image, 50, 0, 70, 725, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "1mv");
 
 
       // 心电波形
@@ -141,7 +141,7 @@ class PlotController extends Controller
         for ($j=0; $j < (count($row) - 1); $j++) {
           $y1 = $row[$j] + 800*$i;
           $y2 = $row[$j+1] + 800*$i;
-          imagelinethick($image, $j + 250, $y1, $j+251, $y2, $black, 4);
+          imagelinethick($image, $j + 250, $y1, $j+251, $y2, $green, 4);
         }
       }
 
@@ -154,12 +154,6 @@ class PlotController extends Controller
     // plot sleep img
     function SleepPlot($hexs)
     {
-      $hex = str_split($hexs, 32);
-
-
-      $dot = array_chunk($hex, 720);
-      $rows = count($dot);
-
       function hex2sec($str)
       {
         // e007-07-1e 01:03:02 60 31 0000000008001f
@@ -170,119 +164,124 @@ class PlotController extends Controller
         return $second;
       }
 
+      $hex = str_split($hexs, 32);
+      $start = hex2sec($hexs);
+
+      $StaTime = date("H:i:s", $start);
+      $EndTime = date("H:i:s", $start + 36000);
+
       // Plot
-      $width = 1640;
-      $height = 540 * $rows + 200;
+
+      $width = 4000;
+      $height = 2500;
 
       $image = imagecreatetruecolor($width, $height);
       $white = imagecolorallocate($image, 255, 255, 255);
-      $yellow = imagecolorallocate($image,255,255,0);
-      $red = imagecolorallocate($image,255,0,0);
-      // $red2    = imagecolorallocate($image,255,0,0);
+      $blue = imagecolorallocate($image,13,181,252);
+      $green = imagecolorallocate($image,28,204,102);
+      // $blue2    = imagecolorallocate($image,255,0,0);
       $black = imagecolorallocate($image,0,0,0);
-      $grey = imagecolorallocate($image,200,200,200);
+      $grey = imagecolorallocate($image,180,180,180);
 
       imagefill($image, 0, 0, $white);
+      imagefttext($image, 100, 0, 50, 100, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "SpO2");
+      imagefttext($image, 100, 0, 3200, 100, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "Heart Rate");
+      imagefttext($image, 50, 0, 120, 2400, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', $StaTime);
+      imagefttext($image, 50, 0, 3500, 2400, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', $EndTime);
 
-      imagefttext($image, 20, 0, 50, 50, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "SpO2");
-      imagefttext($image, 20, 0, 1450, 50, $red, '/var/www/laravel/app/Http/Controllers/consola.ttf', "Heart Rate");
+      for ($i=0; $i < count($hex); $i++) {
+        $str = $hex[$i];
 
-      for ($k=0; $k < $rows; $k++) {
-        // 每一行纵坐标加500Hz
-        $row = $dot[$k];
+        $second = hex2sec($str);
 
-        for ($i=0; $i < count($row); $i++) {
-          $str = $row[$i];
+        $hPx[$i] = ($second - $start) / 10;
+        $hr[$i] = hexdec(substr($str, 16, 2));
+        $oxy[$i] = hexdec(substr($str, 14, 2));
 
-          $second = hex2sec($str);
-          $start = hex2sec($row[0]);
-
-          $hr[$i] = hexdec(substr($str, 16, 2));
-          $oxy[$i] = hexdec(substr($str, 14, 2));
-          $hPx[$i] = ($second - $start) / 5;
-
-          imageline($image, 100, $k * 540 + 100, 1540, $k * 540 + 100, $grey);
-          imagefttext($image, 15, 0, 50, $k * 540 + 100, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "100%");
-          imagefttext($image, 15, 0, 1580, $k * 540 + 100, $red, '/var/www/laravel/app/Http/Controllers/consola.ttf', "170");
-          imageline($image, 100, $k * 540 + 100 + 500/7, 1540, $k * 540 + 500/7 + 100, $grey);
-          imagefttext($image, 15, 0, 50, $k * 540 + 500/7 + 100, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "95%");
-          imagefttext($image, 15, 0, 1580, $k * 540 + 100 + 500/7, $red, '/var/www/laravel/app/Http/Controllers/consola.ttf', "150");
-          imageline($image, 100, $k * 540 + 100 + 2*500/7, 1540, $k * 540 + 2*500/7 + 100, $grey);
-          imagefttext($image, 15, 0, 50, $k * 540 + 2*500/7 + 100, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "90%");
-          imagefttext($image, 15, 0, 1580, $k * 540 + 100 + 2*500/7, $red, '/var/www/laravel/app/Http/Controllers/consola.ttf', "130");
-          imageline($image, 100, $k * 540 + 100 + 3*500/7, 1540, $k * 540 + 3*500/7 + 100, $grey);
-          imagefttext($image, 15, 0, 50, $k * 540 + 3*500/7 + 100, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "85%");
-          imagefttext($image, 15, 0, 1580, $k * 540 + 100 + 3*500/7, $red, '/var/www/laravel/app/Http/Controllers/consola.ttf', "110");
-          imageline($image, 100, $k * 540 + 100 + 4*500/7, 1540, $k * 540 + 4*500/7 + 100, $grey);
-          imagefttext($image, 15, 0, 50, $k * 540 + 4*500/7 + 100, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "80%");
-          imagefttext($image, 15, 0, 1580, $k * 540 + 100 + 4*500/7, $red, '/var/www/laravel/app/Http/Controllers/consola.ttf', "90");
-          imageline($image, 100, $k * 540 + 100 + 5*500/7, 1540, $k * 540 + 5*500/7 + 100, $grey);
-          imagefttext($image, 15, 0, 50, $k * 540 + 5*500/7 + 100, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "75%");
-          imagefttext($image, 15, 0, 1580, $k * 540 + 100 + 5*500/7, $red, '/var/www/laravel/app/Http/Controllers/consola.ttf', "70");
-          imageline($image, 100, $k * 540 + 100 + 6*500/7, 1540, $k * 540 + 6*500/7 + 100, $grey);
-          imagefttext($image, 15, 0, 50, $k * 540 + 6*500/7 + 100, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "70%");
-          imagefttext($image, 15, 0, 1580, $k * 540 + 100 + 6*500/7, $red, '/var/www/laravel/app/Http/Controllers/consola.ttf', "50");
-          imageline($image, 100, $k * 540 + 100 + 500, 1540, $k * 540 + 500 + 100, $grey);
-          imagefttext($image, 15, 0, 50, $k * 540 + 500 + 100, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "65%");
-          imagefttext($image, 15, 0, 1580, $k * 540 + 100 + 500, $red, '/var/www/laravel/app/Http/Controllers/consola.ttf', "30");
-        }
-
-        // 一个值无效则跳到下一个值，有效则判断下一个点。下一个点有效则画线，无效则画一个点
-
-        for ($j=0; $j < count($hPx) -1; $j++) {
-          if ($hr[$j] == 255) {
-            continue;
-          } else {
-            if ($hr[$j+1] == 255) {
-              $xx1 = $hPx[$j] + 100;
-              $yy1 = 600 - ($hr[$j] - 30)*25/7 + $k * 540;
-
-              imagesetpixel($image, $xx1, $yy1, $red);
-            } else {
-              $xx1 = $hPx[$j] + 100;
-              $yy1 = 600 - ($hr[$j] - 30)*25/7 + $k * 540;
-
-              $xx2 = $hPx[$j+1] + 100;
-              $yy3 = 600 - ($hr[$j+1] - 30)*25/7 + $k * 540;
-
-              imagelinethick($image, $xx1, $yy1, $xx2, $yy3, $red, 2);
-            }
-          }
-        }
-
-        for ($j=0; $j < count($hPx) -1; $j++) {
-          if ($oxy[$j] == 255) {
-            continue;
-          } else {
-            if ($oxy[$j+1] == 255) {
-              $xx1 = $hPx[$j] + 100;
-              $yy2 = 600 - 100 / 7 * ($oxy[$j] - 65) + $k * 540;
-
-              imagesetpixel($image, $xx1, $yy2, $black);
-            } else {
-              $xx1 = $hPx[$j] + 100;
-              $yy2 = 600 - 100 / 7 * ($oxy[$j] - 65) + $k * 540;
-
-              $xx2 = $hPx[$j+1] + 100;
-              $yy4 = 600 - 100 / 7 * ($oxy[$j+1] - 65) + $k * 540;
-
-              imagelinethick($image, $xx1, $yy2, $xx2, $yy4, $black, 2);
-            }
-          }
-        }
-
-        $hr = [];
-        $oxy = [];
-        $hPx = [];
       }
 
+      imageline($image, 200, 300, 3800, 300, $grey);
+      imagefttext($image, 50, 0, 50, 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "100%");
+      imagefttext($image, 50, 0, 3800, 324, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "170");
+      imageline($image, 200, 300 + 2000/7, 3800, 2000/7 + 300, $grey);
+      imagefttext($image, 50, 0, 50, 2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "95%");
+      imagefttext($image, 50, 0, 3800, 324 + 2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "150");
+      imageline($image, 200, 300 + 2*2000/7, 3800, 2*2000/7 + 300, $grey);
+      imagefttext($image, 50, 0, 50, 2*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "90%");
+      imagefttext($image, 50, 0, 3800, 324 + 2*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "130");
+      imageline($image, 200, 300 + 3*2000/7, 3800, 3*2000/7 + 300, $grey);
+      imagefttext($image, 50, 0, 50, 3*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "85%");
+      imagefttext($image, 50, 0, 3800, 324 + 3*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "110");
+      imageline($image, 200, 300 + 4*2000/7, 3800, 4*2000/7 + 300, $grey);
+      imagefttext($image, 50, 0, 50, 4*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "80%");
+      imagefttext($image, 50, 0, 3800, 324 + 4*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "90");
+      imageline($image, 200, 300 + 5*2000/7, 3800, 5*2000/7 + 300, $grey);
+      imagefttext($image, 50, 0, 50, 5*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "75%");
+      imagefttext($image, 50, 0, 3800, 324 + 5*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "70");
+      imageline($image, 200, 300 + 6*2000/7, 3800, 6*2000/7 + 300, $grey);
+      imagefttext($image, 50, 0, 50, 6*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "70%");
+      imagefttext($image, 50, 0, 3800, 324 + 6*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "50");
+      imageline($image, 200, 300 + 2000, 3800, 2300, $grey);
+      imagefttext($image, 50, 0, 50, 2324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "65%");
+      imagefttext($image, 50, 0, 3800, 2324, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "30");
+
+      // for ($j=0; $j < count($hPx); $j++) {
+      //   $x1 = $hPx[$j];
+      //   $y1 = 2000 - ($hr[$j] - 30)*100/7;
+      //   $y2 = 2000 - 400 / 7 * ($oxy[$j] - 65);
+      //
+      //   imagesetpixel($image, $x1, $y1, $blue);
+      //   imagesetpixel($image, $x1, $y2, $green);
+      // }
+
+      for ($j=0; $j < count($hPx) -1; $j++) {
+        if ($hr[$j] == 255) {
+          continue;
+        } else {
+          if ($hr[$j+1] == 255) {
+            $x1 = $hPx[$j] + 200;
+            $y1 = 2300 - ($hr[$j] - 30)*100/7;
+
+            imagesetpixel($image, $x1, $y1, $blue);
+          } else {
+            $x1 = $hPx[$j] + 200;
+            $y1 = 2300 - ($hr[$j] - 30)*100/7;
+
+            $x2 = $hPx[$j+1] + 200;
+            $y2 = 2300 - ($hr[$j+1] - 30)*100/7;
+
+            imagelinethick($image, $x1, $y1, $x2, $y2, $blue, 2);
+          }
+        }
+      }
+
+      for ($j=0; $j < count($hPx) -1; $j++) {
+        if ($oxy[$j] == 255) {
+          continue;
+        } else {
+          if ($oxy[$j+1] == 255) {
+            $x1 = $hPx[$j] + 200;
+            $y2 = 2300 - 400 / 7 * ($oxy[$j] - 65);
+
+            imagesetpixel($image, $x1, $y2, $green);
+          } else {
+            $x1 = $hPx[$j] + 200;
+            $y1 = 2300 - 400 / 7 * ($oxy[$j] - 65);
+
+            $x2 = $hPx[$j+1] + 200;
+            $y2 = 2300 - 400 / 7 * ($oxy[$j+1] - 65);
+
+            imagelinethick($image, $x1, $y1, $x2, $y2, $green, 2);
+          }
+        }
+      }
 
       header("Content-type: image/png");
 
       imagepng($image);
       imagedestroy($image);
-    }
 
+    }
 
     if (Observation_component::find($id)->code_display == "MDC_ECG_ELEC_POTL_I") {
       EcgPlot($hexs);
