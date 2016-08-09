@@ -31,7 +31,7 @@
                   <table>
                     <tr>
                       <div>
-                        <image src="/plot/{{ $observation_component->id }}" class="img-responsive">
+                        <image src="/plot/{{ $observation_component->id }}" class="img-responsive col-xs-12">
                       </div>
                     </tr>
                   </table>
@@ -43,7 +43,7 @@
                   <table>
                     <tr>
                       <div class="row">
-                        <div class="col-md-12">{{ $observation_component->code_display }} : <strong>{{ $observation_component->valueQuantity_value }} {{ $observation_component->valueQuantity_unit }}</strong></div>
+                        <div class="col-md-6">{{ $observation_component->code_display }} : <strong>{{ $observation_component->valueQuantity_value }} {{ $observation_component->valueQuantity_unit }}</strong></div>
                       </div>
                     </tr>
                   </table>
