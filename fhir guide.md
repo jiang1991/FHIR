@@ -1,6 +1,6 @@
 # FHIR Guide
 
-## 资源框架
+## FHIR Resource Examples
 
 ```
 FHIR/json examples
@@ -8,36 +8,37 @@ FHIR/json examples
 
 ### Patient
 
-[Patient json example](./json examples/patient.json) 病人
+[Patient json example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/patient.json) Patient
 
 ### Observation Example
 
-- [ecg example](./json examples/ecg.json) 心电
-- [blood pressure example](./json examples/blood pressure.json) 血压
-- [SpO2 Exmaple](./json examples/SaO2.json): 血氧
-- [temperature example](./json examples/temperature.json) 体温
-- [Respiratory rate example](./json examples/Respiratory-rate.json) 呼吸率
+- [ekg example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/ecg.json) ECG FHIR Data
+- [blood pressure example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/blood pressure.json) blood pressure FHIR data
+- [SpO2 Exmaple](https://github.com/jiang1991/FHIR/tree/master/json%20examples/SaO2.json) SpO2 FHIR data
+- [temperature example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/temperature.json) body temperature FHIR data
+- [Respiratory rate example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Respiratory-rate.json) Respiratory rate FHIR data
+- [Sleep example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/sleep.json) Sleep FHIR data
 
-## 交互
+## Interact with Cloud
 
-### 认证
+### Auth
 
 Basic Auth
 
 ![Basic Auth](./imgs/fhir.basic auth.png)
 
-### 登录
+### Login
 
 ```http
-POST http://api.viatomtech.com.cn/user/login
+POST http://115.159.104.246/user/login
 
 header:
 Content-Type: application/x-www-form-urlencoded
 ```
 
-字段： email, password
+Key: email, password
 
-正确返回：(200)
+Success Response: (Status: 200 OK)
 
 ```json
 {
@@ -47,7 +48,7 @@ Content-Type: application/x-www-form-urlencoded
 }
 ```
 
-错误返回： (401)
+Error Response: (Status: 401 Unauthorized)
 
 ```json
 {
@@ -59,10 +60,10 @@ Content-Type: application/x-www-form-urlencoded
 
 ### Patient
 
-#### 新增一个病人信息
+#### Create a new Patient resource
 
 ```http
-POST http://api.viatomtech.com.cn/patient
+POST http://115.159.104.246/patient
 ```
 
 post example:
@@ -80,7 +81,7 @@ Content-Type: application/json+fhir
 
 Response example：
 
-Location header 属性表示访问该资源的URL
+**Location** in http header represent the URL to get this Patient resource
 
 ```http
 Cache-Control →no-cache
@@ -89,7 +90,7 @@ Content-Length →30
 Content-Type →application/json+fhir
 Date →Fri, 24 Jun 2016 07:09:59 GMT
 Keep-Alive →timeout=5, max=100
-Location →http://api.viatomtech.com.cn/patient/5
+Location →http://115.159.104.246/patient/5
 Server →Apache/2.4.10 (Debian)
 
 {
@@ -98,10 +99,10 @@ Server →Apache/2.4.10 (Debian)
 }
 ```
 
-#### 读取一个病人信息
+#### **Read** a Patient
 
 ```http
-GET http://api.viatomtech.com.cn/patient/{id}
+GET http://115.159.104.246/patient/{id}
 ```
 
 get example:
@@ -140,37 +141,63 @@ Server →Apache/2.4.10 (Debian)
 }
 ```
 
-#### Search
-
-***TODO:***
-
-#### Update
-
-***TODO:***
-
 ### Observation Resource
 
-#### 新增一个Observation 信息
+#### Create a new Observation resource
 
 ```http
-POST http://api.viatomtech.com.cn/observation
+POST http://115.159.104.246/observation
 ```
 
-#### 读取一个Observation
+POST Examples:
 
 ```http
-GET http://api.viatomech.com.cn/observation/{id}
+Authorization: Basic d2FuZ2ppYW5nQHZpYXRvbXRlY2guY29tOlZpYXRvbTRF
+Accept: application/json+fhir
+Content-Type: application/json+fhir
+
+{
+  "resourceType": "Observation",
+  ...
+}
 ```
 
-### 分享
-
-新增一个分享
+#### Read a Observation
 
 ```http
-POST http://api.viatomtech.com.cn/shareto
+GET http://115.159.104.246/observation/{id}
 ```
 
-被分享的patient & 分享到一个账号
+Success Response: (Status: 200 OK)
+
+```http
+Cache-Control →no-cache
+Connection →Keep-Alive
+Content-Length →985
+Content-Type →application/json+fhir
+Date →Tue, 09 Aug 2016 04:06:18 GMT
+Keep-Alive →timeout=5, max=100
+Server →Apache/2.4.10 (Debian)
+
+
+{
+  "ResourceType": "Observation",
+  "id": "blood-pressure",
+  "...": "..."
+}
+```
+
+Error Response: (Status: 404 Not Found)
+
+### Share
+
+Create a new share with another user
+
+```http
+POST http://115.159.104.246/shareto
+```
+
+POST keys:
 
 ```json
 {
@@ -179,15 +206,13 @@ POST http://api.viatomtech.com.cn/shareto
 }
 ```
 
-
-
-查询分享
+Read all patient shared to current user
 
 ```http
-GET http://api.viatomtech.com.cn/shareto
+GET http://115.159.104.246/shareto
 ```
 
-返回所有被分享 Patient 信息
+Response examples: (only 1 patient user shared)
 
 ```json
 [
@@ -210,12 +235,10 @@ GET http://api.viatomtech.com.cn/shareto
 ]
 ```
 
-这里是分享了一个patient
-
-### 查询
+### Search for all Observation data
 
 ```http
-GET http://api.viatomtech.com.cn/search
+GET http://115.159.104.246/search
 ```
 
-这里会返回此 user 所有上传的记录 和 分享给他的记录
+this will return all observations uploaded by this user and shred to this user.

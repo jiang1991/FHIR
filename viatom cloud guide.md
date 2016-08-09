@@ -1,8 +1,8 @@
 # Viatom Cloud Guide
 
-# Server
+## Server
 
-## Server Requirement
+### Server Requirement
 
 Homestead or 
 
@@ -13,30 +13,30 @@ Homestead or
   - Mbstring
   - Tokenizer
 
-## Install Laravel
+### Install Laravel
 
 Laravel utilizes [Composer](http://getcomposer.org/) to manage its dependencies. Make sure you have Laravel Installed.
 
-### Via Laravel Installer
+#### Via Laravel Installer
 
 ```basic
 composer global require "laravel/installer"
 laravel new blog
 ```
 
-### Via Composer Create-Project
+#### Via Composer Create-Project
 
 ```basic
 composer create-project laravel/laravel {directory} 4.2 --prefer-dist blog
 ```
 
-## Configuration
+### Configuration
 
 *TODO*
 
 - ```storage``` and ```bootstrap/cache``` directory should be writable
 
-## Maintenance Mode
+### Maintenance Mode
 
 To enable maintenance mode, simply execute the `down` Artisan command:
 
