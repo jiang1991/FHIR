@@ -12,6 +12,7 @@ use App\Repositories\ObservationRepository;
 class ObservationController extends Controller
 {
   protected $observation;
+  protected $patient;
 
   public function __construct(ObservationRepository $observation)
   {
@@ -24,6 +25,7 @@ class ObservationController extends Controller
     $observation_components = Observation_component::where('observation_id', $observation_id)->get();
 
     return view('observation',[
+      'patient' => $this->observation->observation($observation_id)->patient,
       'observation' => $this->observation->observation($observation_id),
       'observation_components' => $observation_components,
     ]);

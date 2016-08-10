@@ -4,6 +4,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
+
+      <ul class="breadcrumb">
+        <li><a href="/">Home</a> <span class="divider"></span></li>
+        <li><a href="/mypatient/{{ $patient->id }}">{{ $patient->name }}</a> <span class="divider"></span></li>
+        <li class="active">{{ $observation->resourceId }}</li>
+      </ul>
+
       <div class="panel panel-default">
         <div class="panel-heading">Observation</div>
 

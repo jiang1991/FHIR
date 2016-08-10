@@ -4,6 +4,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
+      <ul class="breadcrumb">
+        <li class="active">Home</li>
+      </ul>
+
       <div class="panel panel-default">
         <div class="panel-heading">Patients</div>
 

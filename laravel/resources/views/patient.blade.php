@@ -4,6 +4,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
+      <ul class="breadcrumb">
+        <li><a href="/">Home</a> <span class="divider"></span></li>
+        <li class="active">{{ $patient->name }}</li>
+      </ul>
+
       <div class="panel panel-default">
         <div class="panel-heading">Information</div>
 
