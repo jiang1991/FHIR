@@ -38,18 +38,18 @@
                   <table>
                     <tr>
                       <div>
-                        <image src="/plot/{{ $observation_component->id }}" class="img-responsive col-xs-12">
+                        <image class="col-xs-12" src="/plot/{{ $observation_component->id }}"> </image>
                       </div>
                     </tr>
                   </table>
-                <td>
+                </td>
               </tr>
               @else
               <tr>
                 <td>
                   <table>
                     <tr>
-                      <div class="row">
+                      <div>
                         <div class="col-md-6">{{ $observation_component->code_display }} : <strong>{{ $observation_component->valueQuantity_value }} {{ $observation_component->valueQuantity_unit }}</strong></div>
                       </div>
                     </tr>
