@@ -1,6 +1,6 @@
-# FHIR Guide
+# FHIR 手册
 
-## FHIR Resource Examples
+## FHIR Resource 示例 
 
 ```
 FHIR/json examples
@@ -12,22 +12,23 @@ FHIR/json examples
 
 ### Observation Example
 
-- [ekg example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/ecg.json) ECG FHIR Data
-- [blood pressure example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/blood pressure.json) blood pressure FHIR data
-- [SpO2 Exmaple](https://github.com/jiang1991/FHIR/tree/master/json%20examples/SaO2.json) SpO2 FHIR data
-- [temperature example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/temperature.json) body temperature FHIR data
-- [Respiratory rate example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Respiratory-rate.json) Respiratory rate FHIR data
-- [Sleep example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/sleep.json) Sleep FHIR data
+- [ekg example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/ecg.json) 心电 FHIR json
+- [blood pressure example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/blood pressure.json) 血压 FHIR json
+- [SpO2 Exmaple](https://github.com/jiang1991/FHIR/tree/master/json%20examples/SaO2.json) 血氧 FHIR json
+- [temperature example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/temperature.json) 体温 FHIR json
+- [Respiratory rate example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Respiratory-rate.json) 呼吸率 FHIR json
+- [Sleep example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/sleep.json) 睡眠 FHIR json
+- [Daily Check example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Daily%20Check.json) Daily Check json
 
-## Interact with Cloud
+## 与云服务器交互
 
-### Auth
+### 认证
 
 Basic Auth
 
 ![Basic Auth](./imgs/fhir.basic auth.png)
 
-### Login
+### 登陆
 
 ```http
 POST http://115.159.104.246/user/login
@@ -38,7 +39,7 @@ Content-Type: application/x-www-form-urlencoded
 
 Key: email, password
 
-Success Response: (Status: 200 OK)
+成功返回: (Status: 200 OK)
 
 ```json
 {
@@ -48,7 +49,7 @@ Success Response: (Status: 200 OK)
 }
 ```
 
-Error Response: (Status: 401 Unauthorized)
+错误返回: (Status: 401 Unauthorized)
 
 ```json
 {
@@ -60,7 +61,7 @@ Error Response: (Status: 401 Unauthorized)
 
 ### Patient
 
-#### Create a new Patient resource
+#### 新增 Patient resource
 
 ```http
 POST http://115.159.104.246/patient
@@ -79,9 +80,9 @@ Content-Type: application/json+fhir
 }
 ```
 
-Response example：
+示例返回：
 
-**Location** in http header represent the URL to get this Patient resource
+**Location** 指明了获取此 patient resource 的 url 路径
 
 ```http
 Cache-Control →no-cache
@@ -99,20 +100,20 @@ Server →Apache/2.4.10 (Debian)
 }
 ```
 
-#### **Read** a Patient
+#### 读取 a Patient
 
 ```http
 GET http://115.159.104.246/patient/{id}
 ```
 
-get example:
+get 请求示例:
 
 ```http
 Authorization: Basic d2FuZ2ppYW5nQHZpYXRvbXRlY2guY29tOlZpYXRvbTRF
 Accept: application/xml+fhir
 ```
 
-Response example:
+返回示例:
 
 ```http
 Cache-Control →no-cache
@@ -143,13 +144,13 @@ Server →Apache/2.4.10 (Debian)
 
 ### Observation Resource
 
-#### Create a new Observation resource
+#### 新增 Observation resource
 
 ```http
 POST http://115.159.104.246/observation
 ```
 
-POST Examples:
+POST 示例:
 
 ```http
 Authorization: Basic d2FuZ2ppYW5nQHZpYXRvbXRlY2guY29tOlZpYXRvbTRF
@@ -162,13 +163,13 @@ Content-Type: application/json+fhir
 }
 ```
 
-#### Read a Observation
+#### 读取 a Observation
 
 ```http
 GET http://115.159.104.246/observation/{id}
 ```
 
-Success Response: (Status: 200 OK)
+成功返回: (Status: 200 OK)
 
 ```http
 Cache-Control →no-cache
@@ -187,17 +188,17 @@ Server →Apache/2.4.10 (Debian)
 }
 ```
 
-Error Response: (Status: 404 Not Found)
+错误: (Status: 404 Not Found)
 
-### Share
+### 分享
 
-Create a new share with another user
+分享一个 patient 到另一个 云账户
 
 ```http
 POST http://115.159.104.246/shareto
 ```
 
-POST keys:
+POST 请求示例:
 
 ```json
 {
@@ -206,13 +207,13 @@ POST keys:
 }
 ```
 
-Read all patient shared to current user
+读取所有分享到发送请求的用户的 patient
 
 ```http
 GET http://115.159.104.246/shareto
 ```
 
-Response examples: (only 1 patient user shared)
+示例返回: (这里只有一个被分享的 patient)
 
 ```json
 [
@@ -235,15 +236,15 @@ Response examples: (only 1 patient user shared)
 ]
 ```
 
-### Search
+### 查询
 
-#### search all the patient uploaded by this user
+#### 查询所有该用户上传的patient
 
 ```http
 GET http://115.159.104.246/search/patient
 ```
 
-response example：
+示例返回：
 
 ```json
 [
