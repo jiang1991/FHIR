@@ -4,45 +4,28 @@ namespace App\Http\Controllers\Fhir;
 use DB;
 use Illuminate\Routing\Controller;
 use Auth;
+use App\Patient;
 
 class searchController extends Controller
 {
-  function search()
+  function search($param)
   {
     /*查询 user id*/
     $user = Auth::user();
     $user_id = $user->id;
 
-    /**
-    * Response 分为 user 自身上传的和 分享给他的
-    * $response->self   $response->share
-    **/
+    if ($param == 'patient') {
+      $patients = Patient::where('user_id', "$user_id")->get();
 
-    // TODO: 不使用table records，直接查询observation
-
-    $userResults = DB::table('records')->WHERE('user_id', "$user_id")->get();
-    // $userResults->isEmpty()
-    if (!empty($userResults)) {
-      $i = 0;
-      foreach ($userResults as $userResult) {
-        $response["user"][$i] = $userResult;
-        $i++;
+      foreach ($patients as $patient) {
+        $result["patient_id"] = $patient->id;
+        $result["medical_id"] = $patient->medicalId;
+        $result["name"] = $patient->name;
+        $response[] = $result;
       }
-    }
 
-    /*查询分享给这个 user 的 patient Id */
-    $patient_ids = DB::table('shares')->WHERE('user_id', "$user_id")->value('patient_id');
-
-    // !$patient_ids->isEmpty()
-    if (!empty($patient_ids)) {
-      $i = 0;
-      foreach ($patient_ids as $patient_id) {
-        $patientResults = DB::table('records')->WHERE('patient_id', "$patient_id")->get();
-        foreach ($patientResults as $patientResult) {
-          $Response["share"][$i] = $patientResult;
-          $i++;
-        }
-      }
+    } else {
+      # code...
     }
 
     return response($response)

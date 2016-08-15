@@ -25,7 +25,7 @@ class PatientController extends Controller
     /**
      * 判断是否上传过 上传过则更改 user_id 为当前 用户
      */
-    if ($patient = Patient::where('medicalId', "$medicalId")) {
+    if ($patient = Patient::where('medicalId', "$medicalId")->first()) {
       $patient->user_id = $user_id;
       $patient->save();
 
@@ -47,12 +47,12 @@ class PatientController extends Controller
 
       $patient->save();
 
-      // 判断medical id 是否已经上传过
       $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
     }
 
     $response["patient_id"] = "$patient_id";
     $response["user_id"] = "$user_id";
+    $response["medical_id"] = "$medicalId";
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir')

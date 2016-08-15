@@ -74,7 +74,7 @@ Route::get('shareto', [
 ]);
 
 /* search */
-Route::get('search', [
+Route::get('search/{param}', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\SearchController@Search'
   ]);
