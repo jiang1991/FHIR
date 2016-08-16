@@ -17,7 +17,8 @@ FHIR/json examples
 - [SpO2 Exmaple](https://github.com/jiang1991/FHIR/tree/master/json%20examples/SaO2.json) 血氧 FHIR json
 - [temperature example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/temperature.json) 体温 FHIR json
 - [Respiratory rate example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Respiratory-rate.json) 呼吸率 FHIR json
-- [Sleep example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/sleep.json) 睡眠 FHIR json
+- [O2 Sleep example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Sleep%20-%20o2.json)  O2 睡眠 FHIR json
+- [Checkme Sleep example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Sleep%20-%checkme.json) Checkme 睡眠 FHIR json
 - [Daily Check example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Daily%20Check.json) Daily Check json
 
 ## 与云服务器交互
