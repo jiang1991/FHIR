@@ -31,64 +31,19 @@
         "code": "N",
         "display": "Normal"
       },
-    "text": "--"
+    "text": "Blood Oxygen drops detected 或者 No abnormalities detected"
   },
   "component": [
     {
       "code": {
         "coding": {
           "system": "http://api.viatomtech.com.cn/fhir",
-          "code": "160501-1",
-          "display": "Avg SpO2"
+          "code": "160501-9",
+          "display": "Total duration"
         }
       },
       "valueQuantity": {
-        "value": 96,
-        "unit": "%",
-        "system": "http://unitsofmeasure.org",
-        "code": "%"
-      }
-    },
-    {
-      "code": {
-        "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
-          "code": "160501-2",
-          "display": "Min SpO2"
-        }
-      },
-      "valueQuantity": {
-        "value": 91,
-        "unit": "%",
-        "system": "http://unitsofmeasure.org",
-        "code": "%"
-      }
-    },
-    {
-      "code": {
-        "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
-          "code": "160501-3",
-          "display": "≤90% Drops"
-        }
-      },
-      "valueQuantity": {
-        "value": 0,
-        "unit": " ",
-        "system": "http://unitsofmeasure.org",
-        "code": " "
-      }
-    },
-    {
-      "code": {
-        "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
-          "code": "160501-4",
-          "display": "≤90% Duration"
-        }
-      },
-      "valueQuantity": {
-        "value": 0,
+        "value": 10,
         "unit": "s",
         "system": "http://unitsofmeasure.org",
         "code": "s"
@@ -98,30 +53,60 @@
       "code": {
         "coding": {
           "system": "http://api.viatomtech.com.cn/fhir",
-          "code": "160501-5",
-          "display": "Avg HR"
+          "code": "160501-10",
+          "display": "<90% STAT."
         }
       },
       "valueQuantity": {
-        "value": 70,
-        "unit": "beats/min",
+        "value": 1,
+        "unit": " ",
         "system": "http://unitsofmeasure.org",
-        "code": "{beats}/min"
+        "code": " "
       }
     },
     {
       "code": {
         "coding": {
           "system": "http://api.viatomtech.com.cn/fhir",
-          "code": "160501-6",
-          "display": "Sleep Time"
+          "code": "160501-11",
+          "display": "Drops"
         }
       },
       "valueQuantity": {
-        "value": 7.5,
-        "unit": "h",
+        "value": 100,
+        "unit": "s",
         "system": "http://unitsofmeasure.org",
-        "code": "h"
+        "code": "s"
+      }
+    },
+    {
+      "code": {
+        "coding": {
+          "system": "http://api.viatomtech.com.cn/fhir",
+          "code": "160501-12",
+          "display": "Avg SpO2"
+        }
+      },
+      "valueQuantity": {
+        "value": 97,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+    {
+      "code": {
+        "coding": {
+          "system": "http://api.viatomtech.com.cn/fhir",
+          "code": "160501-13",
+          "display": "Lowest SpO2"
+        }
+      },
+      "valueQuantity": {
+        "value": 85,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
       }
     },
     {
