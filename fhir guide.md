@@ -18,7 +18,7 @@ FHIR/json examples
 - [temperature example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/temperature.json) body temperature FHIR data
 - [Respiratory rate example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Respiratory-rate.json) Respiratory rate FHIR data
 - [O2 Sleep example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Sleep%20-%20o2.json)  O2 Sleep FHIR json
-- [Checkme Sleep example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Sleep%20-%checkme.json) Checkme Sleep FHIR json
+- [Checkme Sleep example](https://github.com/jiang1991/FHIR/blob/master/json%20examples/Sleep%20-%20checkme.json) Checkme Sleep FHIR json
 - [Daily Check example](https://github.com/jiang1991/FHIR/tree/master/json%20examples/Daily%20Check.json) Daily Check json
 
 ## Interact with Cloud
