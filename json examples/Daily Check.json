@@ -3,8 +3,8 @@
   "id": "daily check",
   "identifier":
     {
-      "system": "urn:ietf:rfc:3986",
-      "value": "urn:uuid:187e0c12-8dd2-67e2-99b2-bf273c812345"
+      "system": "http://api.viatomtech.com.cn/fhir",
+      "value": "CS20140142038119910813627020160812122334"
     },
   "category": {
     "coding":
@@ -179,6 +179,38 @@
         "unit": "mmHg",
         "system": "http://unitsofmeasure.org",
         "code": "mm[Hg]"
+      }
+    },
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "20564-1",
+          "display": "Oxygen saturation in Blood"
+        }
+      },
+      "valueQuantity": {
+        "value": 99,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "61006-3",
+          "display": "Perfusion index Tissue by Pulse oximetry"
+        }
+      },
+      "valueQuantity": {
+        "value": 1.0,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
       }
     },
     {
