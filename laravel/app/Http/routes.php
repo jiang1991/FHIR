@@ -53,10 +53,7 @@ Route::post('patient', [
   ]);
 
 /* Read Patient*/
-Route::get('patient/{patient}', [
-  'middleware' => 'auth.basic',
-  'uses' => 'Fhir\PatientController@PatientRead'
-  ]);
+Route::get('patient/{patient}', 'Fhir\PatientController@PatientRead');
 
 /* shareTo*/
 Route::post('shareto', [
@@ -81,3 +78,6 @@ Route::get('search/{param}', [
 
 /* pulsebit O2 update service */
 Route::get('update', 'Update\UpdateController@update');
+
+/* export Excel */
+Route::get('excel/export', 'export\ExcelController@export');
