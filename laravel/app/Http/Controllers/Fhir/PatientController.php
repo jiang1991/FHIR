@@ -25,27 +25,27 @@ class PatientController extends Controller
     /**
      * 判断是否上传过 上传过则更改 user_id 为当前 用户
      */
-    if ($patient = Patient::where('medicalId', "$medicalId")->first()) {
+    if ($patient = Patient::where('medicalId', $medicalId)->first()) {
       $patient->user_id = $user_id;
       $patient->save();
 
       $patient_id = $patient->id;
     } else {
-      $patient = new Patient;
-      $patient->resourceType = $patientData->resourceType;
-      $patient->user_id = $user_id;
-      $patient->identifier_system = $patientData->identifier->system;
-      $patient->identifier_value = $patientData->identifier->value;
-      $patient->medicalId = $patientData->identifier->medicalId;
-      $patient->active = $patientData->active;
-      $patient->name = $patientData->name;
-      $patient->gender = $patientData->gender;
-      $patient->birthDate = $patientData->birthDate;
-      $patient->height = $patientData->height;
-      $patient->weight = $patientData->weight;
-      $patient->stepSize = $patientData->stepSize;
+      $npatient = new Patient;
+      $npatient->resourceType = $patientData->resourceType;
+      $npatient->user_id = $user_id;
+      $npatient->identifier_system = $patientData->identifier->system;
+      $npatient->identifier_value = $patientData->identifier->value;
+      $npatient->medicalId = $patientData->identifier->medicalId;
+      $npatient->active = $patientData->active;
+      $npatient->name = $patientData->name;
+      $npatient->gender = $patientData->gender;
+      $npatient->birthDate = $patientData->birthDate;
+      $npatient->height = $patientData->height;
+      $npatient->weight = $patientData->weight;
+      $npatient->stepSize = $patientData->stepSize;
 
-      $patient->save();
+      $npatient->save();
 
       $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
     }
@@ -64,20 +64,21 @@ class PatientController extends Controller
     // TODO: 判断该 user 是否有权限获取该 patient 信息
 
     /** Eloquent Model 查询不到则404 **/
-    $query = Patient::firstOrFail($patient_id);
+    $sql = Patient::findOrFail($patient_id);
 
-    $response["resourceType"] = $query->resourceType;
-    $response["user_id"] = $query->user_id;
-    $response["identifier"]["system"] = $query->identifier_system;
-    $response["identifier"]["value"] = $query->identifier_value;
-    $response["identifier"]["medicalId"] = $query->medicalId;
-    $response["active"] = $query->active;
-    $response["name"] = $query->name;
-    $response["gender"] = $query->gender;
-    $response["birthDate"] = $query->birthDate;
-    $response["height"] = $query->height;
-    $response["weight"] = $query->weight;
-    $response["stepSize"] = $query->stepSize;
+    $response["resourceType"] = $sql->resourceType;
+    $response["user_id"] = $sql->user_id;
+    $response["identifier"]["system"] = $sql->identifier_system;
+    $response["identifier"]["value"] = $sql->identifier_value;
+    $response["identifier"]["medicalId"] = $sql->medicalId;
+    $response["active"] = $sql->active;
+    $response["name"] = $sql->name;
+    $response["gender"] = $sql->gender;
+    $response["birthDate"] = $sql->birthDate;
+    $response["height"] = $sql->height;
+    $response["weight"] = $sql->weight;
+    $response["stepSize"] = $sql->stepSize;
+
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir');

@@ -41,10 +41,12 @@ class HomeController extends Controller
     {
       $sharePatients = collect([ ]);
       $user = Auth::user();
-      $shares = Share::where('user_id', $user->id)->get();
-      foreach ($shares as $share) {
-        $sharePatient = Patient::find($share->patient_id);
-        $sharePatients->push($sharePatient);
+
+      if ($shares = Share::where('user_id', $user->id)->get()) {
+        foreach ($shares as $share) {
+          $sharePatient = Patient::find($share->patient_id);
+          $sharePatients->push($sharePatient);
+        }
       }
 
 

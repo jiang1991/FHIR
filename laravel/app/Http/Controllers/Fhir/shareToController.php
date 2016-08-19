@@ -22,15 +22,25 @@ class shareToController extends Controller
     $shareToJson = file_get_contents("php://input");
     $shareToData = json_decode($shareToJson);
 
-    $patientId = $shareToData->PatientId;
-    $toEmail = $shareToData->toEmail;
+    // $patientId = $shareToData->patientId;
+    // $toEmail = $shareToData->toEmail;
+    //
+    // // //TODO: Use Elop model
+    // // DB::table('shares')->insert([
+    // //   'user_id' => "$userId",
+    // //   'patient_id' => "$patientId",
+    // //   'active' => "1",
+    // // ]);
+    $email = $shareToData->toEmail;
 
-    //TODO: Use Elop model
-    DB::table('shares')->insert([
-      'userId' => "$userId",
-      'patientId' => "$patientId",
-      'active' => "1",
-    ]);
+    $share_id = DB::table('users')->where('email', $email)->value('id');
+
+    $share = new Share;
+    $share->user_id = $share_id;
+    $share->patient_id = $shareToData->patientId;
+    $share->active = "1";
+
+    $share->save();
 
     $response["acitve"] = 1;
     return response($response)
