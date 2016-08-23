@@ -16,12 +16,12 @@
 
         <div class="panel-body">
           <table class="table table-striped">
-            <h3>{{ $observation->resourceId }}</h3>
-            <h4>{{ $observation->code_display }}</h4>
+            <h3> <div class="text-capitalize"> {{ $observation->resourceId }}</div></h3>
             <div class="row">
               <div class="col-md-3">Patient: {{ $observation->subject_display }}</div>
-              <div class="col-md-2"><strong>{{ $observation->interpretation_display }}</strong></div>
-              <div class="col-md-6">{{ $observation->interpretation_text }}</div>
+              <div class="col-md-4">Time: {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
+              <div class="col-md-2 text-capitalize"><strong>{{ $observation->interpretation_display }}</strong></div>
+              <div class="col-md-6 text-capitalize">{{ $observation->interpretation_text }}</div>
             </div>
           </table>
         </div>
@@ -44,6 +44,8 @@
                   </table>
                 </td>
               </tr>
+              @elseif ($observation_component->code_code == "RPP")
+
               @else
               <tr>
                 <td>

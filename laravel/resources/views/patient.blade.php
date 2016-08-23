@@ -26,7 +26,7 @@
           </table>
         </div>
 
-        <div class="panel-heading">Observations</div>
+        <div class="panel-heading">Measurements</div>
         @if (count($observations) > 0)
         <div class="panel-body">
           <table class="table table-striped">
@@ -36,9 +36,9 @@
                   <table>
                     <tr>
                       <div class="row">
-                        <div class="col-md-4"><a href="/myobservation/{{ $observation->id }}">Check Type: {{ $observation->resourceId }}</a></div>
-                        <div class="col-md-4">Time: {{ $observation->effectiveDateTime }}</div>
-                        <div class="col-md-4">Notes: {{ $observation->interpretation_text }}</div>
+                        <div class="col-md-4 text-capitalize"><a href="/myobservation/{{ $observation->id }}">Check Type: {{ $observation->resourceId }}</a></div>
+                        <div class="col-md-4">Time: {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
+                        <div class="col-md-4 text-capitalize">Notes: {{ $observation->interpretation_text }}</div>
                       </div>
                     </tr>
                   </table>
