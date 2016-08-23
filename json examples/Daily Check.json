@@ -75,7 +75,7 @@
           {
             "system": "http://loinc.org",
             "code": "76053-8",
-            "display": "ST amplitude.lead I"
+            "display": "ST Segment.Lead I"
           }
       },
       "valueQuantity": {
