@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "ekg",
+  "id": "ECG",
   "identifier":
     {
       "system": "urn:ietf:rfc:3986",
@@ -144,9 +144,9 @@
       },
       "valueQuantity": {
         "value": 25000,
-        "unit": "mmHg*beats/min",
+        "unit": " ",
         "system": "https://en.wikipedia.org/wiki/Rate_pressure_product",
-        "code": "mm[Hg]*{beats}/min"
+        "code": " "
       }
     },
     {

@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "SaO2",
+  "id": "SpO2",
   "identifier":
   {
     "system": "urn:ietf:rfc:3986",
@@ -65,9 +65,9 @@
       },
       "valueQuantity": {
         "value": 65,
-        "unit": "{beats}/min",
+        "unit": "/min",
         "system": "http://unitsofmeasure.org",
-        "code": "{beats}/min"
+        "code": "/min"
       }
     },
     {

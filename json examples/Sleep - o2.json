@@ -104,9 +104,9 @@
       },
       "valueQuantity": {
         "value": 70,
-        "unit": "beats/min",
+        "unit": "/min",
         "system": "http://unitsofmeasure.org",
-        "code": "{beats}/min"
+        "code": "/min"
       }
     },
     {

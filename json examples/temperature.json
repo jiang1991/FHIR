@@ -30,7 +30,7 @@
     "coding":{
       "system": "http://hl7.org/fhir/v2/0078",
       "code": "L",
-      "display": "low"
+      "display": "Low"
     },
     "text": "Below low normal"
   },
@@ -50,5 +50,5 @@
         "code": "deg C"
       }
     }
-  ]  
+  ]
 }
