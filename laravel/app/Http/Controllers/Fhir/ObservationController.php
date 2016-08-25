@@ -34,8 +34,19 @@ class ObservationController extends Controller
     $component = $observationData->component;
 
     $id = $observationData->id; //其实是observation Type
-    // // TODO: 判断是否已经上传
     $identifier_value = $observationData->identifier->value;
+
+    // 判断是否已经上传
+    if ($query = Observation::where('identifier_value', $identifier_value)->first()) {
+      $response["user_id"] = $query->user_id;
+      $response["observation_id"] = $query->id;
+      $response["status"] = "generated";
+
+      return response($response)
+        ->header('Content-Type', 'application/json+fhir')
+        ->header('Location', 'http://api.viatomtech.com.cn/observation/' . $query->id);
+    }
+
     $subject_reference = $observationData->subject->reference; //这里其实是PatientId
 
     $observation = new Observation;
