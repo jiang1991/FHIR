@@ -95,10 +95,10 @@
           }
       },
       "valueQuantity": {
-        "value": 10,
-        "unit": "s",
+        "value": 349,
+        "unit": "ms",
         "system": "http://unitsofmeasure.org",
-        "code": "s"
+        "code": "ms"
       }
     },
     {
@@ -111,10 +111,10 @@
           }
       },
       "valueQuantity": {
-        "value": 10,
-        "unit": "s",
+        "value": 350,
+        "unit": "ms",
         "system": "http://unitsofmeasure.org",
-        "code": "s"
+        "code": "ms"
       }
     },
     {

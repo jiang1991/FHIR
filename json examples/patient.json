@@ -3,7 +3,7 @@
   "userId": "1",
   "identifier":
   {
-    "system": "http://www.viatomtech.com.cn",
+    "system": "https://api.viatomtech.com.cn",
     "value": "CS0010401",
     "medicalId": "CS0010401"
   },

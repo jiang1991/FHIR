@@ -3,7 +3,7 @@
   "id": "daily check",
   "identifier":
     {
-      "system": "http://api.viatomtech.com.cn/fhir",
+      "system": "https://api.viatomtech.com.cn/fhir",
       "value": "CS20140142038119910813627020160812122334"
     },
   "category": {
@@ -95,10 +95,10 @@
           }
       },
       "valueQuantity": {
-        "value": 10,
-        "unit": "s",
+        "value": 340,
+        "unit": "ms",
         "system": "http://unitsofmeasure.org",
-        "code": "s"
+        "code": "ms"
       }
     },
     {
@@ -111,10 +111,10 @@
           }
       },
       "valueQuantity": {
-        "value": 10,
-        "unit": "s",
+        "value": 354,
+        "unit": "ms",
         "system": "http://unitsofmeasure.org",
-        "code": "s"
+        "code": "ms"
       }
     },
     {

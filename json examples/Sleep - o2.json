@@ -14,7 +14,7 @@
   },
   "code": {
     "coding": {
-      "system": "http://api.viatomtech.com.cn/fhir",
+      "system": "https://api.viatomtech.com.cn/fhir",
       "code": "160501",
       "display": "Sleep"
     }
@@ -37,7 +37,7 @@
     {
       "code": {
         "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
+          "system": "https://api.viatomtech.com.cn/fhir",
           "code": "160501-1",
           "display": "Avg SpO2"
         }
@@ -52,7 +52,7 @@
     {
       "code": {
         "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
+          "system": "https://api.viatomtech.com.cn/fhir",
           "code": "160501-2",
           "display": "Min SpO2"
         }
@@ -67,7 +67,7 @@
     {
       "code": {
         "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
+          "system": "https://api.viatomtech.com.cn/fhir",
           "code": "160501-3",
           "display": "≤90% Drops"
         }
@@ -82,7 +82,7 @@
     {
       "code": {
         "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
+          "system": "https://api.viatomtech.com.cn/fhir",
           "code": "160501-4",
           "display": "≤90% Duration"
         }
@@ -97,7 +97,7 @@
     {
       "code": {
         "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
+          "system": "https://api.viatomtech.com.cn/fhir",
           "code": "160501-5",
           "display": "Avg HR"
         }
@@ -112,7 +112,7 @@
     {
       "code": {
         "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
+          "system": "https://api.viatomtech.com.cn/fhir",
           "code": "160501-6",
           "display": "Sleep Time"
         }
@@ -127,7 +127,7 @@
     {
       "code": {
         "coding": {
-          "system": "http://api.viatomtech.com.cn/fhir",
+          "system": "https://api.viatomtech.com.cn/fhir",
           "code": "160501-7",
           "display": "SLEEP_II"
         }
