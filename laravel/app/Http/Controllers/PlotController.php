@@ -44,6 +44,8 @@ class PlotController extends Controller
     function EcgPlot($hexs)
     {
       // 对值进行处理
+      $hexs = substr($hexs, 4);
+
       function dec2px($hexs)
       {
         $hex = str_split($hexs, 4);
