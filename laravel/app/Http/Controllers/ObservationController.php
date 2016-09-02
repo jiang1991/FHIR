@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Observation;
 use App\Observation_component;
 use Illuminate\Routing\Controller;
 use Auth;
@@ -29,6 +30,14 @@ class ObservationController extends Controller
       'observation' => $this->observation->observation($observation_id),
       'observation_components' => $observation_components,
     ]);
+  }
+
+  function destroy($observation)
+  {
+    // $this->authorize('destroy', $observation);
+    Observation::destroy($observation);
+    Observation_component::where('observation_id', $observation)->delete();
+    return redirect("/mypatient/" . $_POST["patient_id"]);
   }
 }
 

@@ -27,7 +27,8 @@ Route::post('/user/signup', 'UserController@signup');
 
 Route::any('/mypatient/{id}', 'MyController@MyPatient');
 
-Route::any('/myobservation/{id}', 'ObservationController@MyObservation');
+Route::get('/myobservation/{id}', 'ObservationController@MyObservation');
+Route::delete('/myobservation/{id}', 'ObservationController@destroy');
 
 Route::any('/plot/{id}', 'PlotController@Plot');
 

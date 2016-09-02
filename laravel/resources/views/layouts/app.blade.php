@@ -39,9 +39,13 @@
         </button>
 
         <!-- Branding Image -->
-        <a class="navbar-brand" href="{{ url('/') }}">
-          Viatom
+
+        <a href="{{ url('/') }}">
+          <img src="/viatom-logo.png" margin-bottom:20px width="100" alt="Viatom" />
         </a>
+        <!-- <a class="navbar-brand" href="{{ url('/') }}">
+          Viatom
+        </a> -->
       </div>
 
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
