@@ -1,0 +1,114 @@
+{
+  "resourceType": "Observation",
+  "id": "sleep",
+  "identifier":{
+    "system": "https://cloud.viatomtech.com/fhir",
+    "value": "CS20140142038119910813627020160812122334"
+  },
+  "category": {
+    "coding":{
+      "system": "http://hl7.org/fhir/observation-category",
+      "code": "procedure",
+      "display": "Procedure"
+    }
+  },
+  "code": {
+    "coding": {
+      "system": "https://api.viatomtech.com.cn/fhir",
+      "code": "160502",
+      "display": "Sleep"
+    }
+  },
+  "effectiveDateTime": "2016-08-05T14:42:35+01:00",
+  "subject": {
+    "reference": "1",
+    "display": "Wang Jiang"
+  },
+  "component": [
+    {
+      "code": {
+        "coding": {
+          "system": "https://api.viatomtech.com.cn/fhir",
+          "code": "160501-9",
+          "display": "Total duration"
+        }
+      },
+      "valueQuantity": {
+        "value": "10m27s",
+        "unit": " ",
+        "system": "http://unitsofmeasure.org",
+        "code": " "
+      }
+    },
+    {
+      "code": {
+        "coding": {
+          "system": "https://api.viatomtech.com.cn/fhir",
+          "code": "160501-10",
+          "display": "<90% STAT."
+        }
+      },
+      "valueQuantity": {
+        "value": 100,
+        "unit": "s",
+        "system": "http://unitsofmeasure.org",
+        "code": "s"
+      }
+    },
+    {
+      "code": {
+        "coding": {
+          "system": "https://api.viatomtech.com.cn/fhir",
+          "code": "160501-11",
+          "display": "Drops"
+        }
+      },
+      "valueQuantity": {
+        "value": 1,
+        "unit": " ",
+        "system": "http://unitsofmeasure.org",
+        "code": " "
+      }
+    },
+    {
+      "code": {
+        "coding": {
+          "system": "https://api.viatomtech.com.cn/fhir",
+          "code": "160501-12",
+          "display": "Avg"
+        }
+      },
+      "valueQuantity": {
+        "value": 97,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+    {
+      "code": {
+        "coding": {
+          "system": "https://api.viatomtech.com.cn/fhir",
+          "code": "160501-13",
+          "display": "Lowest"
+        }
+      },
+      "valueQuantity": {
+        "value": 85,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+    {
+      "code": {
+        "coding": {
+          "system": "https://api.viatomtech.com.cn/fhir",
+          "code": "160501-8",
+          "display": "SLEEP_I"
+        }
+      },
+      "valueString": "FFFF6044604C6051615661586254..."
+    }
+  ]
+}

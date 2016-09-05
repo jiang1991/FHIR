@@ -1,0 +1,107 @@
+{
+  "resourceType": "Observation",
+  "id": "daily check",
+  "identifier":
+    {
+      "system": "https://cloud.viatomtech.com/fhir",
+      "value": "CS20140142038119910813627020160812122334"
+    },
+  "category": {
+    "coding":
+      {
+        "system": "http://hl7.org/fhir/observation-category",
+        "code": "procedure",
+        "display": "Procedure"
+      }
+  },
+  "code": {
+    "coding":
+      {
+        "system": "https://cloud.viatomtech.com/fhir",
+        "code": "160401",
+        "display": "Daily Check"
+      }
+  },
+  "effectiveDateTime": "2016-08-09 16:08:35",
+  "subject": {
+    "reference": "1",
+    "display": "Wang Jiang"
+  },
+  "component": [
+    {
+      "code": {
+        "coding":
+          {
+            "system": "http://loinc.org",
+            "code": "8867-4",
+            "display": "Heart rate"
+          }
+      },
+      "valueQuantity": {
+        "value": 105,
+        "unit": "/min",
+        "system": "http://unitsofmeasure.org",
+        "code": "/min"
+      }
+    },
+    {
+      "code": {
+        "coding":
+          {
+            "system": "https://cloud.viatomtech.com/fhir",
+            "code": "160402-01",
+            "display": "R-R"
+          }
+      },
+      "valueQuantity": {
+        "value": 0.6,
+        "unit": "s",
+        "system": "http://unitsofmeasure.org",
+        "code": "s"
+      }
+    },
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "20564-1",
+          "display": "Oxygen saturation in Blood"
+        }
+      },
+      "valueQuantity": {
+        "value": 99,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "8889-8",
+          "display": "Heart rate by Pulse oximetry"
+        }
+      },
+      "valueQuantity": {
+        "value": 106,
+        "unit": "/min",
+        "system": "http://unitsofmeasure.org",
+        "code": "/min"
+      }
+    },
+    {
+      "code": {
+        "coding":
+          {
+            "system": "urn:oid:2.16.840.1.113883.6.24",
+            "code": "131329",
+            "display": "MDC_ECG_ELEC_POTL_I"
+          }
+      },
+      "valueString": "fbfff7fff4fff2ffefffecffe8ffe2ff..."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "resourceType": "Observation",
+  "id": "SpO2",
+  "identifier":
+  {
+    "system": "https://cloud.viatomtech.com/fhir",
+    "value": "CS20140142038119910813627020160812122334"
+  },
+  "category": {
+    "coding":
+    {
+      "system": "http://hl7.org/fhir/observation-category",
+      "code": "vital-signs",
+      "display": "Vital Signs"
+    }
+  },
+  "code": {
+    "coding":
+    {
+      "system": "http://loinc.org",
+      "code": "20564-1",
+      "display": "Oxygen saturation in Blood"
+    }
+  },
+  "effectiveDateTime": "2016-06-28",
+  "subject":
+  {
+    "reference": "3",
+    "display": "Wang Jiang"
+  },
+  "component": [
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "20564-1",
+          "display": "Oxygen saturation in Blood"
+        }
+      },
+      "valueQuantity": {
+        "value": 99,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "8889-8",
+          "display": "Heart rate by Pulse oximetry"
+        }
+      },
+      "valueQuantity": {
+        "value": 65,
+        "unit": "/min",
+        "system": "http://unitsofmeasure.org",
+        "code": "/min"
+      }
+    }
+  ]
+}
