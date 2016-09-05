@@ -34,7 +34,7 @@ class ObservationController extends Controller
     $component = $observationData->component;
 
     $id = $observationData->id; //其实是observation Type
-    $identifier_value = $observationData->identifier->value;
+    $identifier_value =$user_id . $observationData->identifier->value;
 
     // 判断是否已经上传
     if ($query = Observation::where('identifier_value', $identifier_value)->first()) {
@@ -56,7 +56,7 @@ class ObservationController extends Controller
     $observation->resourceType = $observationData->resourceType;
     $observation->resourceId = $observationData->id;
     $observation->identifier_system = $observationData->identifier->system;
-    $observation->identifier_value = $observationData->identifier->value;
+    $observation->identifier_value = $identifier_value;
     $observation->category_system = $observationData->category->coding->system;
     $observation->category_code = $observationData->category->coding->code;
     $observation->category_display = $observationData->category->coding->display;

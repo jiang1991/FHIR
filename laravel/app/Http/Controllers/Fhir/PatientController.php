@@ -20,14 +20,13 @@ class PatientController extends Controller
     $patientJson = file_get_contents("php://input");
     $patientData = json_decode($patientJson);
 
-    $medicalId = $patientData->identifier->medicalId;
+    $medicalId =$user_id . $patientData->identifier->medicalId;
 
     /**
      * 判断是否上传过 上传过则更改 user_id 为当前 用户
      */
     if ($patient = Patient::where('medicalId', $medicalId)->first()) {
-      $patient->user_id = $user_id;
-      $patient->save();
+      // TODO: 修改用户信息
 
       $patient_id = $patient->id;
     } else {
@@ -36,7 +35,7 @@ class PatientController extends Controller
       $npatient->user_id = $user_id;
       $npatient->identifier_system = $patientData->identifier->system;
       $npatient->identifier_value = $patientData->identifier->value;
-      $npatient->medicalId = $patientData->identifier->medicalId;
+      $npatient->medicalId = $medicalId;
       $npatient->active = $patientData->active;
       $npatient->name = $patientData->name;
       $npatient->gender = $patientData->gender;
