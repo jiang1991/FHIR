@@ -129,7 +129,7 @@ Server →Apache/2.4.10 (Debian)
   "resourceType": "Patient",
   "userId": "1",
   "identifier": {
-    "system": "http://www.viatomtech.com.cn:8080/fhir/public",
+    "system": "https://cloud.viatomtech.com",
     "value": "CS0010404",
     "medicalId": "420381199108136273"
   },
@@ -196,7 +196,7 @@ Error Response: (Status: 404 Not Found)
 Create a new share with another user
 
 ```http
-POST http://115.159.104.246/shareto
+POST https://cloud.viatomtech.com/shareto
 ```
 
 POST keys:
@@ -222,7 +222,7 @@ Response examples: (only 1 patient user shared)
     "resourceType": "Patient",
     "user_id": "1",
     "identifier": {
-      "system": "http://www.viatomtech.com.cn",
+      "system": "https://cloud.viatomtech.com",
       "value": "CS0010403",
       "medicalId": "420381199108136272"
     },
