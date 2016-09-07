@@ -32,7 +32,7 @@ Basic Auth
 ### 登陆
 
 ```http
-POST http://115.159.104.246/user/login
+POST https://cloud.viatomtech.com/user/login
 
 header:
 Content-Type: application/x-www-form-urlencoded
