@@ -1,13 +1,11 @@
 {
   "resourceType": "Patient",
-  "userId": "1",
   "identifier":
   {
     "system": "https://api.viatomtech.com.cn",
     "value": "CS0010401",
     "medicalId": "CS0010401"
   },
-  "active": 1,
   "name": "Wang Jiang",
   "gender": "male",
   "birthDate": "1991-11-14",
@@ -15,4 +13,3 @@
   "weight": "56kg",
   "stepSize": "50cm"
 }
-// 上传的时候不用传userId,查询会有
