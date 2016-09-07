@@ -41,7 +41,7 @@
         <!-- Branding Image -->
 
         <a href="{{ url('/') }}">
-          <img src="/viatom-logo.png"  width="100" alt="Viatom" />
+          <img src="/viatom-logo.png" margin-bottom:20px width="80" alt="Viatom" />
         </a>
         <!-- <a class="navbar-brand" href="{{ url('/') }}">
           Viatom

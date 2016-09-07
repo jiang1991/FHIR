@@ -36,7 +36,6 @@ class PatientController extends Controller
       $npatient->identifier_system = $patientData->identifier->system;
       $npatient->identifier_value = $patientData->identifier->value;
       $npatient->medicalId = $medicalId;
-      $npatient->active = $patientData->active;
       $npatient->name = $patientData->name;
       $npatient->gender = $patientData->gender;
       $npatient->birthDate = $patientData->birthDate;
@@ -70,7 +69,6 @@ class PatientController extends Controller
     $response["identifier"]["system"] = $sql->identifier_system;
     $response["identifier"]["value"] = $sql->identifier_value;
     $response["identifier"]["medicalId"] = $sql->medicalId;
-    $response["active"] = $sql->active;
     $response["name"] = $sql->name;
     $response["gender"] = $sql->gender;
     $response["birthDate"] = $sql->birthDate;

@@ -21,5 +21,6 @@ class VerifyCsrfToken extends BaseVerifier
 	'shareto',
 	'search',
 	'search/*',
+  '/user/*',
     ];
 }

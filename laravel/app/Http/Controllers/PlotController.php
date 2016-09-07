@@ -128,14 +128,14 @@ class PlotController extends Controller
       imagelinethick($image, 375, 75, 375, 125, $black, 2);
       imagelinethick($image, 125, 100, 205, 100, $black, 2);
       imagelinethick($image, 290, 100, 375, 100, $black, 2);
-      imagefttext($image, 25, 0, 235, 110, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "1s");
+      imagefttext($image, 25, 0, 235, 110, $black, '/var/www/cloud/app/Http/Controllers/consola.ttf', "1s");
 
       imagelinethick($image, 25, 325, 45, 325, $black, 2);
       imagelinethick($image, 45, 325, 45, 225, $black, 2);
       imagelinethick($image, 45, 225, 85, 225, $black, 2);
       imagelinethick($image, 85, 225, 85, 325, $black, 2);
       imagelinethick($image, 85, 325, 105, 325, $black, 2);
-      imagefttext($image, 25, 0, 35, 363, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', "1mv");
+      imagefttext($image, 25, 0, 35, 363, $black, '/var/www/cloud/app/Http/Controllers/consola.ttf', "1mv");
 
 
       // 心电波形
@@ -185,10 +185,10 @@ class PlotController extends Controller
       $grey = imagecolorallocate($image,180,180,180);
 
       imagefill($image, 0, 0, $white);
-      imagefttext($image, 100, 0, 50, 100, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "SpO2");
-      imagefttext($image, 100, 0, 3200, 100, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "Heart Rate");
-      imagefttext($image, 50, 0, 120, 2400, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', $StaTime);
-      imagefttext($image, 50, 0, 3500, 2400, $black, '/var/www/laravel/app/Http/Controllers/consola.ttf', $EndTime);
+      imagefttext($image, 100, 0, 50, 100, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "SpO2");
+      imagefttext($image, 100, 0, 3200, 100, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "Heart Rate");
+      imagefttext($image, 50, 0, 120, 2400, $black, '/var/www/cloud/app/Http/Controllers/consola.ttf', $StaTime);
+      imagefttext($image, 50, 0, 3500, 2400, $black, '/var/www/cloud/app/Http/Controllers/consola.ttf', $EndTime);
 
       for ($i=0; $i < count($hex); $i++) {
         $str = $hex[$i];
@@ -202,29 +202,29 @@ class PlotController extends Controller
       }
 
       imageline($image, 200, 300, 3800, 300, $grey);
-      imagefttext($image, 50, 0, 50, 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "100%");
-      imagefttext($image, 50, 0, 3800, 324, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "170");
+      imagefttext($image, 50, 0, 50, 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "100%");
+      imagefttext($image, 50, 0, 3800, 324, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "170");
       imageline($image, 200, 300 + 2000/7, 3800, 2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "95%");
-      imagefttext($image, 50, 0, 3800, 324 + 2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "150");
+      imagefttext($image, 50, 0, 50, 2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "95%");
+      imagefttext($image, 50, 0, 3800, 324 + 2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "150");
       imageline($image, 200, 300 + 2*2000/7, 3800, 2*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 2*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "90%");
-      imagefttext($image, 50, 0, 3800, 324 + 2*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "130");
+      imagefttext($image, 50, 0, 50, 2*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "90%");
+      imagefttext($image, 50, 0, 3800, 324 + 2*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "130");
       imageline($image, 200, 300 + 3*2000/7, 3800, 3*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 3*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "85%");
-      imagefttext($image, 50, 0, 3800, 324 + 3*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "110");
+      imagefttext($image, 50, 0, 50, 3*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "85%");
+      imagefttext($image, 50, 0, 3800, 324 + 3*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "110");
       imageline($image, 200, 300 + 4*2000/7, 3800, 4*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 4*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "80%");
-      imagefttext($image, 50, 0, 3800, 324 + 4*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "90");
+      imagefttext($image, 50, 0, 50, 4*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "80%");
+      imagefttext($image, 50, 0, 3800, 324 + 4*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "90");
       imageline($image, 200, 300 + 5*2000/7, 3800, 5*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 5*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "75%");
-      imagefttext($image, 50, 0, 3800, 324 + 5*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "70");
+      imagefttext($image, 50, 0, 50, 5*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "75%");
+      imagefttext($image, 50, 0, 3800, 324 + 5*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "70");
       imageline($image, 200, 300 + 6*2000/7, 3800, 6*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 6*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "70%");
-      imagefttext($image, 50, 0, 3800, 324 + 6*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "50");
+      imagefttext($image, 50, 0, 50, 6*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "70%");
+      imagefttext($image, 50, 0, 3800, 324 + 6*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "50");
       imageline($image, 200, 300 + 2000, 3800, 2300, $grey);
-      imagefttext($image, 50, 0, 50, 2324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "65%");
-      imagefttext($image, 50, 0, 3800, 2324, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "30");
+      imagefttext($image, 50, 0, 50, 2324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "65%");
+      imagefttext($image, 50, 0, 3800, 2324, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "30");
 
       for ($j=0; $j < count($hPx) -1; $j++) {
         if ($hr[$j] == 255) {
@@ -289,8 +289,8 @@ class PlotController extends Controller
       $grey = imagecolorallocate($image,180,180,180);
 
       imagefill($image, 0, 0, $white);
-      imagefttext($image, 100, 0, 50, 100, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "SpO2");
-      imagefttext($image, 100, 0, 3200, 100, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "Heart Rate");
+      imagefttext($image, 100, 0, 50, 100, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "SpO2");
+      imagefttext($image, 100, 0, 3200, 100, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "Heart Rate");
 
       for ($i=0; $i < count($hex); $i++) {
         $str = $hex[$i];
@@ -300,29 +300,29 @@ class PlotController extends Controller
       }
 
       imageline($image, 200, 300, 3800, 300, $grey);
-      imagefttext($image, 50, 0, 50, 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "100%");
-      imagefttext($image, 50, 0, 3800, 324, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "170");
+      imagefttext($image, 50, 0, 50, 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "100%");
+      imagefttext($image, 50, 0, 3800, 324, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "170");
       imageline($image, 200, 300 + 2000/7, 3800, 2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "95%");
-      imagefttext($image, 50, 0, 3800, 324 + 2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "150");
+      imagefttext($image, 50, 0, 50, 2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "95%");
+      imagefttext($image, 50, 0, 3800, 324 + 2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "150");
       imageline($image, 200, 300 + 2*2000/7, 3800, 2*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 2*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "90%");
-      imagefttext($image, 50, 0, 3800, 324 + 2*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "130");
+      imagefttext($image, 50, 0, 50, 2*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "90%");
+      imagefttext($image, 50, 0, 3800, 324 + 2*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "130");
       imageline($image, 200, 300 + 3*2000/7, 3800, 3*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 3*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "85%");
-      imagefttext($image, 50, 0, 3800, 324 + 3*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "110");
+      imagefttext($image, 50, 0, 50, 3*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "85%");
+      imagefttext($image, 50, 0, 3800, 324 + 3*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "110");
       imageline($image, 200, 300 + 4*2000/7, 3800, 4*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 4*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "80%");
-      imagefttext($image, 50, 0, 3800, 324 + 4*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "90");
+      imagefttext($image, 50, 0, 50, 4*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "80%");
+      imagefttext($image, 50, 0, 3800, 324 + 4*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "90");
       imageline($image, 200, 300 + 5*2000/7, 3800, 5*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 5*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "75%");
-      imagefttext($image, 50, 0, 3800, 324 + 5*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "70");
+      imagefttext($image, 50, 0, 50, 5*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "75%");
+      imagefttext($image, 50, 0, 3800, 324 + 5*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "70");
       imageline($image, 200, 300 + 6*2000/7, 3800, 6*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 6*2000/7 + 324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "70%");
-      imagefttext($image, 50, 0, 3800, 324 + 6*2000/7, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "50");
+      imagefttext($image, 50, 0, 50, 6*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "70%");
+      imagefttext($image, 50, 0, 3800, 324 + 6*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "50");
       imageline($image, 200, 300 + 2000, 3800, 2300, $grey);
-      imagefttext($image, 50, 0, 50, 2324, $green, '/var/www/laravel/app/Http/Controllers/consola.ttf', "65%");
-      imagefttext($image, 50, 0, 3800, 2324, $blue, '/var/www/laravel/app/Http/Controllers/consola.ttf', "30");
+      imagefttext($image, 50, 0, 50, 2324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "65%");
+      imagefttext($image, 50, 0, 3800, 2324, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "30");
 
       for ($j=0; $j < count($hr) -1; $j++) {
         if ($hr[$j] == 255) {

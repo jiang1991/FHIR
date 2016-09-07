@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Fhir;
 
 use App\Observation;
 use App\Observation_component;
-use App\Record;
 use Illuminate\Routing\Controller;
 use Auth;
 
@@ -99,13 +98,6 @@ class ObservationController extends Controller
       $observation_component->save();
     }
 
-    $record = new Record;
-    $record->user_id = $user_id;
-    $record->patient_id = $subject_reference;
-    $record->observation_id = $observation_id;
-    $record->observationType = $id;
-    $record->save();
-
     $response["user_id"] = "$user_id";
     $response["observation_id"] = "$observation_id";
     $response["status"] = "generated";
@@ -140,6 +132,9 @@ class ObservationController extends Controller
     $response["interpretation"]["text"] = $query->interpretation_text;
 
     $Qcomponents = Observation::find($observation_id)->observation_components;
+
+    ##TODO:  use foreach
+
     $Qcomponent = $Qcomponents->toArray();
 
     $com_num = count($Qcomponent);
