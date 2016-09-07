@@ -3,7 +3,7 @@
   "id": "daily check",
   "identifier":
     {
-      "system": "https://api.viatomtech.com.cn/fhir",
+      "system": "https://cloud.viatomtech.com/fhir",
       "value": "CS20140142038119910813627020160812122334"
     },
   "category": {
@@ -17,9 +17,9 @@
   "code": {
     "coding":
       {
-        "system": "http://115.159.104.246/fhir",
+        "system": "https://cloud.viatomtech.com/fhir",
         "code": "160401",
-        "display": "Daily_Check"
+        "display": "Daily Check"
       }
   },
   "effectiveDateTime": "2016-08-09 16:08:35",
@@ -208,9 +208,9 @@
       },
       "valueQuantity": {
         "value": 1.0,
-        "unit": "%",
+        "unit": " ",
         "system": "http://unitsofmeasure.org",
-        "code": "%"
+        "code": " "
       }
     },
     {
