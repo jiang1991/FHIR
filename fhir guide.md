@@ -65,7 +65,7 @@ Error Response: (Status: 401 Unauthorized)
 #### Create a new Patient resource
 
 ```http
-POST http://115.159.104.246/patient
+POST https://cloud.viatomtech.com/patient
 ```
 
 post example:
@@ -92,7 +92,7 @@ Content-Length →30
 Content-Type →application/json+fhir
 Date →Fri, 24 Jun 2016 07:09:59 GMT
 Keep-Alive →timeout=5, max=100
-Location →http://115.159.104.246/patient/5
+Location →https://cloud.viatomtech.com/patient/5
 Server →Apache/2.4.10 (Debian)
 
 {
@@ -104,7 +104,7 @@ Server →Apache/2.4.10 (Debian)
 #### **Read** a Patient
 
 ```http
-GET http://115.159.104.246/patient/{id}
+GET https://cloud.viatomtech.com/patient/{id}
 ```
 
 get example:
@@ -148,7 +148,7 @@ Server →Apache/2.4.10 (Debian)
 #### Create a new Observation resource
 
 ```http
-POST http://115.159.104.246/observation
+POST https://cloud.viatomtech.com/observation
 ```
 
 POST Examples:
@@ -167,7 +167,7 @@ Content-Type: application/json+fhir
 #### Read a Observation
 
 ```http
-GET http://115.159.104.246/observation/{id}
+GET https://cloud.viatomtech.com/observation/{id}
 ```
 
 Success Response: (Status: 200 OK)
@@ -211,7 +211,7 @@ POST keys:
 Read all patient shared to current user
 
 ```http
-GET http://115.159.104.246/shareto
+GET https://cloud.viatomtech.com/shareto
 ```
 
 Response examples: (only 1 patient user shared)
@@ -242,7 +242,7 @@ Response examples: (only 1 patient user shared)
 #### search all the patient uploaded by this user
 
 ```http
-GET http://115.159.104.246/search/patient
+GET https://cloud.viatomtech.com/search/patient
 ```
 
 response example：
@@ -281,4 +281,3 @@ response example：
   }
 ]
 ```
-
