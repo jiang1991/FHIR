@@ -37,6 +37,10 @@
     },
     "text": "Below the normal Oxygen saturation"
   },
+  "device":{
+    "sn": "CS00104",
+    "display": "Checkme Pro CE"
+  },
   "component": [
     {
       "code": {

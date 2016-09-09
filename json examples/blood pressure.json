@@ -36,6 +36,10 @@
       },
     "text": "Below low normal"
   },
+  "device":{
+    "sn": "CS00104",
+    "display": "Checkme Pro CE"
+  },
   "component": [
     {
       "code": {

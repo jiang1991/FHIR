@@ -33,6 +33,10 @@
       },
     "text": "Blood Oxygen drops detected 或者 No abnormalities detected"
   },
+  "device":{
+    "sn": "CS00104",
+    "display": "Checkme Pro CE"
+  },
   "component": [
     {
       "code": {

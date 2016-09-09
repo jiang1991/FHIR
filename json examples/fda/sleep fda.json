@@ -24,6 +24,10 @@
     "reference": "1",
     "display": "Wang Jiang"
   },
+  "device":{
+    "sn": "CS00104",
+    "display": "Checkme Pro FDA"
+  },
   "component": [
     {
       "code": {
