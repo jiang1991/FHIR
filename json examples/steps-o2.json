@@ -15,8 +15,8 @@
   "code": {
     "coding": {
       "system": "https://cloud.viatomtech.com/fhir",
-      "code": "160501",
-      "display": "Sleep"
+      "code": "160502",
+      "display": "Steps"
     }
   },
   "effectiveDateTime": "2016-08-05 14:42:35",
@@ -33,12 +33,12 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-1",
+          "code": "160502-1",
           "display": "Average SpO2"
         }
       },
       "valueQuantity": {
-        "value": 96,
+        "value": 99,
         "unit": "%",
         "system": "http://unitsofmeasure.org",
         "code": "%"
@@ -48,52 +48,7 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-2",
-          "display": "Lowest SpO2"
-        }
-      },
-      "valueQuantity": {
-        "value": 91,
-        "unit": "%",
-        "system": "http://unitsofmeasure.org",
-        "code": "%"
-      }
-    },
-    {
-      "code": {
-        "coding": {
-          "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-3",
-          "display": "<90% Drops"
-        }
-      },
-      "valueQuantity": {
-        "value": 0,
-        "unit": " ",
-        "system": "http://unitsofmeasure.org",
-        "code": " "
-      }
-    },
-    {
-      "code": {
-        "coding": {
-          "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-4",
-          "display": "<90% Duration"
-        }
-      },
-      "valueQuantity": {
-        "value": 0,
-        "unit": "s",
-        "system": "http://unitsofmeasure.org",
-        "code": "s"
-      }
-    },
-    {
-      "code": {
-        "coding": {
-          "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-5",
+          "code": "160502-2",
           "display": "Average HR"
         }
       },
@@ -108,12 +63,12 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-6",
-          "display": "Sleep Time"
+          "code": "160502-3",
+          "display": "Steps"
         }
       },
       "valueQuantity": {
-        "value": "8h18m30s",
+        "value": 116,
         "unit": " ",
         "system": "http://unitsofmeasure.org",
         "code": " "
@@ -123,12 +78,12 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-7",
-          "display": "O2 Score"
+          "code": "160502-4",
+          "display": "Goal"
         }
       },
       "valueQuantity": {
-        "value": "10.0",
+        "value": 99999,
         "unit": " ",
         "system": "http://unitsofmeasure.org",
         "code": " "
@@ -138,8 +93,8 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-7",
-          "display": "SLEEP_II"
+          "code": "160502-5",
+          "display": "Steps-I"
         }
       },
       "valueString": "e007071e00070c603b00001f00ea0015e007071e000716604300001f00ea0015e007071..."
