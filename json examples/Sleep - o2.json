@@ -83,10 +83,10 @@
         }
       },
       "valueQuantity": {
-        "value": 0,
-        "unit": "s",
+        "value": "32s",
+        "unit": " ",
         "system": "http://unitsofmeasure.org",
-        "code": "s"
+        "code": " "
       }
     },
     {
@@ -138,7 +138,7 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-7",
+          "code": "160501-8",
           "display": "SLEEP_II"
         }
       },
