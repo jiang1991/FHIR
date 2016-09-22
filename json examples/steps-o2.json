@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "Fiteness",
+  "id": "fiteness(O2 Vibe) / monitor(Checkme O2)", 
   "identifier":{
     "system": "https://cloud.viatomtech.com/fhir",
     "value": "15100200342038119910813627020160816120909"
