@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "daily check",
+  "id": "Relax me",
   "identifier":
     {
       "system": "https://cloud.viatomtech.com/fhir",

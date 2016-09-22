@@ -27,15 +27,6 @@
     "reference": "1",
     "display": "Wang Jiang"
   },
-  "interpretation": {
-    "coding":
-      {
-        "system": "http://hl7.org/fhir/v2/0078",
-        "code": "N",
-        "display": "Normal"
-      },
-    "text": "smile face"
-  },
   "device":{
     "sn": "CS00104",
     "display": "Checkme Pro FDA"
@@ -52,9 +43,9 @@
       },
       "valueQuantity": {
         "value": 87,
-        "unit": "beats/min",
+        "unit": "/min",
         "system": "http://unitsofmeasure.org",
-        "code": "{beats}/min"
+        "code": "/min"
       }
     },
     {

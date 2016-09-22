@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "Body temperature",
+  "id": "Thermometer",
   "identifier":{
     "system": "https://cloud.viatomtech.com/fhir",
     "value": "CS20140142038119910813627020160812122334"
@@ -41,9 +41,9 @@
       },
       "valueQuantity": {
         "value": 36,
-        "unit": "Cel",
+        "unit": "[degF]",
         "system": "http://unitsofmeasure.org",
-        "code": "deg C"
+        "code": "[DEGF]"
       }
     }
   ]
