@@ -22,15 +22,6 @@ class shareToController extends Controller
     $shareToJson = file_get_contents("php://input");
     $shareToData = json_decode($shareToJson);
 
-    // $patientId = $shareToData->patientId;
-    // $toEmail = $shareToData->toEmail;
-    //
-    // // //TODO: Use Elop model
-    // // DB::table('shares')->insert([
-    // //   'user_id' => "$userId",
-    // //   'patient_id' => "$patientId",
-    // //   'active' => "1",
-    // // ]);
     $email = $shareToData->toEmail;
 
     $share_id = DB::table('users')->where('email', $email)->value('id');
@@ -38,11 +29,10 @@ class shareToController extends Controller
     $share = new Share;
     $share->user_id = $share_id;
     $share->patient_id = $shareToData->patientId;
-    $share->active = "1";
 
     $share->save();
 
-    $response["acitve"] = 1;
+    $response["status"] = "ok";
     return response($response)
       ->header('Content-Type', 'application/json+fhir');
   }
@@ -71,6 +61,27 @@ class shareToController extends Controller
     }
 
     return response($sharePatients)
+      ->header('Content-Type', 'application/json+fhir');
+  }
+
+  function destroy()
+  {
+    $user = Auth::user();
+    $user_id = $user->id;
+
+    $destoryJson = file_get_contents("php://input");
+    $destroyData = json_decode($destoryJson);
+
+    $email = $destroyData->toEmail;
+
+    $share_id = DB::table('users')->where('email', $email)->value('id');
+
+    $shareRecord = Share::where('user_id', $share_id)
+                        ->where('patient_id', $destroyData->patientId)
+                        ->delete();
+
+    $response["status"] = 'ok';
+    return response($response)
       ->header('Content-Type', 'application/json+fhir');
   }
 }

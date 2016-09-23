@@ -193,7 +193,7 @@ Error Response: (Status: 404 Not Found)
 
 ### Share
 
-Create a new share with another user
+**Create a new share with another user**
 
 ```http
 POST https://cloud.viatomtech.com/shareto
@@ -208,7 +208,40 @@ POST keys:
 }
 ```
 
-Read all patient shared to current user
+Response:
+
+```json
+{  
+  "status": "ok"
+}
+```
+
+**Destroy a share**
+
+```http
+DELETE https://cloud.viatomtech.com/shareto
+```
+
+DELETE json example:
+
+```json
+{
+  "patientId": "3",
+  "toEmail": "408861086@qq.com"
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok"
+}
+```
+
+
+
+**Read all patient shared to current user**
 
 ```http
 GET https://cloud.viatomtech.com/shareto

@@ -19,13 +19,17 @@ Route::get('/', 'HomeController@index');
 
 Route::auth();
 
+// admin
+Route::get('/viatomadmin', 'AdminController@index');
+Route::delete('/viatomadmin/{id}', 'AdminController@destroy');
+
 Route::get('/home', 'HomeController@index');
 
 Route::post('/user/login', 'LoginController@UserLogin');
 
 Route::post('/user/signup', 'UserController@signup');
 
-Route::any('/mypatient/{id}', 'MyController@MyPatient');
+Route::get('/mypatient/{id}', 'MyController@MyPatient');
 
 Route::get('/myobservation/{id}', 'ObservationController@MyObservation');
 Route::delete('/myobservation/{id}', 'ObservationController@destroy');
@@ -47,28 +51,25 @@ Route::get('observation/{observation}', 'Fhir\ObservationController@ObservationR
 
 /* Search * Search = GET https://example.com/path/{resourceType}?search parameters.. */
 
-/* Create Patient*/
+// patient
 Route::post('patient', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\PatientController@PatientCreate'
   ]);
-
-/* Read Patient*/
 Route::get('patient/{patient}', 'Fhir\PatientController@PatientRead');
 
-/* shareTo*/
+// share
 Route::post('shareto', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\shareToController@shareTo'
   ]);
-
-/* 查询分享
-* return all shared patient
-* 没有则返回空json
-*/
 Route::get('shareto', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\shareToController@getShare'
+]);
+Route::delete('shareto',[
+  'middleware' => 'auth.basic',
+  'uses' => 'Fhir\shareToController@destroy'
 ]);
 
 /* search */
@@ -76,9 +77,3 @@ Route::get('search/{param}', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\SearchController@Search'
   ]);
-
-/* pulsebit O2 update service */
-Route::get('update', 'Update\UpdateController@update');
-
-/* export Excel */
-Route::get('excel/export', 'export\ExcelController@export');
