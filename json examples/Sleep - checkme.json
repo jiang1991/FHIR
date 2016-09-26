@@ -2,7 +2,7 @@
   "resourceType": "Observation",
   "id": "sleep",
   "identifier":{
-    "system": "urn:ietf:rfc:3986",
+    "system": "https://cloud.viatomtech.com/fhir",
     "value": "15100200342038119910813627020160816120909"
   },
   "category": {
