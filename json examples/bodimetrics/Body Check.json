@@ -1,0 +1,120 @@
+{
+  "resourceType": "Observation",
+  "id": "Body Check",
+  "identifier":
+    {
+      "system": "https://cloud.viatomtech.com/fhir",
+      "value": "CS20140142038119910813627020160812122334"
+    },
+  "category": {
+    "coding":
+      {
+        "system": "http://hl7.org/fhir/observation-category",
+        "code": "procedure",
+        "display": "Procedure"
+      }
+  },
+  "code": {
+    "coding":
+      {
+        "system": "https://cloud.viatomtech.com/fhir",
+        "code": "160401",
+        "display": "Body Check"
+      }
+  },
+  "effectiveDateTime": "2016-08-09 16:08:35",
+  "subject": {
+    "reference": "1",
+    "display": "Wang Jiang"
+  },
+  "interpretation": {
+    "coding":
+      {
+        "system": "http://hl7.org/fhir/v2/0078",
+        "code": "N",
+        "display": "Normal"
+      },
+    "text": "Heart rate: Medium range, Blood oxygen: Within range"
+  },
+  "device":{
+    "sn": "CS00104",
+    "display": "BM88"
+  },
+  "component": [
+    {
+      "code": {
+        "coding":
+          {
+            "system": "http://loinc.org",
+            "code": "8867-4",
+            "display": "Heart rate"
+          }
+      },
+      "valueQuantity": {
+        "value": 65,
+        "unit": "/min",
+        "system": "http://unitsofmeasure.org",
+        "code": "/min"
+      }
+    },
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "20564-1",
+          "display": "Oxygen saturation in Blood"
+        }
+      },
+      "valueQuantity": {
+        "value": 99,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+    {
+      "code": {
+        "coding":
+          {
+            "system": "https://en.wikipedia.org/wiki/Rate_pressure_product",
+            "code": "RPP",
+            "display": "Rate Pressure Product"
+          }
+      },
+      "valueQuantity": {
+        "value": 25000,
+        "unit": " ",
+        "system": "https://en.wikipedia.org/wiki/Rate_pressure_product",
+        "code": " "
+      }
+    },
+    {
+      "code": {
+        "coding":
+          {
+            "system": "http://loinc.org",
+            "code": "8480-6",
+            "display": "Systolic blood pressure"
+          }
+      },
+      "valueQuantity": {
+        "value": 107,
+        "unit": "mmHg",
+        "system": "http://unitsofmeasure.org",
+        "code": "mm[Hg]"
+      }
+    },
+    {
+      "code": {
+        "coding":
+          {
+            "system": "urn:oid:2.16.840.1.113883.6.24",
+            "code": "131329",
+            "display": "MDC_ECG_ELEC_POTL_I"
+          }
+      },
+      "valueString": "fbfff7fff4fff..."
+    }
+  ]
+}

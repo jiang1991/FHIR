@@ -1,0 +1,58 @@
+{
+  "resourceType": "Observation",
+  "id": "Body temperature",
+  "identifier":{
+    "system": "https://cloud.viatomtech.com/fhir",
+    "value": "15100200342038119910813627020160816120909"
+  },
+  "category": {
+    "coding":
+      {
+        "system": "http://hl7.org/fhir/observation-category",
+        "code": "vital-signs",
+        "display": "Vital Signs"
+      }
+  },
+  "code": {
+    "coding":
+      {
+        "system": "http://loinc.org",
+        "code": "8310-5",
+        "display": "Body temperature"
+      }
+  },
+  "effectiveDateTime": "2016-06-23 10:32:15",
+  "subject":{
+    "reference": "1",
+    "display": "Wang Jiang"
+  },
+  "interpretation": {
+    "coding":{
+      "system": "http://hl7.org/fhir/v2/0078",
+      "code": "N",
+      "display": "Normal"
+    },
+    "text": "--"
+  },
+  "device":{
+    "sn": "CS00104",
+    "display": "BM88"
+  },
+  "component": [
+    {
+      "code":{
+        "coding": {
+          "system": "http://loinc.org",
+          "code": "8310-5",
+          "display": "Body temperature"
+        }
+      },
+      "valueQuantity": {
+        "value": 36,
+        "unit": "Cel",
+        "system": "http://unitsofmeasure.org",
+        "code": "deg C"
+      }
+    }
+  ]
+}
