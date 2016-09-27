@@ -379,6 +379,8 @@ class PlotController extends Controller
       O2SleepPlot($hexs);
     } elseif(Observation_component::find($id)->code_display == "SLEEP_I") {
       CheckmeSleepPlot($hexs);
+    } elseif(Observation_component::find($id)->code_display == "Steps-I") {
+      O2SleepPlot($hexs);
     }
 
   }

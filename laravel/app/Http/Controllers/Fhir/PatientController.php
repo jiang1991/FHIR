@@ -21,32 +21,29 @@ class PatientController extends Controller
     $patientData = json_decode($patientJson);
 
     $medicalId =$user_id . $patientData->identifier->medicalId;
-
-    /**
-     * 判断是否上传过 上传过则更改 user_id 为当前 用户
-     */
-    if ($patient = Patient::where('medicalId', $medicalId)->first()) {
-      // TODO: 修改用户信息
-
-      $patient_id = $patient->id;
-    } else {
-      $npatient = new Patient;
-      $npatient->resourceType = $patientData->resourceType;
-      $npatient->user_id = $user_id;
-      $npatient->identifier_system = $patientData->identifier->system;
-      $npatient->identifier_value = $patientData->identifier->value;
-      $npatient->medicalId = $medicalId;
-      $npatient->name = $patientData->name;
-      $npatient->gender = $patientData->gender;
-      $npatient->birthDate = $patientData->birthDate;
-      $npatient->height = $patientData->height;
-      $npatient->weight = $patientData->weight;
-      $npatient->stepSize = $patientData->stepSize;
-
-      $npatient->save();
-
-      $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
+    $name = $patientData->name;
+    if ($name == '--') {
+      $name = $user->name;
     }
+
+    $patient = Patient::firstOrNew(['medicalId' => $medicalId]);
+
+    $patient->resourceType = $patientData->resourceType;
+    $patient->user_id = $user_id;
+    $patient->identifier_system = $patientData->identifier->system;
+    $patient->identifier_value = $patientData->identifier->value;
+    $patient->medicalId = $medicalId;
+    $patient->name = $name;
+    $patient->gender = $patientData->gender;
+    $patient->birthDate = $patientData->birthDate;
+    $patient->height = $patientData->height;
+    $patient->weight = $patientData->weight;
+    $patient->stepSize = $patientData->stepSize;
+
+    $patient->save();
+
+    $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
+
 
     $response["patient_id"] = "$patient_id";
     $response["user_id"] = "$user_id";

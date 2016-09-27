@@ -29,7 +29,6 @@ class ObservationController extends Controller
     $observationJson = file_get_contents("php://input");
     $observationData = json_decode($observationJson);
 
-    // TODO: 当结果只有一个 component 时，单独放
     $component = $observationData->component;
 
     $id = $observationData->id; //其实是observation Type
@@ -65,10 +64,18 @@ class ObservationController extends Controller
     $observation->subject_reference = $observationData->subject->reference;
     $observation->subject_display = $observationData->subject->display;
     $observation->effectiveDateTime = $observationData->effectiveDateTime;
-    $observation->interpretation_system = $observationData->interpretation->coding->system;
-    $observation->interpretation_code = $observationData->interpretation->coding->code;
-    $observation->interpretation_display = $observationData->interpretation->coding->display;
-    $observation->interpretation_text = $observationData->interpretation->text;
+
+    if (array_key_exists('interpretation', $observationData)) {
+      $observation->interpretation_system = $observationData->interpretation->coding->system;
+      $observation->interpretation_code = $observationData->interpretation->coding->code;
+      $observation->interpretation_display = $observationData->interpretation->coding->display;
+      $observation->interpretation_text = $observationData->interpretation->text;
+    }
+
+    if (array_key_exists('device', $observationData)) {
+      $observation->device_sn = $observationData->device->sn;
+      $observation->device_display = $observationData->device->display;
+    }
 
     $observation->save();
     // 查询上传的observation_id

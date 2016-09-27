@@ -15,4 +15,6 @@ class Patient extends Model
     {
       return $this->hasMany('App\Observation');
     }
+
+    protected $guarded = ['id'];
 }

@@ -23,6 +23,7 @@ class ObservationController extends Controller
 
   function MyObservation($observation_id)
   {
+    // 
     $observation_components = Observation_component::where('observation_id', $observation_id)->get();
 
     return view('observation',[

@@ -26,11 +26,15 @@ class shareToController extends Controller
 
     $share_id = DB::table('users')->where('email', $email)->value('id');
 
-    $share = new Share;
-    $share->user_id = $share_id;
-    $share->patient_id = $shareToData->patientId;
-
-    $share->save();
+    $share = Share::firstOrCreate([
+      'user_id' => $share_id,
+      'patient_id' => $shareToData->patientId
+    ]);
+    // $share = new Share;
+    // $share->user_id = $share_id;
+    // $share->patient_id = $shareToData->patientId;
+    //
+    // $share->save();
 
     $response["status"] = "ok";
     return response($response)
