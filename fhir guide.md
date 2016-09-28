@@ -214,12 +214,19 @@ Response:
 {  
   "status": "ok"
 }
+
+or
+
+{
+  "status": "error",
+  "error": "Invalid cloud account!"
+}
 ```
 
 **Destroy a share**
 
 ```http
-DELETE https://cloud.viatomtech.com/shareto
+POST https://cloud.viatomtech.com/shareto/delete
 ```
 
 DELETE json example:

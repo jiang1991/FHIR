@@ -24,21 +24,25 @@ class shareToController extends Controller
 
     $email = $shareToData->toEmail;
 
-    $share_id = DB::table('users')->where('email', $email)->value('id');
 
-    $share = Share::firstOrCreate([
-      'user_id' => $share_id,
-      'patient_id' => $shareToData->patientId
-    ]);
-    // $share = new Share;
-    // $share->user_id = $share_id;
-    // $share->patient_id = $shareToData->patientId;
-    //
-    // $share->save();
+    if ($share_id = DB::table('users')->where('email', $email)->value('id')) {
+      $share = Share::firstOrCreate([
+        'user_id' => $share_id,
+        'patient_id' => $shareToData->patientId
+      ]);
 
-    $response["status"] = "ok";
-    return response($response)
-      ->header('Content-Type', 'application/json+fhir');
+      $response["status"] = "ok";
+      return response($response)
+        ->header('Content-Type', 'application/json+fhir');
+    } else {
+      $response["status"] = "error";
+      $response["error"] = "Invalid cloud account!";
+      return response($response)
+        ->header('Content-Type', 'application/json+fhir');
+    }
+
+
+
   }
 
   function getShare()

@@ -19,6 +19,7 @@ class VerifyCsrfToken extends BaseVerifier
 	'post',
 	'post/*',
 	'shareto',
+  'shareto/delete',
 	'search',
 	'search/*',
   '/user/*',
