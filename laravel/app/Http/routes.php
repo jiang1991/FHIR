@@ -67,9 +67,13 @@ Route::get('shareto', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\shareToController@getShare'
 ]);
-Route::post('shareto/delete',[
+Route::post('shareto/delete', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\shareToController@destroy'
+]);
+Route::get('shareto/query/{patient}', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Fhir\shareToController@query'
 ]);
 
 /* search */

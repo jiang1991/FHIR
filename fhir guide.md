@@ -277,6 +277,41 @@ Response examples: (only 1 patient user shared)
 ]
 ```
 
+**Query all emails(users) that a patient shares to**
+
+```http
+GET https://cloud.viatomtech.com/shareto/query/{patient_id}
+```
+
+Response example: (the active repents if it's available)
+
+```json
+[
+  {
+    "email": "wangjiang@viatomtech.com",
+    "active": "1"
+  },
+  {
+    "email": "zhen@semacare.com.au",
+    "active": "1"
+  },
+  {
+    "email": "3166966065@qq.com",
+    "active": "1"
+  },
+  {
+    "email": "wangxiaojuan@viatomtech.com",
+    "active": "1"
+  },
+  {
+    "email": "yanshengqi@viatomtech.com",
+    "active": "0"
+  }
+]
+```
+
+
+
 ### Search
 
 #### search all the patient uploaded by this user

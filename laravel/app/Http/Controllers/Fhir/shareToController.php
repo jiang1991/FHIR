@@ -6,6 +6,7 @@ use Illuminate\Routing\Controller;
 use Auth;
 use App\Share;
 use App\Patient;
+use App\User;
 /**
  * shareTo
  */
@@ -24,27 +25,31 @@ class shareToController extends Controller
 
     $email = $shareToData->toEmail;
 
+    if ($share_id = User::where('email', $email)->value('id')) {
 
-    if ($share_id = DB::table('users')->where('email', $email)->value('id')) {
-      $share = Share::firstOrCreate([
+      Share::withTrashed()->where('user_id', $share_id)
+          ->where('patient_id', $shareToData->patientId)
+          ->restore();
+
+      $share = Share::firstOrNew([
         'user_id' => $share_id,
         'patient_id' => $shareToData->patientId
       ]);
 
+      $share->save();
+
       $response["status"] = "ok";
-      return response($response)
-        ->header('Content-Type', 'application/json+fhir');
     } else {
       $response["status"] = "error";
       $response["error"] = "Invalid cloud account!";
-      return response($response)
-        ->header('Content-Type', 'application/json+fhir');
     }
-
+    return response($response)
+      ->header('Content-Type', 'application/json+fhir');
 
 
   }
 
+  // 查询分享来的patient
   function getShare()
   {
     $sharePatients = collect([ ]);
@@ -72,6 +77,7 @@ class shareToController extends Controller
       ->header('Content-Type', 'application/json+fhir');
   }
 
+  // delete
   function destroy()
   {
     $user = Auth::user();
@@ -89,6 +95,29 @@ class shareToController extends Controller
                         ->delete();
 
     $response["status"] = 'ok';
+    return response($response)
+      ->header('Content-Type', 'application/json+fhir');
+  }
+
+  // 分享给了那些人，包括软删除
+  function query($patient_id)
+  {
+    $response = collect([ ]);
+
+    $shares = Share::withTrashed()->where('patient_id', $patient_id)->get();
+
+    foreach ($shares as $share) {
+      $user = User::find($share->user_id);
+      $res["email"] = $user->email;
+      if ($share->trashed()) {
+        $res["active"] = "0";
+      } else {
+        $res["active"] = "1";
+      }
+
+      $response->push($res);
+    }
+
     return response($response)
       ->header('Content-Type', 'application/json+fhir');
   }
