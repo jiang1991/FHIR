@@ -229,12 +229,13 @@ or
 POST https://cloud.viatomtech.com/shareto/delete
 ```
 
-DELETE json example:
+DELETE json example: (use "destroy" to delete a share, use "cancel" to close a share)
 
 ```json
 {
   "patientId": "3",
-  "toEmail": "408861086@qq.com"
+  "toEmail": "408861086@qq.com",
+  "method": "destroy" or "cancel"
 }
 ```
 

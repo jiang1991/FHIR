@@ -77,7 +77,7 @@ class shareToController extends Controller
       ->header('Content-Type', 'application/json+fhir');
   }
 
-  // delete
+  // delete or cancel
   function destroy()
   {
     $user = Auth::user();
@@ -89,6 +89,16 @@ class shareToController extends Controller
     $email = $destroyData->toEmail;
 
     $share_id = DB::table('users')->where('email', $email)->value('id');
+
+    if ($destroyData->method === 'destroy' ) {
+      $shareRecord = Share::where('user_id', $share_id)
+                          ->where('patient_id', $destroyData->patientId)
+                          ->forceDelete();
+    } else {
+      $shareRecord = Share::where('user_id', $share_id)
+                          ->where('patient_id', $destroyData->patientId)
+                          ->delete();
+    }
 
     $shareRecord = Share::where('user_id', $share_id)
                         ->where('patient_id', $destroyData->patientId)
