@@ -17,17 +17,17 @@
             @if ($patient->name == "Guest")
             <h3>{{ $patient->name }}</h3>
             <div class="row">
-              <div class="col-md-4">SN: {{ $patient->identifier_value }}</div>
+              <div class="col-md-4">SN: {{ substr($patient->identifier_value, 0, -1) }}</div>
             </div>
             @else
             <h3>{{ $patient->name }}</h3>
             <div class="row">
               <div class="col-md-2">Gender: {{ $patient->gender }}</div>
-              <div class="col-md-3">Birth Date: {{ $patient->birthDate }}</div>
-              <div class="col-md-4">Medical ID: {{ $patient->identifier_value }}</div>
+              <div class="col-md-3">Birth date: {{ date('M d, Y', strtotime($patient->birthDate)) }}</div>
+              <div class="col-md-4">SN: {{ substr($patient->identifier_value, 0, -1) }}</div>
               <div class="col-md-2">Height: {{ $patient->height }}</div>
               <div class="col-md-2">Weight: {{ $patient->weight }}</div>
-              <div class="col-md-2">Step Size: {{ $patient->stepSize }}</div>
+              <div class="col-md-2">Step size: {{ $patient->stepSize }}</div>
             </div>
             @endif
           </table>
@@ -43,9 +43,9 @@
                 <table>
                   <tr>
                     <div class="row">
-                      <div class="col-md-4 text-capitalize"><a href="/myobservation/{{ $observation->id }}">Check Type: {{ $observation->resourceId }}</a></div>
-                      <div class="col-md-4"> {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
-                      <div class="col-md-4 text-capitalize">Notes: {{ $observation->interpretation_text }}</div>
+                      <div class="col-md-3 text-capitalize"><a href="/myobservation/{{ $observation->id }}">Check type: {{ $observation->resourceId }}</a></div>
+                      <div class="col-md-3"> {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
+                      <div class="col-md-6">{{ $observation->device_display }}: {{ $observation->device_sn }}</div>
                     </div>
                   </tr>
                 </table>

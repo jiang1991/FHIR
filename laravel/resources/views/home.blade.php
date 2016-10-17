@@ -22,14 +22,14 @@
                       @if ($patient->name == "Guest")
                       <h3><a href="/mypatient/{{ $patient->id }}">  <u>{{ $patient->name }}</u>  </a></h3>
                       <div class="row">
-                        <div class="col-md-4">SN: {{ $patient->identifier_value }}</div>
+                        <div class="col-md-4">SN: {{ substr($patient->identifier_value, 0, -1) }}</div>
                       </div>
                       @else
                       <h3><a href="/mypatient/{{ $patient->id }}">  <u>{{ $patient->name }}</u>  </a></h3>
                       <div class="row">
                         <div class="col-md-2">Gender: {{ $patient->gender }}</div>
-                        <div class="col-md-3">Birth Date: {{ $patient->birthDate }}</div>
-                        <div class="col-md-4">Medical ID: {{ $patient->identifier_value }}</div>
+                        <div class="col-md-3">Birth date: {{ date('M d, Y', strtotime($patient->birthDate)) }}</div>
+                        <div class="col-md-4">SN: {{ substr($patient->identifier_value, 0, -1) }}</div>
                       </div>
                       @endif
                     </tr>
@@ -43,7 +43,7 @@
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-heading">Share to me</div>
+        <div class="panel-heading">Share with me</div>
 
         @if (count($sharePatients) > 0)
         <div class="panel-body">
@@ -56,14 +56,14 @@
                       @if ($sharePatient->name == "Guest")
                       <h3><a href="/mypatient/{{ $sharePatient->id }}">{{ $sharePatient->name }}  </a></h3>
                       <div class="row">
-                        <div class="col-md-4">SN: {{ $sharePatient->identifier_value }}</div>
+                        <div class="col-md-4">SN: {{ substr($sharePatient->identifier_value, 0, -1) }}</div>
                       </div>
                       @else
                       <h3><a href="/mypatient/{{ $sharePatient->id }}">{{ $sharePatient->name }}  </a></h3>
                       <div class="row">
                         <div class="col-md-2">Gender: {{ $sharePatient->gender }}</div>
-                        <div class="col-md-3">Birth Date: {{ $sharePatient->birthDate }}</div>
-                        <div class="col-md-4">Medical ID: {{ $sharePatient->identifier_value }}</div>
+                        <div class="col-md-3">Birth date: {{ date('M d, Y', strtotime($sharePatient->birthDate)) }}</div>
+                        <div class="col-md-4">SN: {{ substr($sharePatient->identifier_value, 0, -1) }}</div>
                       </div>
                       @endif
                     </tr>
