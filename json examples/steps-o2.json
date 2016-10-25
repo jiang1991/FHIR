@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "fiteness(O2 Vibe) / monitor(Checkme O2)", 
+  "id": "fiteness(O2 Vibe) / monitor(Checkme O2)",
   "identifier":{
     "system": "https://cloud.viatomtech.com/fhir",
     "value": "15100200342038119910813627020160816120909"
@@ -48,6 +48,21 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
+          "code": "160502-6",
+          "display": "Lowest SpO2"
+        }
+      },
+      "valueQuantity": {
+        "value": 94,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      }
+    },
+    {
+      "code": {
+        "coding": {
+          "system": "https://cloud.viatomtech.com/fhir",
           "code": "160502-2",
           "display": "Average HR"
         }
@@ -78,6 +93,21 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
+          "code": "160502-7",
+          "display": "Recording Time"
+        }
+      },
+      "valueQuantity": {
+        "value": "39m",
+        "unit": " ",
+        "system": "http://unitsofmeasure.org",
+        "code": " "
+      }
+    },
+    {
+      "code": {
+        "coding": {
+          "system": "https://cloud.viatomtech.com/fhir",
           "code": "160502-4",
           "display": "Goal"
         }
@@ -93,8 +123,8 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160502-5",
-          "display": "Steps-I"
+          "code": "160502-8",
+          "display": "Steps-II"
         }
       },
       "valueString": "e007071e00070c603b00001f00ea0015e007071e000716604300001f00ea0015e007071..."

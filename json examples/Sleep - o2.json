@@ -63,8 +63,8 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-3",
-          "display": "<90% Drops"
+          "code": "160501-9",
+          "display": "4% Drops"
         }
       },
       "valueQuantity": {
@@ -138,8 +138,8 @@
       "code": {
         "coding": {
           "system": "https://cloud.viatomtech.com/fhir",
-          "code": "160501-8",
-          "display": "SLEEP_II"
+          "code": "160501-10",
+          "display": "SLEEP_III"
         }
       },
       "valueString": "e007071e00070c603b00001f00ea0015e007071e000716604300001f00ea0015e007071..."
