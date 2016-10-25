@@ -28,7 +28,10 @@
             <div class="row">
               <div class="col-md-3">Patient: {{ $observation->subject_display }}</div>
               <div class="col-md-3"> {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
-              <div class="col-md-6 text-capitalize">{{ $observation->interpretation_text }}</div>
+              @if ($observation->interpretation_text == "--")
+              @else
+              <div class="col-md-12 text-capitalize">{{ $observation->interpretation_text }}</div>
+              @endif
             </div>
           </table>
         </div>
@@ -51,7 +54,6 @@
                 </table>
               </td>
             </tr>
-            @elseif ($observation_component->code_code == "RPP")
 
             @elseif ($observation_component->code_display == "Avg HR")
 
@@ -80,6 +82,8 @@
                       PI
                       @elseif($observation_component->code_display == "Heart rate by Pulse oximetry")
                       PR
+                      @elseif($observation_component->code_display == "Rate Pressure Product")
+                      RPP
                       @else
                       {{ $observation_component->code_display }}
                       @endif

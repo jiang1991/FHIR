@@ -27,7 +27,10 @@
               <div class="col-md-4">SN: {{ substr($patient->identifier_value, 0, -1) }}</div>
               <div class="col-md-2">Height: {{ $patient->height }}</div>
               <div class="col-md-2">Weight: {{ $patient->weight }}</div>
+              @if ($patient->stepSize == "--")
+              @else
               <div class="col-md-2">Step size: {{ $patient->stepSize }}</div>
+              @endif
             </div>
             @endif
           </table>

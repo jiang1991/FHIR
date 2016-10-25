@@ -1,12 +1,17 @@
 <?php
 namespace App\Http\Controllers\Fhir;
 
+use Illuminate\Http\Request;
+
 use DB;
 use Illuminate\Routing\Controller;
+use App\Http\Requests;
 use Auth;
 use App\Share;
 use App\Patient;
 use App\User;
+use App\Jobs\SendShareEmail;
+
 /**
  * shareTo
  */
@@ -15,7 +20,7 @@ use App\User;
 class shareToController extends Controller
 {
 
-  function shareTo()
+  function shareTo(Request $request)
   {
     $user = Auth::user();
     $userId = $user->id;
@@ -37,6 +42,10 @@ class shareToController extends Controller
       ]);
 
       $share->save();
+
+      // send email notification
+      $job = (new SendShareEmail($user));
+      dispatch($job);
 
       $response["status"] = "ok";
     } else {
@@ -91,18 +100,14 @@ class shareToController extends Controller
     $share_id = DB::table('users')->where('email', $email)->value('id');
 
     if ($destroyData->method === 'destroy' ) {
-      $shareRecord = Share::where('user_id', $share_id)
-                          ->where('patient_id', $destroyData->patientId)
-                          ->forceDelete();
+      Share::where('user_id', $share_id)
+            ->where('patient_id', $destroyData->patientId)
+            ->forceDelete();
     } else {
-      $shareRecord = Share::where('user_id', $share_id)
-                          ->where('patient_id', $destroyData->patientId)
-                          ->delete();
+      Share::where('user_id', $share_id)
+            ->where('patient_id', $destroyData->patientId)
+            ->delete();
     }
-
-    $shareRecord = Share::where('user_id', $share_id)
-                        ->where('patient_id', $destroyData->patientId)
-                        ->delete();
 
     $response["status"] = 'ok';
     return response($response)

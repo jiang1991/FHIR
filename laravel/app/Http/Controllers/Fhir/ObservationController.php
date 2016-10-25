@@ -42,7 +42,7 @@ class ObservationController extends Controller
 
       return response($response)
         ->header('Content-Type', 'application/json+fhir')
-        ->header('Location', 'http://api.viatomtech.com.cn/observation/' . $query->id);
+        ->header('Location', 'https://cloud.viatomtech.com/observation/' . $query->id);
     }
 
     $subject_reference = $observationData->subject->reference; //这里其实是PatientId
@@ -111,7 +111,7 @@ class ObservationController extends Controller
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir')
-      ->header('Location', 'http://api.viatomtech.com.cn/observation/' . $observation_id);
+      ->header('Location', 'https://cloud.viatomtech.com/observation/' . $observation_id);
   }
 
   /*
