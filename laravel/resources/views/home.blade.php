@@ -43,7 +43,7 @@
       </div>
 
       <div class="panel panel-default">
-        <div class="panel-heading">Share with me</div>
+        <div class="panel-heading">Patients share with me</div>
 
         @if (count($sharePatients) > 0)
         <div class="panel-body">
