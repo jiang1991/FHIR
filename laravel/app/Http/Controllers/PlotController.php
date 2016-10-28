@@ -377,7 +377,7 @@ class PlotController extends Controller
     // Checkme O2 sleep plot
     function CheckmeO2Plot($hexs)
     {
-      $hex = str_split($hexs, 10);
+      $hex = str_split($hexs, 50);
 
       $width = 4000;
       $height = 2500;
@@ -430,10 +430,10 @@ class PlotController extends Controller
       imagefttext($image, 50, 0, 3800, 2324, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "30");
 
       for ($j=0; $j < count($hr) -1; $j++) {
-        if ($hr[$j] == 255) {
+        if ($hr[$j] == 65535) {
           continue;
         } else {
-          if ($hr[$j+1] == 255) {
+          if ($hr[$j+1] == 65535) {
             $x1 = $j + 200;
             $y1 = 2300 - ($hr[$j] - 30)*100/7;
 
