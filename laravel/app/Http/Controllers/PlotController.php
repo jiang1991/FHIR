@@ -380,7 +380,7 @@ class PlotController extends Controller
       $hex = str_split($hexs, 50);
 
       $width = 4000;
-      $height = 2500;
+      $height = 3000;
 
       $image = imagecreatetruecolor($width, $height);
       $white = imagecolorallocate($image, 255, 255, 255);
@@ -388,10 +388,12 @@ class PlotController extends Controller
       $green = imagecolorallocate($image,28,204,102);
       $black = imagecolorallocate($image,0,0,0);
       $grey = imagecolorallocate($image,180,180,180);
+      $yellow = imagecolorallocate($image,255,160,18);
 
       imagefill($image, 0, 0, $white);
-      imagefttext($image, 100, 0, 50, 100, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "SpO2");
-      imagefttext($image, 100, 0, 3200, 100, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "Heart Rate");
+      imagefttext($image, 100, 0, 50, 620, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "SpO2");
+      imagefttext($image, 100, 0, 3200, 620, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "Heart Rate");
+      imagefttext($image, 100, 0, 1800, 480, $yellow, '/var/www/cloud/app/Http/Controllers/consola.ttf', "Motion");
 
       // shart time & end time
       // imagefttext($image, 50, 0, 120, 2400, $black, '/var/www/cloud/app/Http/Controllers/consola.ttf', $StaTime);
@@ -402,32 +404,43 @@ class PlotController extends Controller
 
         $hr[$i] = hexdec(substr($str, 4, 2) . substr($str, 2, 2));
         $oxy[$i] = hexdec(substr($str, 0, 2));
+        $mo[$i] = hexdec(substr($str, 6, 2));
       }
 
-      imageline($image, 200, 300, 3800, 300, $grey);
-      imagefttext($image, 50, 0, 50, 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "100%");
-      imagefttext($image, 50, 0, 3800, 324, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "170");
-      imageline($image, 200, 300 + 2000/7, 3800, 2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "95%");
-      imagefttext($image, 50, 0, 3800, 324 + 2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "150");
-      imageline($image, 200, 300 + 2*2000/7, 3800, 2*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 2*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "90%");
-      imagefttext($image, 50, 0, 3800, 324 + 2*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "130");
-      imageline($image, 200, 300 + 3*2000/7, 3800, 3*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 3*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "85%");
-      imagefttext($image, 50, 0, 3800, 324 + 3*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "110");
-      imageline($image, 200, 300 + 4*2000/7, 3800, 4*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 4*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "80%");
-      imagefttext($image, 50, 0, 3800, 324 + 4*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "90");
-      imageline($image, 200, 300 + 5*2000/7, 3800, 5*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 5*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "75%");
-      imagefttext($image, 50, 0, 3800, 324 + 5*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "70");
-      imageline($image, 200, 300 + 6*2000/7, 3800, 6*2000/7 + 300, $grey);
-      imagefttext($image, 50, 0, 50, 6*2000/7 + 324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "70%");
-      imagefttext($image, 50, 0, 3800, 324 + 6*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "50");
-      imageline($image, 200, 300 + 2000, 3800, 2300, $grey);
-      imagefttext($image, 50, 0, 50, 2324, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "65%");
-      imagefttext($image, 50, 0, 3800, 2324, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "30");
+      imageline($image, 200, 800, 3800, 800, $grey);
+      imagefttext($image, 50, 0, 50, 824, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "100%");
+      imagefttext($image, 50, 0, 3800, 824, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "170");
+      imageline($image, 200, 800 + 2000/7, 3800, 2000/7 + 800, $grey);
+      imagefttext($image, 50, 0, 50, 2000/7 + 824, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "95%");
+      imagefttext($image, 50, 0, 3800, 824 + 2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "150");
+      imageline($image, 200, 800 + 2*2000/7, 3800, 2*2000/7 + 800, $grey);
+      imagefttext($image, 50, 0, 50, 2*2000/7 + 824, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "90%");
+      imagefttext($image, 50, 0, 3800, 824 + 2*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "130");
+      imageline($image, 200, 800 + 3*2000/7, 3800, 3*2000/7 + 800, $grey);
+      imagefttext($image, 50, 0, 50, 3*2000/7 + 824, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "85%");
+      imagefttext($image, 50, 0, 3800, 824 + 3*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "110");
+      imageline($image, 200, 800 + 4*2000/7, 3800, 4*2000/7 + 800, $grey);
+      imagefttext($image, 50, 0, 50, 4*2000/7 + 824, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "80%");
+      imagefttext($image, 50, 0, 3800, 824 + 4*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "90");
+      imageline($image, 200, 800 + 5*2000/7, 3800, 5*2000/7 + 800, $grey);
+      imagefttext($image, 50, 0, 50, 5*2000/7 + 824, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "75%");
+      imagefttext($image, 50, 0, 3800, 824 + 5*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "70");
+      imageline($image, 200, 800 + 6*2000/7, 3800, 6*2000/7 + 800, $grey);
+      imagefttext($image, 50, 0, 50, 6*2000/7 + 824, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "70%");
+      imagefttext($image, 50, 0, 3800, 824 + 6*2000/7, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "50");
+      imageline($image, 200, 800 + 2000, 3800, 2800, $grey);
+      imagefttext($image, 50, 0, 50, 2824, $green, '/var/www/cloud/app/Http/Controllers/consola.ttf', "65%");
+      imagefttext($image, 50, 0, 3800, 2824, $blue, '/var/www/cloud/app/Http/Controllers/consola.ttf', "30");
+      imagelinethick($image, 200, 358, 3800, 358, $grey, 4);
+
+      for ($j=0; $j < count($mo); $j++) {
+        if ($mo[$j] == 0) {
+          continue;
+        } else {
+          imagelinethick($image, 200+$j, 356, 200+$j, 356-$mo[$j]*2, $yellow,2);
+        }
+      }
+
 
       for ($j=0; $j < count($hr) -1; $j++) {
         if ($hr[$j] == 65535) {
@@ -435,15 +448,15 @@ class PlotController extends Controller
         } else {
           if ($hr[$j+1] == 65535) {
             $x1 = $j + 200;
-            $y1 = 2300 - ($hr[$j] - 30)*100/7;
+            $y1 = 2800 - ($hr[$j] - 30)*100/7;
 
             imagesetpixel($image, $x1, $y1, $blue);
           } else {
             $x1 = $j + 200;
-            $y1 = 2300 - ($hr[$j] - 30)*100/7;
+            $y1 = 2800 - ($hr[$j] - 30)*100/7;
 
             $x2 = $j + 201;
-            $y2 = 2300 - ($hr[$j+1] - 30)*100/7;
+            $y2 = 2800 - ($hr[$j+1] - 30)*100/7;
 
             imagelinethick($image, $x1, $y1, $x2, $y2, $blue, 2);
           }
@@ -456,15 +469,15 @@ class PlotController extends Controller
         } else {
           if ($oxy[$j+1] == 255) {
             $x1 = $j + 200;
-            $y2 = 2300 - 400 / 7 * ($oxy[$j] - 65);
+            $y2 = 2800 - 400 / 7 * ($oxy[$j] - 65);
 
             imagesetpixel($image, $x1, $y2, $green);
           } else {
             $x1 = $j + 200;
-            $y1 = 2300 - 400 / 7 * ($oxy[$j] - 65);
+            $y1 = 2800 - 400 / 7 * ($oxy[$j] - 65);
 
             $x2 = $j + 201;
-            $y2 = 2300 - 400 / 7 * ($oxy[$j+1] - 65);
+            $y2 = 2800 - 400 / 7 * ($oxy[$j+1] - 65);
 
             imagelinethick($image, $x1, $y1, $x2, $y2, $green, 2);
           }
