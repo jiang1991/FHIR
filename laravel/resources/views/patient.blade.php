@@ -22,15 +22,33 @@
             @else
             <h3>{{ $patient->name }}</h3>
             <div class="row">
+              @if ($patient->gender = "--")
+              @else
               <div class="col-md-2">Gender: {{ $patient->gender }}</div>
+              @endif
+
+              @if ($patient->birthDate == "0000-00-00")
+              @else
               <div class="col-md-3">Birth date: {{ date('M d, Y', strtotime($patient->birthDate)) }}</div>
+              @endif
+
               <div class="col-md-4">SN: {{ substr($patient->identifier_value, 0, -1) }}</div>
+
+              @if ($patient->height == "--")
+              @else
               <div class="col-md-2">Height: {{ $patient->height }}</div>
+              @endif
+
+              @if ($patient->weight == "--")
+              @else
               <div class="col-md-2">Weight: {{ $patient->weight }}</div>
+              @endif
+
               @if ($patient->stepSize == "--")
               @else
               <div class="col-md-2">Step size: {{ $patient->stepSize }}</div>
               @endif
+
             </div>
             @endif
           </table>

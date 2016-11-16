@@ -27,8 +27,17 @@
                       @else
                       <h3><a href="/mypatient/{{ $patient->id }}">  <u>{{ $patient->name }}</u>  </a></h3>
                       <div class="row">
+
+                        @if ($patient->gender == "--")
+                        @else
                         <div class="col-md-2">Gender: {{ $patient->gender }}</div>
+                        @endif
+
+                        @if ($patient->birthDate == "0000-00-00")
+                        @else
                         <div class="col-md-3">Birth date: {{ date('M d, Y', strtotime($patient->birthDate)) }}</div>
+                        @endif
+
                         <div class="col-md-4">SN: {{ substr($patient->identifier_value, 0, -1) }}</div>
                       </div>
                       @endif
@@ -61,8 +70,16 @@
                       @else
                       <h3><a href="/mypatient/{{ $sharePatient->id }}">{{ $sharePatient->name }}  </a></h3>
                       <div class="row">
+                        @if ($sharePatient->gender = "--")
+                        @else
                         <div class="col-md-2">Gender: {{ $sharePatient->gender }}</div>
+                        @endif
+
+                        @if ($sharePatient->birthDate == "0000-00-00")
+                        @else
                         <div class="col-md-3">Birth date: {{ date('M d, Y', strtotime($sharePatient->birthDate)) }}</div>
+                        @endif
+
                         <div class="col-md-4">SN: {{ substr($sharePatient->identifier_value, 0, -1) }}</div>
                       </div>
                       @endif
