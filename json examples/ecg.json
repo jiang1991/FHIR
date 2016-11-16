@@ -34,7 +34,7 @@
         "code": "N",
         "display": "Normal"
       },
-    "text": "smile face"
+    "text": "Regular ECG Rhythm."
   },
   "device":{
     "sn": "CS00104",
@@ -52,9 +52,9 @@
       },
       "valueQuantity": {
         "value": 70,
-        "unit": "beats/min",
+        "unit": "/min",
         "system": "http://unitsofmeasure.org",
-        "code": "{beats}/min"
+        "code": "/min"
       }
     },
     {
@@ -147,7 +147,7 @@
           }
       },
       "valueQuantity": {
-        "value": 25000,
+        "value": 12000,
         "unit": " ",
         "system": "https://en.wikipedia.org/wiki/Rate_pressure_product",
         "code": " "
