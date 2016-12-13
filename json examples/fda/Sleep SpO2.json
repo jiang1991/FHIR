@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "OxiRecorder",
+  "id": "Sleep SpO2",
   "identifier":{
     "system": "https://cloud.viatomtech.com/fhir",
     "value": "CS20140142038119910813627020160812122334"
@@ -16,7 +16,7 @@
     "coding": {
       "system": "https://api.viatomtech.com.cn/fhir",
       "code": "160503",
-      "display": "OxiRecorder"
+      "display": "Sleep SpO2"
     }
   },
   "effectiveDateTime": "2016-08-05T14:42:35+01:00",
@@ -26,7 +26,7 @@
   },
   "device":{
     "sn": "CS00104",
-    "display": "Checkme Pro FDA"
+    "display": "Bodimetrics Pro"
   },
   "component": [
     {

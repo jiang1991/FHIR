@@ -22,14 +22,14 @@
         "display": "MDC_ECG_ELEC_POTL"
       }
   },
-  "effectiveDateTime": "2015-02-19T09:30:35+01:00",
+  "effectiveDateTime": "2015-02-19 09:30:35",
   "subject": {
     "reference": "1",
     "display": "Wang Jiang"
   },
   "device":{
     "sn": "CS00104",
-    "display": "Checkme Pro FDA"
+    "display": "Bodimetrics Pro"
   },
   "component": [
     {
