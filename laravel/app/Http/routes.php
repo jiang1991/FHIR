@@ -56,7 +56,14 @@ Route::post('patient', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\PatientController@PatientCreate'
   ]);
-Route::get('patient/{patient}', 'Fhir\PatientController@PatientRead');
+  Route::get('patient/{patient_id}', [
+    'middleware' => 'auth.basic',
+    'uses' => 'Fhir\PatientController@PatientRead'
+    ]);
+Route::get('patient/search/{medical_id}', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Fhir\PatientController@Search'
+  ]);
 
 // share
 Route::post('shareto', [

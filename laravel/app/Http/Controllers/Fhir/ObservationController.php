@@ -32,10 +32,11 @@ class ObservationController extends Controller
     $component = $observationData->component;
 
     $id = $observationData->id; //其实是observation Type
-    $identifier_value =$user_id . $observationData->identifier->value;
+    // $identifier_value =$user_id . $observationData->identifier->value;
 
     // 判断是否已经上传
-    if ($query = Observation::where('identifier_value', $identifier_value)->first()) {
+    if ($query = Observation::where('user_id', $user_id)
+      ->where('identifier_value', $identifier_value)->first()) {
       $response["user_id"] = $query->user_id;
       $response["observation_id"] = $query->id;
       $response["status"] = "generated";
@@ -80,7 +81,8 @@ class ObservationController extends Controller
     $observation->save();
     // 查询上传的observation_id
 
-    $observation_id = Observation::where('identifier_value', "$identifier_value")->first()->id;
+    $observation_id = Observation::where('user_id', $user_id)
+      ->where('identifier_value', "$identifier_value")->first()->id;
 
     $com_num = count($component);
     for ($i=0; $i < $com_num; $i++) {

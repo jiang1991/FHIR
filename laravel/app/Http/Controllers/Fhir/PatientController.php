@@ -20,16 +20,19 @@ class PatientController extends Controller
     $patientJson = file_get_contents("php://input");
     $patientData = json_decode($patientJson);
 
-    $medicalId =$user_id . $patientData->identifier->medicalId;
+    // $medicalId =$user_id . $patientData->identifier->medicalId;
     $name = $patientData->name;
     if ($name == '--') {
       $name = $user->name;
     }
 
-    $patient = Patient::firstOrNew(['medicalId' => $medicalId]);
+    $patient = Patient::firstOrNew([
+      'medicalId' => $medicalId,
+      'user_id' => $user_id
+    ]);
 
     $patient->resourceType = $patientData->resourceType;
-    $patient->user_id = $user_id;
+    // $patient->user_id = $user_id;
     $patient->identifier_system = $patientData->identifier->system;
     $patient->identifier_value = $patientData->identifier->value;
     $patient->medicalId = $medicalId;
@@ -78,4 +81,35 @@ class PatientController extends Controller
       ->header('Content-Type', 'application/json+fhir');
   }
 
+  function Search($medical_id)
+  {
+    $user = Auth::user();
+    $user_id = $user->id;
+
+    // 查询该user下是否有次medical_id
+    if ($patient = Patient::where('user_id', $user_id)
+                          ->where('medicalId', $medical_id)->first()) {
+      $response["status"] = "ok";
+      $response["resourceType"] = $patient->resourceType;
+      $response["user_id"] = $patient->user_id;
+      $response["identifier"]["system"] = $patient->identifier_system;
+      $response["identifier"]["value"] = $patient->identifier_value;
+      $response["identifier"]["medicalId"] = $patient->medicalId;
+      $response["name"] = $patient->name;
+      $response["gender"] = $patient->gender;
+      $response["birthDate"] = $patient->birthDate;
+      $response["height"] = $patient->height;
+      $response["weight"] = $patient->weight;
+      $response["stepSize"] = $patient->stepSize;
+
+
+      return response($response)
+        ->header('Content-Type', 'application/json+fhir');
+    } else {
+      $response["status"] = "error";
+
+      return response($response)
+        ->header('Content-Type', 'application/json+fhir');
+    }
+  }
 }
