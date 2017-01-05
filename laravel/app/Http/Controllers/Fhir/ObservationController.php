@@ -32,7 +32,7 @@ class ObservationController extends Controller
     $component = $observationData->component;
 
     $id = $observationData->id; //其实是observation Type
-    // $identifier_value =$user_id . $observationData->identifier->value;
+    $identifier_value = $observationData->identifier->value;
 
     // 判断是否已经上传
     if ($query = Observation::where('user_id', $user_id)

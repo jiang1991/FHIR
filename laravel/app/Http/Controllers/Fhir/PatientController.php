@@ -20,7 +20,7 @@ class PatientController extends Controller
     $patientJson = file_get_contents("php://input");
     $patientData = json_decode($patientJson);
 
-    // $medicalId =$user_id . $patientData->identifier->medicalId;
+    $medicalId = $patientData->identifier->medicalId;
     $name = $patientData->name;
     if ($name == '--') {
       $name = $user->name;
