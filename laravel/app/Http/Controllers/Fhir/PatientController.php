@@ -60,25 +60,33 @@ class PatientController extends Controller
   function PatientRead($patient_id)
   {
     // TODO: 判断该 user 是否有权限获取该 patient 信息
+    $user = Auth::user();
+    $user_id = $user->id;
 
-    /** Eloquent Model 查询不到则404 **/
-    $sql = Patient::findOrFail($patient_id);
+    if ($patient = Patient::where('id', $patient_id)
+                          ->where('user_id', $user_id)->first()) {
+      $response["resourceType"] = $patient->resourceType;
+      $response["user_id"] = $patient->user_id;
+      $response["identifier"]["system"] = $patient->identifier_system;
+      $response["identifier"]["value"] = $patient->identifier_value;
+      $response["identifier"]["medicalId"] = $patient->medicalId;
+      $response["name"] = $patient->name;
+      $response["gender"] = $patient->gender;
+      $response["birthDate"] = $patient->birthDate;
+      $response["height"] = $patient->height;
+      $response["weight"] = $patient->weight;
+      $response["stepSize"] = $patient->stepSize;
 
-    $response["resourceType"] = $sql->resourceType;
-    $response["user_id"] = $sql->user_id;
-    $response["identifier"]["system"] = $sql->identifier_system;
-    $response["identifier"]["value"] = $sql->identifier_value;
-    $response["identifier"]["medicalId"] = $sql->medicalId;
-    $response["name"] = $sql->name;
-    $response["gender"] = $sql->gender;
-    $response["birthDate"] = $sql->birthDate;
-    $response["height"] = $sql->height;
-    $response["weight"] = $sql->weight;
-    $response["stepSize"] = $sql->stepSize;
 
+      return response($response)
+        ->header('Content-Type', 'application/json+fhir');
+    } else {
+      $response["status"] = "error";
+      $response["error"] = "unauthorized or not found";
 
-    return response($response)
-      ->header('Content-Type', 'application/json+fhir');
+      return response($response)
+        ->header('Content-Type', 'application/json+fhir');
+    }
   }
 
   function Search($medical_id)

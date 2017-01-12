@@ -139,32 +139,36 @@ class ObservationController extends Controller
     $response["interpretation"]["coding"]["code"] = $query->interpretation_code;
     $response["interpretation"]["coding"]["display"] = $query->interpretation_display;
     $response["interpretation"]["text"] = $query->interpretation_text;
+    $response["device"]["sn"] = $query->device_sn;
+    $response["device"]["display"] = $query->device_display;
 
-    $Qcomponents = Observation::find($observation_id)->observation_components;
+    $qComponents = Observation::find($observation_id)->observation_components;
 
-    ##TODO:  use foreach
-
-    $Qcomponent = $Qcomponents->toArray();
-
-    $com_num = count($Qcomponent);
-    for ($i=0; $i < $com_num; $i++) {
-      $component["code"]["coding"]["system"] = $Qcomponent[$i]['code_system'];
-      $component["code"]["coding"]["code"] = $Qcomponent[$i]['code_code'];
-      $component["code"]["coding"]["display"] = $Qcomponent[$i]['code_display'];
-
-      // valueQuantity 非空 ?
-      if (!empty($Qcomponent[$i]['valueQuantity_value'])) {
-        $component["valueQuantity"]["value"] = $Qcomponent[$i]['valueQuantity_value'];
-        $component["valueQuantity"]["unit"] = $Qcomponent[$i]['valueQuantity_unit'];
-        $component["valueQuantity"]["system"] = $Qcomponent[$i]['valueQuantity_system'];
-        $component["valueQuantity"]["code"] = $Qcomponent[$i]['valueQuantity_code'];
+    // $components = [];
+    foreach ($qComponents as $qComponent) {
+      if ($qComponent->code_display == 'Rate Pressure Product') {
+        # code...
       } else {
-        $component["valueString"] = $Qcomponent[$i]['valueString'];
+        $component = [];
+
+        $component["code"]["coding"]["system"] = $qComponent->code_system;
+        $component["code"]["coding"]["code"] = $qComponent->code_code;
+        $component["code"]["coding"]["display"] = $qComponent->code_display;
+
+        if (empty($qComponent->valueString)) {
+          $component["valueQuantity"]["value"] = $qComponent->valueQuantity_value;
+          $component["valueQuantity"]["unit"] = $qComponent->valueQuantity_unit;
+          $component["valueQuantity"]["system"] = $qComponent->valueQuantity_system;
+          $component["valueQuantity"]["code"] = $qComponent->valueQuantity_code;
+        } else {
+          $component["valueString"] = $qComponent->valueString;
+        }
+
+        $components[] = $component;
       }
-
-
-      $response["component"][$i] = $component;
     }
+
+    $response["component"] = $components;
     return response($response)
       ->header('Content-Type', 'application/json+fhir');
   }

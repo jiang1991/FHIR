@@ -45,21 +45,16 @@ Route::post('observation', [
 /* Fhir Read * Read = GET https://example.com/path/{resourceType}/{id} */
 Route::get('observation/{observation}', 'Fhir\ObservationController@ObservationRead');
 
-/* Fhir Update * Update = PUT https://example.com/path/{resourceType}/{id} */
-
-/* Fhir Delete * Delete = DELETE https://example.com/path/{resourceType}/{id} */
-
-/* Search * Search = GET https://example.com/path/{resourceType}?search parameters.. */
 
 // patient
 Route::post('patient', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\PatientController@PatientCreate'
   ]);
-  Route::get('patient/{patient_id}', [
-    'middleware' => 'auth.basic',
-    'uses' => 'Fhir\PatientController@PatientRead'
-    ]);
+Route::get('patient/{patient_id}', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Fhir\PatientController@PatientRead'
+  ]);
 Route::get('patient/search/{medical_id}', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\PatientController@Search'
@@ -84,9 +79,14 @@ Route::get('shareto/query/{patient}', [
 ]);
 
 /* search */
-Route::get('search/{param}', [
+Route::get('search/patient', [
   'middleware' => 'auth.basic',
-  'uses' => 'Fhir\SearchController@Search'
+  'uses' => 'Fhir\SearchController@patientSearch'
+  ]);
+
+Route::get('search/{patient_id}/observation', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Fhir\SearchController@ObservationSearch'
   ]);
 
 

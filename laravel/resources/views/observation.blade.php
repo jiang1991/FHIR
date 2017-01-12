@@ -57,6 +57,8 @@
 
             @elseif ($observation_component->code_display == "Avg HR")
 
+            @elseif ($observation_component->code_display == "Rate Pressure Product")
+
             @else
             <tr>
               <td>
@@ -82,8 +84,6 @@
                       PI
                       @elseif($observation_component->code_display == "Heart rate by Pulse oximetry")
                       PR
-                      @elseif($observation_component->code_display == "Rate Pressure Product")
-                      RPP
                       @else
                       {{ $observation_component->code_display }}
                       @endif
