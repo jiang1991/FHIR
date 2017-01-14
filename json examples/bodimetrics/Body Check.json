@@ -60,6 +60,22 @@
     {
       "code": {
         "coding":
+          {
+            "system": "http://loinc.org",
+            "code": "9304-7",
+            "display": "Respiration rhythm"
+          }
+      },
+      "valueQuantity": {
+        "value": 16,
+        "unit": "/min",
+        "system": "http://unitsofmeasure.org",
+        "code": "/min"
+      }
+    },
+    {
+      "code": {
+        "coding":
         {
           "system": "http://loinc.org",
           "code": "20564-1",

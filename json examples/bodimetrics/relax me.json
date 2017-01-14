@@ -18,7 +18,7 @@
     "coding":
       {
         "system": "https://cloud.viatomtech.com/fhir",
-        "code": "160402",
+        "code": "170114",
         "display": "Relax me"
       }
   },
@@ -45,8 +45,8 @@
       "code": {
         "coding":
           {
-            "system": "https://api.viatomtech.com.cn/fhir",
-            "code": "160501-14",
+            "system": "https://cloud.viatomtech.com/fhir",
+            "code": "170114-2",
             "display": "Relaxation index"
           }
       },
@@ -62,7 +62,23 @@
         "coding":
           {
             "system": "https://cloud.viatomtech.com/fhir",
-            "code": "160501-14",
+            "code": "170114-3",
+            "display": "HRV(RMSSD)"
+          }
+      },
+      "valueQuantity": {
+        "value": 43,
+        "unit": "ms",
+        "system": "http://unitsofmeasure.org",
+        "code": "ms"
+      }
+    },
+    {
+      "code": {
+        "coding":
+          {
+            "system": "https://cloud.viatomtech.com/fhir",
+            "code": "170114-1",
             "display": "Duration"
           }
       },
