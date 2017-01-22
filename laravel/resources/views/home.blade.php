@@ -27,6 +27,8 @@
                       @else
                       <h3><a href="/mypatient/{{ $patient->id }}">  <u>{{ $patient->name }}</u>  </a></h3>
                       <div class="row">
+                        <div class="col-md-4 text-danger"><strong>Medical ID: {{ $patient->medicalId }}</strong></div>
+                        <div class="col-md-4 text-danger"><strong>SN: {{ $patient->identifier_value }}</strong> </div>
 
                         @if ($patient->gender == "--")
                         @else
@@ -38,7 +40,6 @@
                         <div class="col-md-3">Birth date: {{ date('M d, Y', strtotime($patient->birthDate)) }}</div>
                         @endif
 
-                        <div class="col-md-4">SN: {{ substr($patient->identifier_value, 0, -1) }}</div>
                       </div>
                       @endif
                     </tr>

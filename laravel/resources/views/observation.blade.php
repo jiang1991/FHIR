@@ -26,7 +26,11 @@
               </form>
             </div></h3>
             <div class="row">
-              <div class="col-md-3">Patient: {{ $observation->subject_display }}</div>
+              <div class="col-md-2">{{ $patient->name }}</div>
+              <div class="col-md-4 text-danger"><strong>Medical ID: {{ $patient->medicalId }}</strong></div>
+              <div class="col-md-4 text-danger"><strong>SN: {{ $patient->identifier_value }}</strong></div>
+            </div>
+            <div class="row">
               <div class="col-md-3"> {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
               @if ($observation->interpretation_text == "--")
               @else
