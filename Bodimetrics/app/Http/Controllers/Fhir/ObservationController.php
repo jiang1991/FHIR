@@ -7,7 +7,7 @@ use App\Observation;
 use App\Observation_component;
 use Illuminate\Routing\Controller;
 use Auth;
-
+use Storage;
 
 /**
 * Observation
@@ -186,5 +186,25 @@ class ObservationController extends Controller
     }
     return response($response)
       ->header('Content-Type', 'application/json+fhir');
+  }
+
+  // download binary
+  function download($observation_id){
+    $components = Observation::findOrFail($observation_id)->observation_components;
+    foreach ($components as $component) {
+      if (empty($component->valueString)) {
+        # code...
+      } else {
+        $filename = '/var/www/bodimetrics/storage/observation/'.$observation_id;
+        $file = fopen($filename, "w");
+        $string = $component->valueString;
+        $file_content = pack("H*", $string);
+
+        fwrite($file, $file_content);
+        fclose($file);
+        return response()->download($filename);
+      }
+      
+    }
   }
 }

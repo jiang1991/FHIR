@@ -133,7 +133,7 @@ class HolterController extends Controller
     for ($l=0; $l < 30; $l++) { 
       $html .= '<div><img src="/var/www/laravel/storage/attachments/' . $l . '.png"></div>';
     }
-    $pdf =  PDF::loadHTML($html)->save('/var/www/laravel/storage/attachments/123.pdf');
+    $pdf =  PDF::loadHTML($html)->save('/var/www/laravel/storage/attachments/.pdf');
     // return response()->file($file . '.pdf', $file_name . 'pdf');
     // return $html;
     return "ok";

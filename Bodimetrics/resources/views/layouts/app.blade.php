@@ -73,11 +73,14 @@
 
   <div class="container">
     <div class="modal-footer">
-      <ul class="list-inline text-left">
-      <li>Copyright © 2016 Bodimetrics. All right reserved.</li>
-      <li>Terms</li>
-      <li>Privacy</li>
-      <li>Contact</li>
+      <ul class="list-inline pull-left">
+        <li>Copyright © 2016 Bodimetrics.</li>
+        <li>Terms</li>
+        <li>Privacy</li>
+        <li>Contact</li>
+      </ul>
+      <ul class="list-inline pull-right">
+        <li>Powered by Viatom</li>
       </ul>
     </div>
   </div>

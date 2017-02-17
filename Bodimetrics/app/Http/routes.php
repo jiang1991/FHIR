@@ -19,10 +19,6 @@ Route::get('/', 'HomeController@index');
 
 Route::auth();
 
-// admin
-Route::get('/viatomadmin', 'AdminController@index');
-Route::delete('/viatomadmin/{id}', 'AdminController@destroy');
-
 Route::get('/home', 'HomeController@index');
 
 Route::get('/mypatient/{id}', 'MyController@MyPatient');
@@ -49,11 +45,9 @@ Route::post('fhir/observation', [
 /* Fhir Read * Read = GET https://example.com/path/{resourceType}/{id} */
 Route::get('fhir/observation/{observation}', 'Fhir\ObservationController@ObservationRead');
 
-/* Fhir Update * Update = PUT https://example.com/path/{resourceType}/{id} */
+// download binary file for ecg & sleep
+Route::get('fhir/observation/download/{observation_id}', 'Fhir\ObservationController@download');
 
-/* Fhir Delete * Delete = DELETE https://example.com/path/{resourceType}/{id} */
-
-/* Search * Search = GET https://example.com/path/{resourceType}?search parameters.. */
 
 // patient
 Route::post('fhir/patient', [
@@ -106,3 +100,4 @@ Route::post('fhir/attachment', [
   ]);
 
 Route::get('fhir/attachment/{attachment_id}', 'Fhir\AttachmentController@download');
+

@@ -57,6 +57,11 @@
                       <image class="col-xs-12" src="/plot/{{ $observation_component->id }}"> </image>
                     </div>
                   </tr>
+                  <tr>
+                    <div>
+                      <a href="/fhir/observation/download/{{ $observation->id }}" role="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Download original ECG waveform file."><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download</a>
+                    </div>
+                  </tr>
                 </table>
               </td>
             </tr>
@@ -67,7 +72,7 @@
                 <table>
                   <tr>
                     <div class="col-md-4 col-md-offset-4">
-                      <a href="/fhir/attachment/{{ $observation_component->valueAttachment}} " class="btn btn-primary btn-lg active" role="button">Download Holter</a>
+                      <a href="/fhir/attachment/{{ $observation_component->valueAttachment}} " class="btn btn-primary btn-lg" role="button">Download Holter</a>
                     </div>
                   </tr>
                 </table>

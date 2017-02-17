@@ -90,4 +90,5 @@ Route::get('search/{patient_id}/observation', [
   ]);
 
 
-// FHIR
+/* export */
+Route::get('export/observation/{id}', 'Export\PdfController@export');
