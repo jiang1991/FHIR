@@ -20,6 +20,15 @@ class PatientController extends Controller
     $patientJson = file_get_contents("php://input");
     $patientData = json_decode($patientJson);
 
+    // write to local file
+    $filename = "/var/www/cloud/public/test.txt";
+    $filetowirte = fopen($filename, "a");
+    fwrite($filetowirte, date("Y-m-d H:m:s", time()));
+    fwrite($filetowirte, "\n");
+    fwrite($filetowirte, $patientJson);
+    fwrite($filetowirte, "\n");
+    fclose($filetowirte);
+
     $medicalId = $patientData->identifier->medicalId;
     $name = $patientData->name;
     if ($name == '--') {

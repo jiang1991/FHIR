@@ -1,0 +1,68 @@
+{
+  "resourceType": "Observation",
+  "id": "Pedometer",
+  "identifier":
+  {
+    "system": "https://cloud.viatomtech.com/fhir",
+    "value": "15100200342038119910813627020160816120909"
+  },
+  "category": {
+    "coding":
+    {
+      "system": "http://hl7.org/fhir/observation-category",
+      "code": "vital-signs",
+      "display": "Vital Signs"
+    }
+  },
+  "code": {
+    "coding":
+    {
+      "system": "http://loinc.org",
+      "code": "55423-8",
+      "display": "Number of steps"
+    }
+  },
+  "effectiveDateTime": "2017-5-9 10:00:59",
+  "subject":
+  {
+    "reference": "3",
+    "display": "Wang Jiang"
+  },
+  "device":{
+    "sn": "CS00104",
+    "display": "Checkme Pro CE"
+  },
+  "component": [
+    {
+      "code": {
+        "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "55423-8",
+          "display": "Number of steps"
+        }
+      },
+      "valueQuantity": {
+        "value": 128,
+        "unit": "",
+        "system": "http://unitsofmeasure.org",
+        "code": ""
+      }
+    },
+    {
+      "code":{
+        "coding":{
+          "system": "https://cloud.viatomtech.com",
+          "code": "170114-1",
+          "display": "Drution"
+        }
+      },
+      "valueQuantity": {
+        "value": "1h28m30s",
+        "unit": "",
+        "system": "http://unitsofmeasure.org",
+        "code": ""
+      }
+    }
+  ]
+}

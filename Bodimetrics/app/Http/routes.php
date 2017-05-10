@@ -101,3 +101,9 @@ Route::post('fhir/attachment', [
 
 Route::get('fhir/attachment/{attachment_id}', 'Fhir\AttachmentController@download');
 
+
+// RI question
+Route::post('fhir/ri', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Fhir\RiController@Ri'
+]);

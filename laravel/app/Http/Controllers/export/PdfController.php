@@ -98,7 +98,13 @@ class PdfController extends Controller
         </td>
       </tr>
     </table>
-
+    <table align="center" width="2000px">
+      <tr>
+        <td>
+          <img width="2000px" src="/var/www/cloud/storage/app/2958.png">
+        </td>
+      </tr>
+    </table>
 </body>';
 
     $html = $css_style . $html_body;

@@ -29,6 +29,15 @@ class ObservationController extends Controller
     $observationJson = file_get_contents("php://input");
     $observationData = json_decode($observationJson);
 
+    // write to local file
+    $filename = "/var/www/cloud/public/test.txt";
+    $filetowirte = fopen($filename, "a");
+    fwrite($filetowirte, date("Y-m-d H:m:s", time()));
+    fwrite($filetowirte, "\n");
+    fwrite($filetowirte, $observationJson);
+    fwrite($filetowirte, "\n");
+    fclose($filetowirte);
+
     $component = $observationData->component;
 
     $id = $observationData->id; //其实是observation Type
