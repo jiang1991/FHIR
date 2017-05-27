@@ -21,13 +21,13 @@ class PatientController extends Controller
     $patientData = json_decode($patientJson);
 
     // write to local file
-    $filename = "/var/www/cloud/public/test.txt";
-    $filetowirte = fopen($filename, "a");
-    fwrite($filetowirte, date("Y-m-d H:m:s", time()));
-    fwrite($filetowirte, "\n");
-    fwrite($filetowirte, $patientJson);
-    fwrite($filetowirte, "\n");
-    fclose($filetowirte);
+    // $filename = "/var/www/cloud/public/test.txt";
+    // $filetowirte = fopen($filename, "a");
+    // fwrite($filetowirte, date("Y-m-d H:m:s", time()));
+    // fwrite($filetowirte, "\n");
+    // fwrite($filetowirte, $patientJson);
+    // fwrite($filetowirte, "\n");
+    // fclose($filetowirte);
 
     $medicalId = $patientData->identifier->medicalId;
     $name = $patientData->name;
@@ -54,16 +54,15 @@ class PatientController extends Controller
 
     $patient->save();
 
-    $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
+    // $patient_id = Patient::where('medicalId', "$medicalId")->first()->id;
 
-
-    $response["patient_id"] = "$patient_id";
+    $response["patient_id"] = $patient->id;
     $response["user_id"] = "$user_id";
     $response["medical_id"] = "$medicalId";
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir')
-      ->header('Location', 'https://cloud.viatomtech.com/patient/' . $patient_id);
+      ->header('Location', 'https://cloud.viatomtech.com/patient/' . $patient->id);
   }
 
   function PatientRead($patient_id)

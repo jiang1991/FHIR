@@ -30,13 +30,13 @@ class ObservationController extends Controller
     $observationData = json_decode($observationJson);
 
     // write to local file
-    $filename = "/var/www/cloud/public/test.txt";
-    $filetowirte = fopen($filename, "a");
-    fwrite($filetowirte, date("Y-m-d H:m:s", time()));
-    fwrite($filetowirte, "\n");
-    fwrite($filetowirte, $observationJson);
-    fwrite($filetowirte, "\n");
-    fclose($filetowirte);
+    // $filename = "/var/www/cloud/public/test.txt";
+    // $filetowirte = fopen($filename, "a");
+    // fwrite($filetowirte, date("Y-m-d H:m:s", time()));
+    // fwrite($filetowirte, "\n");
+    // fwrite($filetowirte, $observationJson);
+    // fwrite($filetowirte, "\n");
+    // fclose($filetowirte);
 
     $component = $observationData->component;
 

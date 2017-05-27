@@ -48,7 +48,6 @@ class PatientController extends Controller
 
     $patient_id = $patient->id;
 
-
     $response["patient_id"] = "$patient_id";
     $response["user_id"] = "$user_id";
     $response["medical_id"] = "$medicalId";
@@ -105,9 +104,9 @@ class PatientController extends Controller
       return response($response)
         ->header('Content-Type', 'application/json+fhir');
     }
-    
 
-    
+
+
   }
 
   function Search($medical_id)
@@ -140,7 +139,7 @@ class PatientController extends Controller
       return response($response)
         ->header('Content-Type', 'application/json+fhir');
     }
-    
+
   }
 
 }
