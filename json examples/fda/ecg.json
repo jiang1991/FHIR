@@ -22,7 +22,7 @@
         "display": "MDC_ECG_ELEC_POTL"
       }
   },
-  "effectiveDateTime": "2015-02-19 09:30:35",
+  "effectiveDateTime": "2015-02-19 09:30:35 +0800",
   "subject": {
     "reference": "1",
     "display": "Wang Jiang"

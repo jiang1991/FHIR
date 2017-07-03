@@ -19,7 +19,7 @@
       "display": "Sleep SpO2"
     }
   },
-  "effectiveDateTime": "2016-08-05T14:42:35+01:00",
+  "effectiveDateTime": "2016-08-05 14:42:35 +01:00",
   "subject": {
     "reference": "1",
     "display": "Wang Jiang"
@@ -38,10 +38,10 @@
         }
       },
       "valueQuantity": {
-        "value": "10m27s",
-        "unit": " ",
+        "value": "1027",
+        "unit": "s",
         "system": "http://unitsofmeasure.org",
-        "code": " "
+        "code": "s"
       }
     },
     {

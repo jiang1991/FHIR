@@ -21,7 +21,7 @@
         "display": "ECG Holter"
       }
   },
-  "effectiveDateTime": "2017-01-04 10:32:15",
+  "effectiveDateTime": "2017-01-04 10:32:15 +0800",
   "subject":{
     "reference": "1",
     "display": "Wang Jiang"
