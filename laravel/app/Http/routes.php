@@ -36,6 +36,14 @@ Route::delete('/myobservation/{id}', 'ObservationController@destroy');
 
 Route::any('/plot/{id}', 'PlotController@Plot');
 
+
+/* Terms */
+Route::get('/terms', function(){
+  return view('page.terms');
+} );
+
+
+
 /* Fhir Create * Create = POST https://example.com/path/{resourceType} */
 Route::post('observation', [
   'middleware' => 'auth.basic',
