@@ -1,6 +1,6 @@
 {
   "resourceType": "Observation",
-  "id": "Relax Me",
+  "id": "Stress",
   "identifier":
     {
       "system": "https://cloud.viatomtech.com/fhir",
@@ -18,8 +18,8 @@
     "coding":
       {
         "system": "https://cloud.viatomtech.com/fhir",
-        "code": "160402",
-        "display": "Relax me"
+        "code": "170717",
+        "display": "Stress"
       }
   },
   "effectiveDateTime": "2016-08-09 16:08:35 +0800",
@@ -37,8 +37,8 @@
         "coding":
           {
             "system": "https://cloud.viatomtech.com/fhir",
-            "code": "170114-3",
-            "display": "HRV(RMSSD)"
+            "code": "170717-1",
+            "display": "RMSSD"
           }
       },
       "valueQuantity": {
@@ -53,7 +53,7 @@
         "coding":
           {
             "system": "https://cloud.viatomtech.com/fhir",
-            "code": "170114-1",
+            "code": "170717-2",
             "display": "Duration"
           }
       },
