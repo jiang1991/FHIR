@@ -29,23 +29,23 @@
   },
   "device":{
     "sn": "CS00104",
-    "display": "Checkme Pro FDA"
+    "display": "Bodimetrics Pro"
   },
   "component": [
     {
       "code": {
         "coding":
           {
-            "system": "https://api.viatomtech.com.cn/fhir",
-            "code": "160501-14",
-            "display": "Relaxation index"
+            "system": "https://cloud.viatomtech.com/fhir",
+            "code": "170114-3",
+            "display": "HRV(RMSSD)"
           }
       },
       "valueQuantity": {
-        "value": 55,
-        "unit": " ",
+        "value": 43,
+        "unit": "ms",
         "system": "http://unitsofmeasure.org",
-        "code": " "
+        "code": "ms"
       }
     },
     {
@@ -53,7 +53,7 @@
         "coding":
           {
             "system": "https://cloud.viatomtech.com/fhir",
-            "code": "160501-14",
+            "code": "170114-1",
             "display": "Duration"
           }
       },
