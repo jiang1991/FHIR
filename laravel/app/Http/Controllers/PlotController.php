@@ -41,7 +41,7 @@ class PlotController extends Controller
 
 
     // ECG plot
-    function EcgPlot($hexs)
+    function EcgPlot($hexs, $id)
     {
       // 对值进行处理
       $hexs = substr($hexs, 4);
@@ -150,13 +150,13 @@ class PlotController extends Controller
       }
 
       header("Content-type: image/png");
-
+      imagepng($image, '/var/www/cloud/storage/images/' . $id . '.png');
       imagepng($image);
       imagedestroy($image);
     }
 
     // O2 sleep plot - old
-    function O2SleepPlot($hexs)
+    function O2SleepPlot($hexs, $id)
     {
       function hex2sec($str)
       {
@@ -269,13 +269,13 @@ class PlotController extends Controller
       }
 
       header("Content-type: image/png");
-
+      imagepng($image, '/var/www/cloud/storage/images/' . $id . '.png');
       imagepng($image);
       imagedestroy($image);
     }
 
     // Checkme Sleep Plot
-    function CheckmeSleepPlot($hexs)
+    function CheckmeSleepPlot($hexs, $id)
     {
       $hex = str_split($hexs, 32);
 
@@ -368,14 +368,14 @@ class PlotController extends Controller
       }
 
       header("Content-type: image/png");
-
+      imagepng($image, '/var/www/cloud/storage/images/' . $id . '.png');
       imagepng($image);
       imagedestroy($image);
 
     }
 
     // Checkme O2 sleep plot
-    function CheckmeO2Plot($hexs)
+    function CheckmeO2Plot($hexs, $id)
     {
       $hex = str_split($hexs, 50);
 
@@ -485,24 +485,24 @@ class PlotController extends Controller
       }
 
       header("Content-type: image/png");
-
+      imagepng($image, '/var/www/cloud/storage/images/' . $id . '.png');
       imagepng($image);
       imagedestroy($image);
 
     }
 
     if (Observation_component::find($id)->code_display == "MDC_ECG_ELEC_POTL_I") {
-      EcgPlot($hexs);
+      EcgPlot($hexs, $id);
     } elseif (Observation_component::find($id)->code_display == "SLEEP_II") {
-      O2SleepPlot($hexs);
+      O2SleepPlot($hexs, $id);
     } elseif (Observation_component::find($id)->code_display == "SLEEP_I") {
-      CheckmeSleepPlot($hexs);
+      CheckmeSleepPlot($hexs, $id);
     } elseif (Observation_component::find($id)->code_display == "Steps-I") {
-      O2SleepPlot($hexs);
+      O2SleepPlot($hexs, $id);
     } elseif (Observation_component::find($id)->code_display == "SLEEP_III") {
-      CheckmeO2Plot($hexs);
+      CheckmeO2Plot($hexs, $id);
     } elseif (Observation_component::find($id)->code_display == "Steps-II") {
-      CheckmeO2Plot($hexs);
+      CheckmeO2Plot($hexs, $id);
     }
 
   }

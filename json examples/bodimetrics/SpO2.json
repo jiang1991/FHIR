@@ -4,7 +4,7 @@
   "identifier":
   {
     "system": "https://cloud.viatomtech.com/fhir",
-    "value": "15100200342038119910813627020160816120909"
+    "value": "2017-07-14 08:50:36 +0800"
   },
   "category": {
     "coding":
@@ -22,10 +22,10 @@
       "display": "Oxygen saturation in Blood"
     }
   },
-  "effectiveDateTime": "2016-08-09 16:08:35 +0800",
+  "effectiveDateTime": "2017-07-14 08:50:36 +0800",
   "subject":
   {
-    "reference": "3",
+    "reference": "6D7FB9FF-83F9-46EC-80AF-25797FCCA407",
     "display": "Wang Jiang"
   },
   "interpretation": {
@@ -39,7 +39,7 @@
   },
   "device":{
     "sn": "CS00104",
-    "display": "Checkme Pro CE"
+    "display": "BM88"
   },
   "component": [
     {

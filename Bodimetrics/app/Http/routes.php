@@ -21,7 +21,14 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+// setting
+Route::get('/setting', 'SettingController@index');
+
+
 Route::get('/mypatient/{id}', 'MyController@MyPatient');
+
+/* delete account */
+Route::delete('/account', 'MyController@destroy');
 
 Route::get('/myobservation/{id}', 'ObservationController@MyObservation');
 Route::delete('/myobservation/{id}', 'ObservationController@destroy');
@@ -107,3 +114,5 @@ Route::post('fhir/ri', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\RiController@Ri'
 ]);
+
+

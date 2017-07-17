@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Observation;
 use App\Patient;
 use App\Share;
@@ -40,4 +41,14 @@ class MyController extends Controller
       'observations' => $observations,
     ]);
   }
+
+  /* delete account */
+  function destroy() {
+    $user = Auth::user();
+    User::destroy($user->id);
+
+    return redirect("/login");
+  }
+
+
 }

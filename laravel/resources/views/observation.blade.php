@@ -105,6 +105,14 @@
         </div>
         @endif
 
+        @if ($observation->resourceId == "sleep")
+        <div class="panel-body">
+          <div>
+            <a href="/export/observation/{{ $observation->id }}" role="button" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Download original ECG waveform file."><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Export as PDF</a>
+          </div>
+        </div>
+        @endif
+
       </div>
     </div>
   </div>
