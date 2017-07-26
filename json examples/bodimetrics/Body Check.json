@@ -92,6 +92,22 @@
     {
       "code": {
         "coding":
+        {
+          "system": "http://loinc.org",
+          "code": "8889-8",
+          "display": "Heart rate by Pulse oximetry"
+        }
+      },
+      "valueQuantity": {
+        "value": 65,
+        "unit": "/min",
+        "system": "http://unitsofmeasure.org",
+        "code": "/min"
+      }
+    },
+    {
+      "code": {
+        "coding":
           {
             "system": "https://en.wikipedia.org/wiki/Rate_pressure_product",
             "code": "RPP",
