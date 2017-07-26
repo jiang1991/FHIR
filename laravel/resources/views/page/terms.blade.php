@@ -27,40 +27,36 @@
             <li><a href="#dropdown_en" role="tab" id="dropdown_en-tab" data-toggle="tab" aria-controls="dropdown_en" aria-expanded="false">English</a></li>
             <li><a href="#dropdown_ch" role="tab" id="dropdown_ch-tab" data-toggle="tab" aria-controls="dropdown_ch" aria-expanded="false">Chinese</a></li>
             <li><a href="#dropdown_fr" role="tab" id="dropdown_fr-tab" data-toggle="tab" aria-controls="dropdown_fr" aria-expanded="false">French</a></li>
-            <li><a href="#dropdown_es" role="tab" id="dropdown_es-tab" data-toggle="tab" aria-controls="dropdown_es" aria-expanded="false">Spanish</a></li>
+            <!-- <li><a href="#dropdown_es" role="tab" id="dropdown_es-tab" data-toggle="tab" aria-controls="dropdown_es" aria-expanded="false">Spanish</a></li> -->
 
          </ul>
         </li>
       </ul>
 
       <div id="myTabContent" class="tab-content">
+        <!-- English Part -->
         <div role="tabpanel" class="tab-pane fade active in" id="dropdown_en" aria-labelledby="dropdown_en-tab">
-          <p>I am english text</p>
+          <h3 class="text-capitalize">Non-medical use statement</h3>
+          <p>If it's critical to know your health, we recommend that you find out from that Medical Practitioner how the Medical Practitioner handles your personal information. Viatom is not intended to diagnose, prevent or treat any condition, or to be a substitute for professional medical care. Measurements and statistics are intended for informational and educational purposes only.</p>
         </div>
+
+        <!-- Chinese part -->
         <div role="tabpanel" class="tab-pane fade" id="dropdown_ch" aria-labelledby="dropdown_ch-tab">
-          <p>I am chinese text</p>
+          <h3>警告： 不能用于医疗用途</h3>
+          <p>如果了解您的健康状况至关重要，我们建议您从该医生处了解医生如何处理您的个人信息。Viatom 不是用于诊断，预防或治疗任何病症，也不能替代专业医疗。 测量和统计仅供参考和教育目的。</p>
         </div>
+
+        <!-- French part -->
         <div role="tabpanel" class="tab-pane fade" id="dropdown_fr" aria-labelledby="dropdown_fr-tab">
-          <p>I am french text</p>
+          <h3>Déclaration d'utilisation non médicale</h3>
+          <p>S'il est essentiel de connaître votre santé, nous vous recommandons de découvrir auprès de ce Médecin comment le médecin traitant vos renseignements personnels. Viatom ne vise pas à diagnostiquer, à prévenir ou à traiter une condition ou à remplacer les soins médicaux professionnels. Les mesures et les statistiques sont uniquement destinées à des fins d'information et d'éducation.</p>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="dropdown_es" aria-labelledby="dropdown_es-tab">
+
+        <!-- Spanish part -->
+        <!-- <div role="tabpanel" class="tab-pane fade" id="dropdown_es" aria-labelledby="dropdown_es-tab">
           <p>I am spanish text</p>
-        </div>
+        </div> -->
       </div>
-
-
-      <!-- page -->
-
-      
-
-      <h3>
-        THIS NOTICE DESCRIBES HOW MEDICAL INFORMATION ABOUT YOU MAY BE USED AND DISCLOSED AND HOW YOU CAN GET ACCESS TO THIS INFORMATION. PLEASE REVIEW IT CAREFULLY.
-      </h3>
-      <p>
-        St Cloud Medical Group is required by law to maintain the privacy of your protected health information. St Cloud Medical Group is required to provide you with a notice that describes St Cloud Medical Group’s legal duties, privacy practices, and your privacy rights with respect to your protected health information. We will follow the privacy practices described in this notice that are currently in effect.
-        We reserve the right to change the terms of our privacy practices described in this notice in the event that the practices need to be changed to be in compliance with the law. We will make the new notice provisions effective for all the protected health information that we maintain. If we change our privacy practices, a current version will be posted in public areas of the clinic, available on our website or on paper from a Receptionist.
-        This Notice of Privacy Practices describes how we may use and disclose your protected health information to carry out treatment, payment, or health care operations as defined by HIPAA and for other purposes that are permitted or required by law. It also describes your rights to access and control your protected health information. “Protected health information” is information about you including demographic information that may identify you and that relates to your past, present or future physical or mental health conditions and related health care services.
-      </p>
 
     </div>
     
