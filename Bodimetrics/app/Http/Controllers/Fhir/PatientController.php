@@ -104,9 +104,6 @@ class PatientController extends Controller
       return response($response)
         ->header('Content-Type', 'application/json+fhir');
     }
-
-
-
   }
 
   function Search($medical_id)
@@ -140,6 +137,35 @@ class PatientController extends Controller
         ->header('Content-Type', 'application/json+fhir');
     }
 
+  }
+
+
+  // without auth
+  function PatientGet($patient_id)
+  {
+    if ($patient = Patient::where('id', $patient_id)->first()) {
+      $response["resourceType"] = $patient->resourceType;
+      $response["user_id"] = $patient->user_id;
+      $response["identifier"]["system"] = $patient->identifier_system;
+      $response["identifier"]["value"] = $patient->identifier_value;
+      $response["identifier"]["medicalId"] = $patient->medicalId;
+      $response["name"] = $patient->name;
+      $response["gender"] = $patient->gender;
+      $response["birthDate"] = $patient->birthDate;
+      $response["height"] = $patient->height;
+      $response["weight"] = $patient->weight;
+      $response["stepSize"] = $patient->stepSize;
+
+
+      return response($response)
+        ->header('Content-Type', 'application/json+fhir');
+    } else {
+      $response["status"] = "error";
+      $response["error"] = "unauthorized or not found";
+
+      return response($response, '404')
+        ->header('Content-Type', 'application/json+fhir');
+    }
   }
 
 }

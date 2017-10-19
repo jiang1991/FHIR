@@ -100,3 +100,6 @@ Route::get('search/{patient_id}/observation', [
 
 /* export */
 Route::get('export/observation/{id}', 'Export\PdfController@export');
+
+/* apis for test */
+Route::get('test/users', 'Fhir\TestController@user');

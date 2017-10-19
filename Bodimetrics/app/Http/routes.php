@@ -50,7 +50,8 @@ Route::post('fhir/observation', [
   ]);
 
 /* Fhir Read * Read = GET https://example.com/path/{resourceType}/{id} */
-Route::get('fhir/observation/{observation}', 'Fhir\ObservationController@ObservationRead');
+Route::get('fhir/observation/{observation}',
+ 'Fhir\ObservationController@ObservationRead');
 
 // download binary file for ecg & sleep
 Route::get('fhir/observation/download/{observation_id}', 'Fhir\ObservationController@download');
@@ -99,6 +100,16 @@ Route::get('fhir/search/{patient_id}/observation', [
   'uses' => 'Fhir\SearchController@ObservationSearch'
   ]);
 
+Route::post('fhir/carespan/search/email', 'Fhir\SearchController@EmailSearch');
+
+Route::get('fhir/carespan/search/{patient_id}/observation',
+ 'Fhir\SearchController@ObservationGet');
+
+Route::get('fhir/carespan/patient/{patient_id}',
+ 'Fhir\PatientController@PatientGet');
+
+Route::get('fhir/carespan/observation/{observation_id}',
+ 'Fhir\ObservationController@ObservationRead');
 
 // attachment
 Route::post('fhir/attachment', [
@@ -114,5 +125,3 @@ Route::post('fhir/ri', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\RiController@Ri'
 ]);
-
-
