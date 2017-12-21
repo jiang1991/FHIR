@@ -101,5 +101,8 @@ Route::get('search/{patient_id}/observation', [
 /* export */
 Route::get('export/observation/{id}', 'Export\PdfController@export');
 
+// download binary file for ecg & sleep
+Route::get('observation/download/{observation_id}', 'Fhir\ObservationController@download');
+
 /* apis for test */
 Route::get('test/users', 'Fhir\TestController@user');
