@@ -106,3 +106,7 @@ Route::get('observation/download/{observation_id}', 'Fhir\ObservationController@
 
 /* apis for test */
 Route::get('test/users', 'Fhir\TestController@user');
+
+
+// app update
+Route::any('update/app/{os}/{app}', 'Update\AppupdateConstroller@app');
