@@ -17,40 +17,16 @@
             @if ($patient->name == "Guest")
             <h3>{{ $patient->name }}</h3>
             <div class="row">
-              <div class="col-md-4">SN: {{ substr($patient->identifier_value, 0, -1) }}</div>
+              <div class="col-md-4">SN: {{ $patient->medicalId }}</div>
             </div>
             @else
             <h3>{{ $patient->name }}</h3>
             <div class="row">
-              <div class="col-md-4 text-danger"><strong>Medical ID: {{ $patient->medicalId }}</strong></div>
-              <div class="col-md-4 text-danger"><strong>SN: {{ $patient->identifier_value }}</strong></div>
-
-              @if ($patient->gender = "--")
-              @else
               <div class="col-md-2">Gender: {{ $patient->gender }}</div>
-              @endif
-
-              @if ($patient->birthDate == "0000-00-00")
-              @else
-              <div class="col-md-3">Birth date: {{ date('M d, Y', strtotime($patient->birthDate)) }}</div>
-              @endif
-
-
-              @if ($patient->height == "--")
-              @else
+              <div class="col-md-3">Birth Date: {{ $patient->birthDate }}</div>
+              <div class="col-md-4">Medical ID: {{ $patient->medicalId }}</div>
               <div class="col-md-2">Height: {{ $patient->height }}</div>
-              @endif
-
-              @if ($patient->weight == "--")
-              @else
               <div class="col-md-2">Weight: {{ $patient->weight }}</div>
-              @endif
-
-              @if ($patient->stepSize == "--")
-              @else
-              <div class="col-md-2">Step size: {{ $patient->stepSize }}</div>
-              @endif
-
             </div>
             @endif
           </table>
@@ -60,21 +36,21 @@
         @if (count($observations) > 0)
         <div class="panel-body">
           <table class="table table-striped">
-          @foreach ($observations as $observation)
-            <tr>
-              <td>
-                <table>
-                  <tr>
-                    <div class="row">
-                      <div class="col-md-3 text-capitalize"><a href="/myobservation/{{ $observation->id }}">Check type: {{ $observation->resourceId }}</a></div>
-                      <div class="col-md-3"> {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
-                      <div class="col-md-6">{{ $observation->device_display }}: {{ $observation->device_sn }}</div>
-                    </div>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          @endforeach
+            @foreach ($observations as $observation)
+              <tr>
+                <td>
+                  <table>
+                    <tr>
+                      <div class="row">
+                        <div class="col-md-4 text-capitalize"><a href="/myobservation/{{ $observation->id }}">Check Type: {{ $observation->resourceId }}</a></div>
+                        <div class="col-md-4"> {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
+                        <div class="col-md-4 text-capitalize">Notes: {{ $observation->interpretation_text }}</div>
+                      </div>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            @endforeach
           </table>
         </div>
         @endif

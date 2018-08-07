@@ -1,17 +1,11 @@
 <?php
 namespace App\Http\Controllers\Fhir;
 
-use Illuminate\Http\Request;
-
 use DB;
 use Illuminate\Routing\Controller;
-use App\Http\Requests;
 use Auth;
 use App\Share;
 use App\Patient;
-use App\User;
-use App\Jobs\SendShareEmail;
-
 /**
  * shareTo
  */
@@ -20,7 +14,7 @@ use App\Jobs\SendShareEmail;
 class shareToController extends Controller
 {
 
-  function shareTo(Request $request)
+  function shareTo()
   {
     $user = Auth::user();
     $userId = $user->id;
@@ -28,37 +22,31 @@ class shareToController extends Controller
     $shareToJson = file_get_contents("php://input");
     $shareToData = json_decode($shareToJson);
 
+    // $patientId = $shareToData->patientId;
+    // $toEmail = $shareToData->toEmail;
+    //
+    // // //TODO: Use Elop model
+    // // DB::table('shares')->insert([
+    // //   'user_id' => "$userId",
+    // //   'patient_id' => "$patientId",
+    // //   'active' => "1",
+    // // ]);
     $email = $shareToData->toEmail;
 
-    if ($share_id = User::where('email', $email)->value('id')) {
+    $share_id = DB::table('users')->where('email', $email)->value('id');
 
-      Share::withTrashed()->where('user_id', $share_id)
-          ->where('patient_id', $shareToData->patientId)
-          ->restore();
+    $share = new Share;
+    $share->user_id = $share_id;
+    $share->patient_id = $shareToData->patientId;
+    $share->active = "1";
 
-      $share = Share::firstOrNew([
-        'user_id' => $share_id,
-        'patient_id' => $shareToData->patientId
-      ]);
+    $share->save();
 
-      $share->save();
-
-      // send email notification
-      $job = (new SendShareEmail($user));
-      dispatch($job);
-
-      $response["status"] = "ok";
-    } else {
-      $response["status"] = "error";
-      $response["error"] = "Invalid cloud account!";
-    }
+    $response["acitve"] = 1;
     return response($response)
       ->header('Content-Type', 'application/json+fhir');
-
-
   }
 
-  // 查询分享来的patient
   function getShare()
   {
     $sharePatients = collect([ ]);
@@ -83,57 +71,6 @@ class shareToController extends Controller
     }
 
     return response($sharePatients)
-      ->header('Content-Type', 'application/json+fhir');
-  }
-
-  // delete or cancel
-  function destroy()
-  {
-    $user = Auth::user();
-    $user_id = $user->id;
-
-    $destoryJson = file_get_contents("php://input");
-    $destroyData = json_decode($destoryJson);
-
-    $email = $destroyData->toEmail;
-
-    $share_id = DB::table('users')->where('email', $email)->value('id');
-
-    if ($destroyData->method === 'destroy' ) {
-      Share::where('user_id', $share_id)
-            ->where('patient_id', $destroyData->patientId)
-            ->forceDelete();
-    } else {
-      Share::where('user_id', $share_id)
-            ->where('patient_id', $destroyData->patientId)
-            ->delete();
-    }
-
-    $response["status"] = 'ok';
-    return response($response)
-      ->header('Content-Type', 'application/json+fhir');
-  }
-
-  // 分享给了那些人，包括软删除
-  function query($patient_id)
-  {
-    $response = collect([ ]);
-
-    $shares = Share::withTrashed()->where('patient_id', $patient_id)->get();
-
-    foreach ($shares as $share) {
-      $user = User::find($share->user_id);
-      $res["email"] = $user->email;
-      if ($share->trashed()) {
-        $res["active"] = "0";
-      } else {
-        $res["active"] = "1";
-      }
-
-      $response->push($res);
-    }
-
-    return response($response)
       ->header('Content-Type', 'application/json+fhir');
   }
 }

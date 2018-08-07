@@ -26,16 +26,9 @@
               </form>
             </div></h3>
             <div class="row">
-              <div class="col-md-2">{{ $patient->name }}</div>
-              <div class="col-md-4 text-danger"><strong>Medical ID: {{ $patient->medicalId }}</strong></div>
-              <div class="col-md-4 text-danger"><strong>SN: {{ $patient->identifier_value }}</strong></div>
-            </div>
-            <div class="row">
+              <div class="col-md-3">Patient: {{ $observation->subject_display }}</div>
               <div class="col-md-3"> {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
-              @if ($observation->interpretation_text == "--")
-              @else
-              <div class="col-md-12 text-capitalize">{{ $observation->interpretation_text }}</div>
-              @endif
+              <div class="col-md-6 text-capitalize">{{ $observation->interpretation_text }}</div>
             </div>
           </table>
         </div>
@@ -55,18 +48,12 @@
                       <image class="col-xs-12" src="/plot/{{ $observation_component->id }}"> </image>
                     </div>
                   </tr>
-                  <tr>
-                    <div>
-                      <a href="/observation/download/{{ $observation->id }}" role="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Download original ECG waveform file."><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download</a>
-                    </div>
-                  </tr>
                 </table>
               </td>
             </tr>
+            @elseif ($observation_component->code_code == "RPP")
 
             @elseif ($observation_component->code_display == "Avg HR")
-
-            @elseif ($observation_component->code_display == "Rate Pressure Product")
 
             @else
             <tr>
@@ -107,14 +94,6 @@
             @endif
           @endforeach
           </table>
-        </div>
-        @endif
-
-        @if ($observation->resourceId == "sleep")
-        <div class="panel-body">
-          <div>
-            <a href="/export/observation/{{ $observation->id }}" role="button" class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Download original ECG waveform file."><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Export as PDF</a>
-          </div>
         </div>
         @endif
 

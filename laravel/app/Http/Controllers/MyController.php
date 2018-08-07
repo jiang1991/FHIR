@@ -2,10 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Observation;
-use App\Patient;
-use App\Share;
-Use App\Observation_component;
-
 use Illuminate\Routing\Controller;
 use Auth;
 use App\Repositories\PatientRepository;

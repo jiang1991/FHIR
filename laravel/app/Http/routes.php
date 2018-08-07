@@ -19,17 +19,13 @@ Route::get('/', 'HomeController@index');
 
 Route::auth();
 
-// admin
-Route::get('/viatomadmin', 'AdminController@index');
-Route::delete('/viatomadmin/{id}', 'AdminController@destroy');
-
 Route::get('/home', 'HomeController@index');
 
 Route::post('/user/login', 'LoginController@UserLogin');
 
 Route::post('/user/signup', 'UserController@signup');
 
-Route::get('/mypatient/{id}', 'MyController@MyPatient');
+Route::any('/mypatient/{id}', 'MyController@MyPatient');
 
 Route::get('/myobservation/{id}', 'ObservationController@MyObservation');
 Route::delete('/myobservation/{id}', 'ObservationController@destroy');
@@ -37,11 +33,8 @@ Route::delete('/myobservation/{id}', 'ObservationController@destroy');
 Route::any('/plot/{id}', 'PlotController@Plot');
 
 
-/* Terms */
-Route::get('/terms', function(){
-  return view('page.terms');
-} );
-
+// emails
+Route::get('emails/notification/{id}', 'email\MailController@notification');
 
 
 /* Fhir Create * Create = POST https://example.com/path/{resourceType} */
@@ -53,60 +46,86 @@ Route::post('observation', [
 /* Fhir Read * Read = GET https://example.com/path/{resourceType}/{id} */
 Route::get('observation/{observation}', 'Fhir\ObservationController@ObservationRead');
 
+/* Fhir Update * Update = PUT https://example.com/path/{resourceType}/{id} */
 
-// patient
+/* Fhir Delete * Delete = DELETE https://example.com/path/{resourceType}/{id} */
+
+/* Search * Search = GET https://example.com/path/{resourceType}?search parameters.. */
+
+/* Create Patient*/
 Route::post('patient', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\PatientController@PatientCreate'
   ]);
-Route::get('patient/{patient_id}', [
-  'middleware' => 'auth.basic',
-  'uses' => 'Fhir\PatientController@PatientRead'
-  ]);
-Route::get('patient/search/{medical_id}', [
-  'middleware' => 'auth.basic',
-  'uses' => 'Fhir\PatientController@Search'
-  ]);
 
-// share
+/* Read Patient*/
+Route::get('patient/{patient}', 'Fhir\PatientController@PatientRead');
+
+/* shareTo*/
 Route::post('shareto', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\shareToController@shareTo'
   ]);
+
+/* 查询分享
+* return all shared patient
+* 没有则返回空json
+*/
 Route::get('shareto', [
   'middleware' => 'auth.basic',
   'uses' => 'Fhir\shareToController@getShare'
 ]);
-Route::post('shareto/delete', [
-  'middleware' => 'auth.basic',
-  'uses' => 'Fhir\shareToController@destroy'
-]);
-Route::get('shareto/query/{patient}', [
-  'middleware' => 'auth.basic',
-  'uses' => 'Fhir\shareToController@query'
-]);
 
 /* search */
-Route::get('search/patient', [
+Route::get('search/{param}', [
   'middleware' => 'auth.basic',
-  'uses' => 'Fhir\SearchController@patientSearch'
+  'uses' => 'Fhir\SearchController@Search'
   ]);
 
-Route::get('search/{patient_id}/observation', [
-  'middleware' => 'auth.basic',
-  'uses' => 'Fhir\SearchController@ObservationSearch'
-  ]);
+/* pulsebit O2 update service -- deprecated */
+Route::get('update', 'Update\UpdateController@update');
+/* check O2 & O2 Vibe*/
+Route::any('update/O2/{region}', 'Update\UpdateController@O2Update');
 
+// bm88
+Route::any('update/bodimetrics/{hv}', 'Update\UpdateController@bodimetrics');
 
-/* export */
+// fda/bodimetrics pro
+Route::any('update/fda/{hv}', 'Update\UpdateController@fda');
+
+// CE Pro
+Route::any('update/ce/{hv}', 'Update\UpdateController@ce');
+
+// JP Pro
+Route::any('update/jp/{hv}', 'Update\UpdateController@jp');
+
+// semacare
+Route::any('update/semacare/{hv}', 'Update\UpdateController@semacare');
+
+// smartBP
+Route::any('update/smartbp/{language}', 'Update\UpdateController@smartbp');
+
+// SnoreO2
+Route::any('update/snoreo2/{language}', 'Update\UpdateController@snoreo2');
+
+// test service
+Route::any('update/test', 'Update\UpdateController@test');
+
+/* export Excel */
+Route::get('excel/export', 'export\ExcelController@export');
+
+Route::get('holter/export/{holter_id}', 'HolterController@export');
+Route::get('holter/pdf', 'HolterController@pdf');
 Route::get('export/observation/{id}', 'Export\PdfController@export');
 
-// download binary file for ecg & sleep
-Route::get('observation/download/{observation_id}', 'Fhir\ObservationController@download');
 
-/* apis for test */
-Route::get('test/users', 'Fhir\TestController@user');
+// for monitor data upload
+Route::any('monitor/upload', 'Fhir\MonitorController@upload');
+Route::get('monitor/query', 'Fhir\MonitorController@query');
 
-
-// app update
-Route::any('update/app/{os}/{app}', 'Update\AppupdateConstroller@app');
+// redirect
+Route::any('redirect/qrcode/{app_name}/{os_name}', 'Update\RedirectController@redirect');
+Route::any('redirect/apk_download/{app_name}', 'Update\RedirectController@app_download');
+// for pc software
+Route::any('apis/time', 'Update\RedirectController@gettime');
+Route::any('update/apis/{param}', 'Update\UpdateController@apis');

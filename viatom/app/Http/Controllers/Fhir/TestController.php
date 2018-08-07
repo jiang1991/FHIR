@@ -1,8 +1,12 @@
 <?php
 namespace App\Http\Controllers\Fhir;
 
-use Illuminate\Routing\Controller;
+// use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use App\Jobs\SendApiNotice;
+use App\Http\Controllers\Controller;
+use App\ApiNotice;
+use App\User;
 
 /**
  * test
@@ -94,6 +98,35 @@ class testController extends Controller
 
     $response["users"] = $users;
     return response($response)
-      ->header('Content-Type', 'application/json+fhir');
+      ->header('Content-Type', 'application/json');
   }
+
+        function api() {
+                // $client = new \GuzzleHttp\Client();
+                // $res = $client->request('GET', 'https://api.viatomtech.com.cn/time.php');
+
+                // $response = $res->getBody();
+                $api_notice = new ApiNotice;
+
+                $api_notice->user_id = 605;
+                $api_notice->company = 'RAHAH';
+                $api_notice->type = 'patient';
+                $api_notice->patient_id = 1156;
+                $api_notice->observation_id = NULL;
+                $api_notice->resource_type = NULL;
+
+                 $api_notice->save();
+
+                 $user = User::where('id', 1)->first();
+
+                $this->dispatch(new SendApiNotice($user));
+
+
+                // return response($response)
+                //       ->header('Content-Type', 'application/json+fhir');
+                $response['status'] = 'ok';
+                $response['api_notice_id'] = $api_notice->id;
+                return response($response)
+                      ->header('Content-Type', 'application/json+fhir');
+        }
 }

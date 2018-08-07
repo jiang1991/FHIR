@@ -81,8 +81,8 @@
   <div class="container">
     <div class="modal-footer">
       <ul class="list-inline text-left">
-      <li>© 2017 Viatom Technology co., ltd</li>
-      <li><a href="{{ url('/terms') }}">Terms</a></li>
+      <li>© 2016 Viatom Technology co., ltd</li>
+      <li>Terms</li>
       <li>Privacy</li>
       <li>Contact</li>
       </ul>

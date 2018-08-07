@@ -52,7 +52,7 @@
           Sleep Report
       </td>
       <td>
-        <img width="150px" src="/var/www/cloud/storage/app/viatom-logo.png">
+        <img width="150px" src="/var/www/laravel/storage/app/viatom-logo.png">
       </td>
     </tr>
   </table>
@@ -115,7 +115,7 @@
       <td>
       @foreach ($observation_components as $observation_component)
         @if ($observation_component->valueString)
-        <img width="1100px" src="/var/www/cloud/storage/images/{{ $observation_component->id }}.png">
+        <img width="1100px" src="/var/www/laravel/storage/images/{{ $observation_component->id }}.png">
         @endif
       @endforeach
       </td>

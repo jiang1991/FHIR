@@ -29,30 +29,20 @@ class ObservationController extends Controller
     $observationJson = file_get_contents("php://input");
     $observationData = json_decode($observationJson);
 
-    // write to local file
-    // $filename = "/var/www/cloud/public/test.txt";
-    // $filetowirte = fopen($filename, "a");
-    // fwrite($filetowirte, date("Y-m-d H:m:s", time()));
-    // fwrite($filetowirte, "\n");
-    // fwrite($filetowirte, $observationJson);
-    // fwrite($filetowirte, "\n");
-    // fclose($filetowirte);
-
     $component = $observationData->component;
 
     $id = $observationData->id; //其实是observation Type
-    $identifier_value = $observationData->identifier->value;
+    $identifier_value =$user_id . $observationData->identifier->value;
 
     // 判断是否已经上传
-    if ($query = Observation::where('user_id', $user_id)
-      ->where('identifier_value', $identifier_value)->first()) {
+    if ($query = Observation::where('identifier_value', $identifier_value)->first()) {
       $response["user_id"] = $query->user_id;
       $response["observation_id"] = $query->id;
       $response["status"] = "generated";
 
       return response($response)
         ->header('Content-Type', 'application/json+fhir')
-        ->header('Location', 'https://cloud.viatomtech.com/observation/' . $query->id);
+        ->header('Location', 'http://api.viatomtech.com.cn/observation/' . $query->id);
     }
 
     $subject_reference = $observationData->subject->reference; //这里其实是PatientId
@@ -90,8 +80,7 @@ class ObservationController extends Controller
     $observation->save();
     // 查询上传的observation_id
 
-    $observation_id = Observation::where('user_id', $user_id)
-      ->where('identifier_value', "$identifier_value")->first()->id;
+    $observation_id = Observation::where('identifier_value', "$identifier_value")->first()->id;
 
     $com_num = count($component);
     for ($i=0; $i < $com_num; $i++) {
@@ -122,7 +111,7 @@ class ObservationController extends Controller
 
     return response($response)
       ->header('Content-Type', 'application/json+fhir')
-      ->header('Location', 'https://cloud.viatomtech.com/observation/' . $observation_id);
+      ->header('Location', 'http://api.viatomtech.com.cn/observation/' . $observation_id);
   }
 
   /*
@@ -148,57 +137,33 @@ class ObservationController extends Controller
     $response["interpretation"]["coding"]["code"] = $query->interpretation_code;
     $response["interpretation"]["coding"]["display"] = $query->interpretation_display;
     $response["interpretation"]["text"] = $query->interpretation_text;
-    $response["device"]["sn"] = $query->device_sn;
-    $response["device"]["display"] = $query->device_display;
 
-    $qComponents = Observation::find($observation_id)->observation_components;
+    $Qcomponents = Observation::find($observation_id)->observation_components;
 
-    // $components = [];
-    foreach ($qComponents as $qComponent) {
-      if ($qComponent->code_display == 'Rate Pressure Product') {
-        # code...
+    ##TODO:  use foreach
+
+    $Qcomponent = $Qcomponents->toArray();
+
+    $com_num = count($Qcomponent);
+    for ($i=0; $i < $com_num; $i++) {
+      $component["code"]["coding"]["system"] = $Qcomponent[$i]['code_system'];
+      $component["code"]["coding"]["code"] = $Qcomponent[$i]['code_code'];
+      $component["code"]["coding"]["display"] = $Qcomponent[$i]['code_display'];
+
+      // valueQuantity 非空 ?
+      if (!empty($Qcomponent[$i]['valueQuantity_value'])) {
+        $component["valueQuantity"]["value"] = $Qcomponent[$i]['valueQuantity_value'];
+        $component["valueQuantity"]["unit"] = $Qcomponent[$i]['valueQuantity_unit'];
+        $component["valueQuantity"]["system"] = $Qcomponent[$i]['valueQuantity_system'];
+        $component["valueQuantity"]["code"] = $Qcomponent[$i]['valueQuantity_code'];
       } else {
-        $component = [];
-
-        $component["code"]["coding"]["system"] = $qComponent->code_system;
-        $component["code"]["coding"]["code"] = $qComponent->code_code;
-        $component["code"]["coding"]["display"] = $qComponent->code_display;
-
-        if (empty($qComponent->valueString)) {
-          $component["valueQuantity"]["value"] = $qComponent->valueQuantity_value;
-          $component["valueQuantity"]["unit"] = $qComponent->valueQuantity_unit;
-          $component["valueQuantity"]["system"] = $qComponent->valueQuantity_system;
-          $component["valueQuantity"]["code"] = $qComponent->valueQuantity_code;
-        } else {
-          $component["valueString"] = $qComponent->valueString;
-        }
-
-        $components[] = $component;
+        $component["valueString"] = $Qcomponent[$i]['valueString'];
       }
-    }
 
-    $response["component"] = $components;
+
+      $response["component"][$i] = $component;
+    }
     return response($response)
       ->header('Content-Type', 'application/json+fhir');
-  }
-
-  // download binary
-  function download($observation_id){
-    $components = Observation::findOrFail($observation_id)->observation_components;
-    foreach ($components as $component) {
-      if (empty($component->valueString)) {
-        # code...
-      } else {
-        $filename = '/var/www/cloud/storage/export/observation/'.$observation_id;
-        $file = fopen($filename, "w");
-        $string = $component->valueString;
-        $file_content = pack("H*", $string);
-
-        fwrite($file, $file_content);
-        fclose($file);
-        return response()->download($filename);
-      }
-      
-    }
   }
 }
