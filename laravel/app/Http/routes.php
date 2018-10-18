@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomepageController@index');
 
 Route::auth();
 
@@ -107,6 +107,10 @@ Route::any('update/smartbp/{language}', 'Update\UpdateController@smartbp');
 
 // SnoreO2
 Route::any('update/snoreo2/{language}', 'Update\UpdateController@snoreo2');
+
+// O2 Series
+Route::post('update/o2s/insert', 'Update\O2updateController@insert');
+Route::post('update/o2s/query', 'Update\O2updateController@query');
 
 // test service
 Route::any('update/test', 'Update\UpdateController@test');

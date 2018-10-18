@@ -56,13 +56,13 @@
                     </div>
                   </tr>
 
-                  <!--  remove download binary file
+                   <!-- remove download binary file -->
                   <tr>
                     <div>
-                      <a href="/observation/download/{{ $observation->id }}" role="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Download original ECG waveform file."><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download</a>
+                      <a href="/observation/download/{{ $observation->id }}" role="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Download original binary waveform file."><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download</a>
                      </div>
                   </tr>
-                  -->
+                 
                 </table>
               </td>
             </tr>

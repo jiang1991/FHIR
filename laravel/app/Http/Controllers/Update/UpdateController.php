@@ -53,23 +53,23 @@ class UpdateController extends Controller
     $response["o2"]["5"]["fileLocate"] = "http://api.viatomtech.com.cn/download/software/O2/CE_1611_CC_220.bin";
 
 //JP
-    $response["o2"]["6"]["version"] = "2.5.0";
+    $response["o2"]["6"]["version"] = "2.6.0";
     $response["o2"]["6"]["hardware_version"] = "AA";
     $response["o2"]["6"]["model"] = "1611";
     $response["o2"]["6"]["region"] = "JP";
-    $response["o2"]["6"]["fileLocate"] = "http://api.viatomtech.com.cn/download/software/O2/NCI_2.5.0.bin";
+    $response["o2"]["6"]["fileLocate"] = "http://api.viatomtech.com.cn/download/software/O2/NCI_2.6.0.bin";
 
-    $response["o2"]["7"]["version"] = "2.5.0";
+    $response["o2"]["7"]["version"] = "2.6.0";
     $response["o2"]["7"]["hardware_version"] = "BB";
     $response["o2"]["7"]["model"] = "1611";
     $response["o2"]["7"]["region"] = "JP";
-    $response["o2"]["7"]["fileLocate"] = "http://api.viatomtech.com.cn/download/software/O2/NCI_2.5.0.bin";
+    $response["o2"]["7"]["fileLocate"] = "http://api.viatomtech.com.cn/download/software/O2/NCI_2.6.0.bin";
 
-    $response["o2"]["8"]["version"] = "2.5.0";
+    $response["o2"]["8"]["version"] = "2.6.0";
     $response["o2"]["8"]["hardware_version"] = "CC";
     $response["o2"]["8"]["model"] = "1611";
     $response["o2"]["8"]["region"] = "JP";
-    $response["o2"]["8"]["fileLocate"] = "http://api.viatomtech.com.cn/download/software/O2/NCI_2.5.0.bin";
+    $response["o2"]["8"]["fileLocate"] = "http://api.viatomtech.com.cn/download/software/O2/NCI_2.6.0.bin";
 
 // beta
     $response["o2"]["9"]["version"] = "2.2.0";
@@ -88,7 +88,7 @@ class UpdateController extends Controller
         /* O2 Vibe */
 
         // O2 vibe fileVersion <= 3
-        case "us_ver_3":
+        case "us_ver_3-":
             $res['Bootloader']['version'] = "0.1.0";
             $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/checko2/O2Vibe_btl_0.1.0.zip";
             $res['Firmware']['version'] = "4.1.0";
@@ -106,23 +106,31 @@ class UpdateController extends Controller
             break;
 
         // Sleep O2
-        case 'sleepo2':
+        case 'sleepo2-':
             $res['Bootloader']['version'] = "0.1.0";
-            $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sleepo2/CheckO2_btl_0.1.0.zip";
-            $res['Firmware']['version'] = "4.1.0";
-            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sleepo2/CheckO2_app_4.1.0.zip";
+            $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sleepo2/SleepO2_btl_0.1.0.zip";
+            $res['Firmware']['version'] = "0.0.1";
+            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sleepo2/SleepO2_app_4.1.5.zip";
+            $res['note'] = "Release Note:\nPlease update to this version!";
+            break;
+
+        case 'o2ring':
+            $res['Bootloader']['version'] = "0.1.0";
+            $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sleepo2/SleepO2_btl_0.1.0.zip";
+            $res['Firmware']['version'] = "0.0.1";
+            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sleepo2/SleepO2_app_4.3.0.zip";
             $res['note'] = "Release Note:\nPlease update to this version!";
             break;
         
-        default:
-            $res['Bootloader']['version'] = "0.1.0";
-            $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/checko2/SleepO2_btl_0.1.0.zip";
-            $res['Firmware']['version'] = "4.1.5";
-            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/checko2/SleepO2_app_4.1.5.zip";
-            // $res['Firmware']['version'] = "3.3.0";
-            // $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/checko2/O2Vibe_app_3.3.0.zip";
-            $res['note'] = "Release Note:\nPlease update to this version!";
-            break;
+        // default:
+        //     $res['Bootloader']['version'] = "0.1.0";
+        //     $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/checko2/O2Vibe_btl_0.1.0.zip";
+        //     $res['Firmware']['version'] = "4.1.5";
+        //     $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/checko2/O2Vibe_app_4.1.0.zip";
+        //     // $res['Firmware']['version'] = "3.3.0";
+        //     // $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/checko2/O2Vibe_app_3.3.0.zip";
+        //     $res['note'] = "Release Note:\nPlease update to this version!";
+        //     break;
     }
 
     return response($res)
@@ -150,15 +158,15 @@ class UpdateController extends Controller
   function fda($hv){
     switch ($hv) {
         case 'beta':
-            $res['version'] = "2.1.0";
-            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/fda/210/app_aes.bin";
-            $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/fda/210/lang_aes.bin";
+            $res['version'] = "2.1.16";
+            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/fda/2116/app_aes.bin";
+            $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/fda/2116/lang_aes.bin";
             break;
         
         default:
-            $res['version'] = "2.1.0";
-            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/fda/210/app_aes.bin";
-            $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/fda/210/lang_aes.bin";
+            $res['version'] = "2.1.15";
+            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/fda/2116/app_aes.bin";
+            $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/fda/2116/lang_aes.bin";
             break;
     }
     
@@ -221,6 +229,13 @@ class UpdateController extends Controller
             $res['language']['Japanese'] = "https://api.viatomtech.com.cn/download/software/sanei/prox/200/lang_aes_jp.bin";
             $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/sanei/prox/200/lang_aes_en.bin";
             break;
+        // Pro EX
+        case "proadv":
+            $res['version'] = "0.1.18";
+            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sanei/proadv/0118/app_aes.bin";
+            $res['language']['Japanese'] = "https://api.viatomtech.com.cn/download/software/sanei/proadv/0118/lang_aes.bin";
+            //$res['language']['English'] = "https://api.viatomtech.com.cn/download/software/sanei/prox/200/lang_aes_en.bin";
+            break;
         default:
             break;
     }
@@ -270,16 +285,16 @@ class UpdateController extends Controller
         case "en":
             $res['Bootloader']['version'] = "0.1.0";
             $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/snoreo2/SnoreO2_btl_0.1.0.zip";
-            $res['Firmware']['version'] = "2.3.0";
-            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/snoreo2/SnoreO2_app_2.3.0.zip";
-            $res['note'] = "The newest version is 2.3.0.";
+            $res['Firmware']['version'] = "2.6.0";
+            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/snoreo2/SnoreO2_app_2.6.0.zip";
+            $res['note'] = "The newest version is 2.6.0.";
             break;
         case "beta":
             $res['Bootloader']['version'] = "0.1.0";
             $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/snoreo2/SnoreO2_btl_0.1.0.zip";
-            $res['Firmware']['version'] = "2.3.1";
-            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/snoreo2/SnoreO2_app_2.3.0.zip";
-            $res['note'] = "The newest version is 2.3.0.";
+            $res['Firmware']['version'] = "2.6.0";
+            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/snoreo2/SnoreO2_app_2.6.0.zip";
+            $res['note'] = "The newest version is 2.6.0.";
             break;
         
         default:
