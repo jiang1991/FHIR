@@ -32,6 +32,9 @@ Route::delete('/myobservation/{id}', 'ObservationController@destroy');
 
 Route::any('/plot/{id}', 'PlotController@Plot');
 
+// console
+Route::any('/console/update', 'Console\ConsoleController@update');
+
 
 // emails
 Route::get('emails/notification/{id}', 'email\MailController@notification');
@@ -112,6 +115,7 @@ Route::any('update/snoreo2/{language}', 'Update\UpdateController@snoreo2');
 Route::post('update/o2s/insert', 'Update\O2updateController@insert');
 Route::post('update/o2s/query', 'Update\O2updateController@query');
 
+
 // test service
 Route::any('update/test', 'Update\UpdateController@test');
 
@@ -133,3 +137,11 @@ Route::any('redirect/apk_download/{app_name}', 'Update\RedirectController@app_do
 // for pc software
 Route::any('apis/time', 'Update\RedirectController@gettime');
 Route::any('update/apis/{param}', 'Update\UpdateController@apis');
+
+// for test, upload files and download file
+Route::post('test/upload', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Test\UploadController@upload'
+]);
+Route::any('test/upload/list', 'Test\UploadController@query');
+Route::any('test/upload/d/{id}', 'Test\UploadController@download');

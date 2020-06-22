@@ -88,7 +88,7 @@ class UpdateController extends Controller
         /* O2 Vibe */
 
         // O2 vibe fileVersion <= 3
-        case "us_ver_3-":
+        case "us_ver_3":
             $res['Bootloader']['version'] = "0.1.0";
             $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/checko2/O2Vibe_btl_0.1.0.zip";
             $res['Firmware']['version'] = "4.1.0";
@@ -97,7 +97,7 @@ class UpdateController extends Controller
             break;
 
         /* CE */
-        case 'ce':
+        case 'ce-':
             $res['Bootloader']['version'] = "0.1.0";
             $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/checko2/CheckO2_btl_0.1.0.zip";
             $res['Firmware']['version'] = "4.1.0";
@@ -109,12 +109,12 @@ class UpdateController extends Controller
         case 'sleepo2-':
             $res['Bootloader']['version'] = "0.1.0";
             $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sleepo2/SleepO2_btl_0.1.0.zip";
-            $res['Firmware']['version'] = "0.0.1";
+            $res['Firmware']['version'] = "4.1.5";
             $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sleepo2/SleepO2_app_4.1.5.zip";
             $res['note'] = "Release Note:\nPlease update to this version!";
             break;
 
-        case 'o2ring':
+        case 'o2ring-':
             $res['Bootloader']['version'] = "0.1.0";
             $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sleepo2/SleepO2_btl_0.1.0.zip";
             $res['Firmware']['version'] = "0.0.1";
@@ -143,9 +143,9 @@ class UpdateController extends Controller
     switch ($hv) {
         
         default:
-            $res['version'] = "2.3.0";
-            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/bodimetrics/230/app_aes.bin";
-            $res['language']['English/Spanish'] = "https://api.viatomtech.com.cn/download/software/bodimetrics/230/lang_aes.bin";
+            $res['version'] = "2.4.1";
+            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/bodimetrics/241/app_aes.bin";
+            $res['language']['English/Spanish'] = "https://api.viatomtech.com.cn/download/software/bodimetrics/241/lang_aes.bin";
             break;
     }
 
@@ -158,15 +158,15 @@ class UpdateController extends Controller
   function fda($hv){
     switch ($hv) {
         case 'beta':
-            $res['version'] = "2.1.16";
-            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/fda/2116/app_aes.bin";
-            $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/fda/2116/lang_aes.bin";
+            $res['version'] = "2.2.0";
+            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/fda/220/app_aes.bin";
+            $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/fda/220/lang_aes.bin";
             break;
         
         default:
-            $res['version'] = "2.1.15";
-            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/fda/2116/app_aes.bin";
-            $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/fda/2116/lang_aes.bin";
+            $res['version'] = "2.2.0";
+            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/fda/220/app_aes.bin";
+            $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/fda/220/lang_aes.bin";
             break;
     }
     
@@ -179,12 +179,12 @@ class UpdateController extends Controller
   function ce($hv){
 
     // version info
-    $version['version'] = "2.4.0";
-    $version['fileLocate'] = "https://api.viatomtech.com.cn/download/software/ce/2.4.0/app_aes.bin";
-    $version['language']['English'] = "https://api.viatomtech.com.cn/download/software/ce/2.4.0/lang_aes_en.bin";
-    $version['language']['Simplified Chinese/Traditional Chinese/English'] = "https://api.viatomtech.com.cn/download/software/ce/2.4.0/lang_aes_en_cn_tc.bin";
-    $version['language']['Spanish/German/French/Italian/English'] = "https://api.viatomtech.com.cn/download/software/ce/2.4.0/lang_aes_en_es_de_fr_it.bin";
-    $version['language']['Polish/Russian/Hungarian/Czech/English'] = "https://api.viatomtech.com.cn/download/software/ce/2.4.0/lang_aes_en_po_ru_hu_cz.bin";
+    $version['version'] = "2.5.0";
+    $version['fileLocate'] = "https://api.viatomtech.com.cn/download/software/ce/2.5.0/app_aes.bin";
+    $version['language']['English'] = "https://api.viatomtech.com.cn/download/software/ce/2.5.0/lang_aes_en.bin";
+    $version['language']['Simplified Chinese/Traditional Chinese/English'] = "https://api.viatomtech.com.cn/download/software/ce/2.5.0/lang_aes_en_cn_tc.bin";
+    $version['language']['Spanish/German/French/Italian/English'] = "https://api.viatomtech.com.cn/download/software/ce/2.5.0/lang_aes_en_es_de_fr_it.bin";
+    $version['language']['Polish/Russian/Hungarian/Czech/English'] = "https://api.viatomtech.com.cn/download/software/ce/2.5.0/lang_aes_en_po_ru_hu_cz.bin";
    
     /*upload json example
     {
@@ -229,11 +229,11 @@ class UpdateController extends Controller
             $res['language']['Japanese'] = "https://api.viatomtech.com.cn/download/software/sanei/prox/200/lang_aes_jp.bin";
             $res['language']['English'] = "https://api.viatomtech.com.cn/download/software/sanei/prox/200/lang_aes_en.bin";
             break;
-        // Pro EX
+        // Pro ADV
         case "proadv":
-            $res['version'] = "0.1.18";
-            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sanei/proadv/0118/app_aes.bin";
-            $res['language']['Japanese'] = "https://api.viatomtech.com.cn/download/software/sanei/proadv/0118/lang_aes.bin";
+            $res['version'] = "0.2.17";
+            $res['fileLocate'] = "https://api.viatomtech.com.cn/download/software/sanei/proadv/0217/app_aes.bin";
+            $res['language']['Japanese'] = "https://api.viatomtech.com.cn/download/software/sanei/proadv/0217/lang_aes.bin";
             //$res['language']['English'] = "https://api.viatomtech.com.cn/download/software/sanei/prox/200/lang_aes_en.bin";
             break;
         default:
@@ -285,9 +285,9 @@ class UpdateController extends Controller
         case "en":
             $res['Bootloader']['version'] = "0.1.0";
             $res['Bootloader']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/snoreo2/SnoreO2_btl_0.1.0.zip";
-            $res['Firmware']['version'] = "2.6.0";
-            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/snoreo2/SnoreO2_app_2.6.0.zip";
-            $res['note'] = "The newest version is 2.6.0.";
+            $res['Firmware']['version'] = "2.7.0";
+            $res['Firmware']['fileLocate'] = "https://api.viatomtech.com.cn/download/software/snoreo2/SnoreO2_app_2.7.0.zip";
+            $res['note'] = "The newest version is 2.7.0.";
             break;
         case "beta":
             $res['Bootloader']['version'] = "0.1.0";

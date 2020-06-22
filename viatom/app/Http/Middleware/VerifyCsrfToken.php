@@ -13,15 +13,18 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'observation',
-	'observation/*',
-	'patient',
-	'patient/*',
-	'post',
-	'post/*',
-	'shareto',
-  'shareto/*',
-	'search',
-	'search/*',
-  '/user/*',
+        'observation/*',
+        'patient',
+        'patient/*',
+        'post',
+        'post/*',
+        'shareto',
+        'shareto/*',
+        'search',
+        'search/*',
+        '/user/*',
+        'update/*',
+        'oxiupload/*',
+        'order/*'
     ];
 }

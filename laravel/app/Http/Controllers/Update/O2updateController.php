@@ -11,7 +11,7 @@ use App\Update_version;
 class O2updateController extends Controller
 {
 	/**
-	*@param form-data: isLive, snMin, snMax, btlVersion, btlLocate, appVersion, appLocate, releaseNote
+	*@param form-data: isLive, deviceName, snMin, snMax, btlVersion, btlLocate, appVersion, appLocate, releaseNote
 	*
 	*
 	*/
@@ -47,21 +47,54 @@ class O2updateController extends Controller
 	public function query() {
 
 		# example json
-		// {
-		// 	"deviceName": "sleepo2",
-		// 	"os": "android",
-		// 	"appVersion": "2.4.10",
-		// 	"sn": 1700000000,
-		// 	"deviceBtlVersion": "1.0.0",
-		// 	"deviceAppVersion": "2.2.0"
-		// }
+		/**
+		{
+			"deviceName": "sleepo2",
+			"os": "android",
+			"appVersion": "2.4.10",
+			"sn": 1700000000,
+			"deviceBtlVersion": "1.0.0",
+			"deviceAppVersion": "2.2.0"
+		}
+		*/
+
+		/** 
+		ceo2
+		snoreo2
+		o2ring
+		sleepo2
+		wearo2
+		sleepu
+		o2vibe
+		airbp
+		er1
+		er2
+		oxylink
+		kidso2
+		*/
+
+		if (!file_get_contents("php://input")) {
+			$response['error'] = 'empty POST json';
+			return response($response)
+				->header('Content-Type', 'application/json+fhir');
+		}
 
 		$info =  json_decode(file_get_contents("php://input"));
 
+		if (!$info) {
+			$response['error'] = 'json error';
+			$response['message'] = file_get_contents("php://input");
+			return response($response)
+				->header('Content-Type', 'application/json+fhir');
+		}
+
+		$sn_dec =  hexdec($info->sn);
+
 		// query
 		$query = Update_version::where("isLive", 1)
-					->where("snMin", '<=', $info->sn)
-					->where("snMax", '>=', $info->sn)
+					->where("deviceName", $info->deviceName)
+					->where("snMin", '<=', $sn_dec)
+					->where("snMax", '>=', $sn_dec)
 					->orderBy('id', 'desc')
 					->first();
 
@@ -69,10 +102,10 @@ class O2updateController extends Controller
 
 
 		// $response["id"] = $query->id;
-		$response["btlVersion"] = $query->btlVersion;
-		$response["btlLocate"] = $query->btlLocate;
-		$response["appVersion"] = $query->appVersion;
-		$response["appLocate"] = $query->appLocate;
+		$response['Bootloader']['version'] = $query->btlVersion;
+		$response['Bootloader']['fileLocate'] = $query->btlLocate;
+		$response['Firmware']['version'] = $query->appVersion;
+		$response['Firmware']['fileLocate'] = $query->appLocate;
 		$response["releaseNote"] = $query->releaseNote;
 		return response($response)
 			->header('Content-Type', 'application/json+fhir');

@@ -26,8 +26,42 @@ Route::delete('/viatomadmin/{id}', 'AdminController@destroy');
 Route::get('/home', 'HomeController@index');
 
 Route::post('/user/login', 'LoginController@UserLogin');
-
 Route::post('/user/signup', 'LoginController@SignUp');
+Route::any('/user/destory', [
+  'middleware' => 'auth.basic',
+  'uses' => 'LoginController@UserDestory'
+]);
+// 仅删除OxiUpload数据
+Route::any('/user/deletedata', [
+  'middleware' => 'auth.basic',
+  'uses' => 'LoginController@DeleteDate'
+]);
+// 统计
+Route::any('/user/count', [
+  'middleware' => 'auth.basic',
+  'uses' => 'LoginController@LoginCount'
+]);
+
+// order 更新至服务器
+Route::post('/order/generate', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Order\OrderController@generate'
+]);
+// order 消耗订单
+Route::post('/order/consume', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Order\OrderController@consume'
+]);
+// order trial
+Route::post('/order/trial', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Order\OrderController@trial'
+]);
+// order query
+Route::any('/order/query',[
+  'middleware' => 'auth.basic',
+  'uses' => 'Order\OrderController@query'
+]);
 
 // setting
 Route::get('/setting', 'SettingController@index');
@@ -78,6 +112,49 @@ Route::get('patient/search/{medical_id}', [
   'uses' => 'Fhir\PatientController@Search'
   ]);
 
+// O2 data upload -- oxiupload
+// oxi devices page
+Route::any('oxiupload/devices', 'Oxiupload\DevicewebController@devices');
+// oxi resources page
+Route::any('oxiupload/devices/{device_id}','Oxiupload\DevicewebController@resources');
+
+// create a device
+Route::any('oxiupload/device/create',[
+  'middleware' => 'auth.basic',
+  'uses' => 'Oxiupload\DeviceController@create']);
+
+// query device list by user
+Route::any('oxiupload/device/byuser',[
+  'middleware' => 'auth.basic',
+  'uses' => 'Oxiupload\DeviceController@QuerybyUser']);
+
+// query device info by id
+Route::any('oxiupload/device/query/{device_id}',[
+  'middleware' => 'auth.basic',
+  'uses' => 'Oxiupload\DeviceController@DeviceInfo']);
+
+// create a resource
+Route::post('oxiupload/resource/create',[
+  'middleware' => 'auth.basic',
+  'uses' => 'Oxiupload\OxiuploadController@Create']);
+
+// query resource list by user
+Route::any('oxiupload/resource/byuser',[
+  'middleware' => 'auth.basic',
+  'uses' => 'Oxiupload\OxiuploadController@QuerybyUser']);
+
+// query resource list by device
+Route::any('oxiupload/resource/bydevice/{device_id}',[
+  'middleware' => 'auth.basic',
+  'uses' => 'Oxiupload\OxiuploadController@QuerybyDevice']);
+
+// query resource info by id
+Route::any('oxiupload/resource/query/{resource_id}',[
+  'middleware' => 'auth.basic',
+  'uses' => 'Oxiupload\OxiuploadController@ResourceInfo']);
+
+
+
 // share
 Route::post('shareto', [
   'middleware' => 'auth.basic',
@@ -123,3 +200,17 @@ Route::get('test/notice', 'Fhir\TestController@api');
 // app update
 Route::any('update/app/{os}/{app}', 'Update\AppupdateConstroller@app');
 Route::any('update/query', 'Update\AppQueryController@query');
+
+
+Route::any('terms-privacy', function(){
+  return view('page.terms-yuanzhi');
+});
+
+
+
+/**
+ * for ad apis
+ * upload: device type, branchCode, location
+ * response: showAd, imgSrc, link, interval
+ */
+Route::any('apis/ad', 'Ad\AdController@vihealth');

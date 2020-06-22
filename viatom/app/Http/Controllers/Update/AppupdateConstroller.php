@@ -96,6 +96,38 @@ class AppupdateConstroller extends Controller
             break;
         }
         break;
+      case 'pc':
+        switch ($app) {
+          case 'pulsebit':
+            $response["os"] = "win";
+            $response["appName"] = "pulsebit_browser_PRO";
+            $response["version"] = "1.1.0";
+            $response["note"] = "Updated at 2020-05-08";
+            $response["flag"] = "1";
+            $response['targetSrc'] = 'https://www.welluehealth.com/pc-software';
+            break;
+          
+          default:
+            # code...
+            break;
+        }
+        break;
+      case 'mac':
+        switch ($app) {
+          case 'pulsebit':
+            $response["os"] = "mac";
+            $response["appName"] = "pulsebit_browser_PRO";
+            $response["version"] = "1.0.0";
+            $response["note"] = "Updated at 2020-05-08";
+            $response["flag"] = "1";
+            $response['targetSrc'] = 'http://apps.apple.com/us/app/pulsebit-browser-pro/id1495286208?mt=12';
+            break;
+          
+          default:
+            # code...
+            break;
+        }
+        break;
       default:
         # code...
         break;

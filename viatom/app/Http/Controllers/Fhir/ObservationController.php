@@ -109,33 +109,33 @@ class ObservationController extends Controller
     }
 
       // save to sql and send job
-      if ($user->company ==  'RAHAH') {
-          $api_notice = new ApiNotice;
+      // if ($user->company ==  'RAHAH') {
+      //     $api_notice = new ApiNotice;
 
-          $api_notice->user_id = $user_id;
-          $api_notice->company = 'RAHAH';
-          $api_notice->type = 'observation';
-          $api_notice->patient_id = $subject_reference;
-          $api_notice->observation_id = $observation_id;
-          $api_notice->resource_type = $observationData->id;
+      //     $api_notice->user_id = $user_id;
+      //     $api_notice->company = 'RAHAH';
+      //     $api_notice->type = 'observation';
+      //     $api_notice->patient_id = $subject_reference;
+      //     $api_notice->observation_id = $observation_id;
+      //     $api_notice->resource_type = $observationData->id;
 
-          $api_notice->save();
+      //     $api_notice->save();
 
-          // POST
-          $observationData->user_id = $user_id;
+      //     // POST
+      //     $observationData->user_id = $user_id;
 
-          $client = new \GuzzleHttp\Client();
+      //     $client = new \GuzzleHttp\Client();
 
-          //https://api.viatomtech.com.cn/json.php
-          //https://api.rahah.ksu.edu.sa/kipapi/rest/webhook/viatom
-          $r = $client->request('POST', 'https://api.rahah.ksu.edu.sa/kipapi/rest/webhook/viatom', [
-              'body' => json_encode($observationData)
-          ]);
-          if ($r->getStatusCode() == 200) {
-              $api_notice->is_synced = 1;
-              $api_notice->save();
-          }
-      }
+      //     //https://api.viatomtech.com.cn/json.php
+      //     //https://api.rahah.ksu.edu.sa/kipapi/rest/webhook/viatom
+      //     $r = $client->request('POST', 'https://api.rahah.ksu.edu.sa/kipapi/rest/webhook/viatom', [
+      //         'body' => json_encode($observationData)
+      //     ]);
+      //     if ($r->getStatusCode() == 200) {
+      //         $api_notice->is_synced = 1;
+      //         $api_notice->save();
+      //     }
+      // }
 
     $response["user_id"] = "$user_id";
     $response["observation_id"] = "$observation_id";

@@ -37,19 +37,19 @@
         <div class="panel-body">
           <table class="table table-striped">
             @foreach ($observations as $observation)
-              <tr>
-                <td>
-                  <table>
-                    <tr>
-                      <div class="row">
-                        <div class="col-md-4 text-capitalize"><a href="/myobservation/{{ $observation->id }}">Check Type: {{ $observation->resourceId }}</a></div>
-                        <div class="col-md-4"> {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
-                        <div class="col-md-4 text-capitalize">Notes: {{ $observation->interpretation_text }}</div>
-                      </div>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <div class="row">
+                      <div class="col-md-4 text-capitalize"><a href="/myobservation/{{ $observation->id }}">Check Type: {{ $observation->resourceId }}</a></div>
+                      <div class="col-md-4"> {{ date('H:i:s M d, Y', strtotime($observation->effectiveDateTime)) }}</div>
+                      <div class="col-md-4 text-capitalize">Notes: {{ $observation->interpretation_text }}</div>
+                    </div>
+                  </tr>
+                </table>
+              </td>
+            </tr>
             @endforeach
           </table>
         </div>

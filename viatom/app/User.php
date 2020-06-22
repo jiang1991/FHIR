@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'company',
+        'name', 'email', 'password', 'company', 'has_trial', 'membership', 'expire_at',
     ];
 
     /**
@@ -23,4 +23,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function oxiupload()
+    {
+        return $this->hasMany('App\Oxiupload');
+    }
+
+    public function device()
+    {
+        return $this->hasMany('App\Device');
+    }
+
+    public function order()
+    {
+        return $this->hasMany('App\Order');
+    }
+
+    public function login() {
+        return $this->hasMany('App\Login');
+    }
 }

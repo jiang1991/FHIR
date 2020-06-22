@@ -12,17 +12,19 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        'patient/*',
-	'patient',
-	'observation/*',
-	'observation',
-	'search/*',
-	'search',
-	'shareto/*',
-	'shareto',
-	'my/*',
-	'my',
-	'user/*',
-	'update/*',
+		  'patient/*',
+			'patient',
+			'observation/*',
+			'observation',
+			'search/*',
+			'search',
+			'shareto/*',
+			'shareto',
+			'my/*',
+			'my',
+			'user/*',
+			'update/*',
+		  'monitor/*',
+		  'console/*',
     ];
 }

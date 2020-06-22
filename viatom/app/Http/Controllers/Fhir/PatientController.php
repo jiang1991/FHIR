@@ -48,42 +48,32 @@ class PatientController extends Controller
     $patient->save();
 
     // save to sql and send job
-    if ($user->company ==  'RAHAH') {
-          $api_notice = new ApiNotice;
+    // if ($user->company ==  'RAHAH') {
+    //       $api_notice = new ApiNotice;
 
-          $api_notice->user_id = $user_id;
-          $api_notice->company = 'RAHAH';
-          $api_notice->type = 'patient';
-          $api_notice->patient_id = $patient->id;
-          $api_notice->observation_id = NULL;
-          $api_notice->resource_type = NULL;
+    //       $api_notice->user_id = $user_id;
+    //       $api_notice->company = 'RAHAH';
+    //       $api_notice->type = 'patient';
+    //       $api_notice->patient_id = $patient->id;
+    //       $api_notice->observation_id = NULL;
+    //       $api_notice->resource_type = NULL;
 
-          $api_notice->save();
+    //       $api_notice->save();
 
-          // POST 
-          $client = new \GuzzleHttp\Client();
-          // $r = $client->request('POST', 'https://api.rahah.ksu.edu.sa/kipapi/rest/webhook/viatom', [
-          //     'json' => [
-          //         'user_id' => $user_id,
-          //         'company' => 'RAHAH',
-          //         'type' => 'patient',
-          //         'patient' => $patient->id
-          //     ]
-          // ]);
+    //       // POST 
+    //       $client = new \GuzzleHttp\Client();
 
-          $patientData->user_id = $user_id;
-          $patientData->patient_id = $patient->id;
+    //       $patientData->user_id = $user_id;
+    //       $patientData->patient_id = $patient->id;
 
-          // https://api.rahah.ksu.edu.sa/kipapi/rest/webhook/viatom
-          // https://api.viatomtech.com.cn/json.php
-          $r = $client->request('POST', 'https://api.rahah.ksu.edu.sa/kipapi/rest/webhook/viatom', [
-              'body' => json_encode($patientData)
-          ]);
-          if ($r->getStatusCode() == 200) {
-              $api_notice->is_synced = 1;
-              $api_notice->save();
-          }
-    }
+    //       $r = $client->request('POST', 'https://api.rahah.ksu.edu.sa/kipapi/rest/webhook/viatom', [
+    //           'body' => json_encode($patientData)
+    //       ]);
+    //       if ($r->getStatusCode() == 200) {
+    //           $api_notice->is_synced = 1;
+    //           $api_notice->save();
+    //       }
+    // }
 
     $response["patient_id"] = $patient->id;
     $response["user_id"] = $user_id;

@@ -74,13 +74,8 @@
 
         <!-- Left Side Of Navbar -->
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{{ url('https://www.viatomtech.com/checkme-o2') }}">Checkme O2</a></li>
-          <li><a href="{{ url('https://www.viatomtech.com/snoreo2') }}">SnoreO2</a></li>
-          <li><a href="{{ url('https://www.viatomtech.com/sleepo2') }}">SleepO2</a></li>
           <li><a href="{{ url('https://www.viatomtech.com/checkme-pro') }}">Checkme Pro</a></li>
           <li><a href="{{ url('https://www.viatomtech.com/checkme-lite') }}">Checkme Lite</a></li>
-          <li><a href="{{ url('https://www.viatomtech.com/heartmate') }}">HeartMate</a></li>
-          <li><a href="{{ url('https://www.viatomtech.com/airbp') }}">AirBP</a></li>
         </ul>
       </div>
     </div>
@@ -103,36 +98,6 @@
               </div>
               <div class="row text-center">
                 <h2>Checkme O2</h2>
-              </div>
-            </div>
-          </table>
-        </td>
-
-        <td>
-          <table>
-            <div class="col-md-4">
-              <div class="row">
-                <a href="{{ url('https://www.viatomtech.com/snoreo2') }}">
-                  <img src="pics/imgs/snoreo2.png" class=".img-responsive .center-block" alt="SnoreO2" width="350px"/>
-                </a>
-              </div>
-              <div class="row text-center">
-                <h2>SnoreO2</h2>
-              </div>
-            </div>
-          </table>
-        </td>
-
-        <td>
-          <table>
-            <div class="col-md-4">
-              <div class="row">
-                <a href="{{ url('https://www.viatomtech.com/sleepo2') }}">
-                  <img src="pics/imgs/sleepo2.png" class=".img-responsive .center-block" alt="Sleep" width="350px" />
-                </a>
-              </div>
-              <div class="row text-center">
-                <h2>SleepO2</h2>
               </div>
             </div>
           </table>
@@ -182,52 +147,11 @@
           </table>
         </td>
 
-        <td>
-          <table>
-            <div class="col-md-4">
-              <div class="row">
-                <a href="{{ url('https://www.viatomtech.com/heartmate') }}">
-                  <img src="pics/imgs/heartmate.png" class=".img-responsive .center-block" alt="HeartMate" width="350px"/>
-                </a>
-              </div>
-              <div class="row text-center">
-                <h2>HeartMate</h2>
-              </div>
-            </div>
-          </table>
-        </td>
-      </tr>
-
     </div>
   </div>
 
   <div class="container">
     <br>
-  </div>
-
-  <!-- airbp -->
-  <div class="container">
-    <h1>Ultra-Portable Smart UPPER ARM<br> Blood Pressure Monitor</h1>
-
-    <div class="row">
-      <tr>
-        <td>
-          <table>
-            <div class="col-md-4">
-              <div class="row">
-                <a href="{{ url('https://www.viatomtech.com/airbp') }}">
-                  <img src="pics/imgs/airbp.png" class=".img-responsive .center-block" alt="AirBP" width="350px"/>
-                </a>
-              </div>
-              <div class="row text-center">
-                <h2>AirBP</h2>
-              </div>
-            </div>
-          </table>
-        </td>
-      </tr>
-
-    </div>
   </div>
 
 
