@@ -31,7 +31,7 @@ class RedirectController extends Controller
 			case 'mybeatsplus':
 				switch ($os_name) {
 					case 'ios':
-						$url = "https://itunes.apple.com/us/app/mybeats-hub/id888642112?l=zh&ls=1&mt=8";
+						$url = "https://apps.apple.com/app/id1499954763";
 						break;
 					case 'android':
 						$url = "https://play.google.com/store/apps/details?id=com.yz.newazur";

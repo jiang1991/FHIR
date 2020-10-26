@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
 class AuthController extends Controller
 {
@@ -37,6 +39,9 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        if (request()->cookie('locale') == 'zh') {
+            App::setLocale('zh');
+        }
         $this->middleware('guest', ['except' => 'logout']);
     }
 

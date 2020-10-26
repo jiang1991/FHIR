@@ -136,6 +136,13 @@ class AppupdateConstroller extends Controller
     return response($response)
       ->header('Content-Type', 'application/json');
   }
+
+  function rtm() {
+    $response["version"] = 30;
+    $response["fileUrl"] = "https://cloud.viatomtech.com/download/software/apks/rtm_v31.apk";
+    return response($response)
+      ->header('Content-Type', 'application/json');
+  }
 }
 
 ?>

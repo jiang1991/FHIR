@@ -6,6 +6,8 @@ use App\Observation_component;
 use Illuminate\Routing\Controller;
 use Auth;
 use App\Repositories\ObservationRepository;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
 /**
  * an observation
@@ -17,6 +19,9 @@ class ObservationController extends Controller
 
   public function __construct(ObservationRepository $observation)
   {
+    if (request()->cookie('locale') == 'zh') {
+            App::setLocale('zh');
+        }
     $this->middleware('auth');
     $this->observation = $observation;
   }

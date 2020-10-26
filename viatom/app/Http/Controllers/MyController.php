@@ -10,6 +10,8 @@ Use App\Observation_component;
 use Illuminate\Routing\Controller;
 use Auth;
 use App\Repositories\PatientRepository;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
 /**
  * a patient
@@ -20,6 +22,9 @@ class MyController extends Controller
 
   public function __construct(PatientRepository $patient)
   {
+    if (request()->cookie('locale') == 'zh') {
+            App::setLocale('zh');
+        }
     $this->middleware('auth');
     $this->patient = $patient;
   }

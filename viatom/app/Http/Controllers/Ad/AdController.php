@@ -77,7 +77,7 @@ class AdController extends Controller
         }
 
         // lookee
-        if ($code == null || $code == 23010001 || $code == 23020001 || $code == 15060001) {
+        if ($code == null || $code == 23010001 || $code == 23020001 || $code == 15060001 || $code == 26010002 || $code == 27010002) {
             $show_ad = 0;
         }
 

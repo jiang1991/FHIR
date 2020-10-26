@@ -317,13 +317,20 @@ class UpdateController extends Controller
         ->header('Content-Type', 'application/json');
   }
 
-  function apis($param) {
+    function apis($param) {
         // $res['note'] = "The newest version is 3.2.0.";
 
         // return date("Y-m-d H:i:s");
         return response(date("Y-m-d H:i:s"))
           ->header('Content-Type', 'application/json');
     }
+
+    function rtm() {
+        $response["version"] = 22;
+        $response["fileUrl"] = "http://api.viatomtech.com.cn/download/software/apks/rtm_v22.apk";
+        return response($response)
+          ->header('Content-Type', 'application/json');
+      }
 
 
 }

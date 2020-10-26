@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'company', 'has_trial', 'membership', 'expire_at',
+        'name', 'email', 'password', 'company',
     ];
 
     /**
@@ -35,12 +35,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Device');
     }
 
-    public function order()
-    {
-        return $this->hasMany('App\Order');
+    public function link() {
+        return $this->hasMany('App\Link');
     }
 
-    public function login() {
-        return $this->hasMany('App\Login');
+    public function sharecode() {
+        return $this->hasMany('App\Sharecode');
+    }
+
+    public function linkshare() {
+        return $this->hasMany('App\Linkshare');
     }
 }

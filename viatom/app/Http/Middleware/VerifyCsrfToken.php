@@ -25,6 +25,8 @@ class VerifyCsrfToken extends BaseVerifier
         '/user/*',
         'update/*',
         'oxiupload/*',
-        'order/*'
+        'order/*',
+        'apis/*',
+        'link/*'
     ];
 }

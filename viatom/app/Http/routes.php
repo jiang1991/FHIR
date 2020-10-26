@@ -200,6 +200,7 @@ Route::get('test/notice', 'Fhir\TestController@api');
 // app update
 Route::any('update/app/{os}/{app}', 'Update\AppupdateConstroller@app');
 Route::any('update/query', 'Update\AppQueryController@query');
+Route::any('update/rtm', 'Update\AppupdateConstroller@rtm');
 
 
 Route::any('terms-privacy', function(){
@@ -214,3 +215,60 @@ Route::any('terms-privacy', function(){
  * response: showAd, imgSrc, link, interval
  */
 Route::any('apis/ad', 'Ad\AdController@vihealth');
+
+
+/**
+ * Remote Link
+ *  -> create
+ *  -> delete
+ */
+Route::any('link/check', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Link\LinkController@check'
+  ]);
+Route::any('link/create', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Link\LinkController@create'
+  ]);
+Route::any('link/query/{id}', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Link\LinkController@queryById'
+  ]);
+Route::any('link/delete/{id}', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Link\LinkController@delete'
+  ]);
+
+/**
+ * Link query
+ *  -> my & shared to me
+ *  -> 
+ *  -> link shares to others
+ */
+Route::any('link/share/byUser', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Link\LinkController@queryByUser'
+  ]);
+Route::any('link/share/byLink/{id}', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Link\LinkController@queryByLink'
+  ]);
+Route::any('link/share/delete/{id}', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Link\CodeController@deleteShare'
+  ]);
+ /**
+  * Link share code
+  *  -> create
+  *  -> accept
+  */
+Route::any('link/code/create/{id}', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Link\CodeController@create'
+  ]);
+Route::any('link/code/accept', [
+  'middleware' => 'auth.basic',
+  'uses' => 'Link\CodeController@accept'
+  ]);
+
+

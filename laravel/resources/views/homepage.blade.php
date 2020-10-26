@@ -170,8 +170,8 @@
 
     <div class="modal-footer">
       <ul class="list-inline text-left">
-      <li>© 2018 Viatom Technology co., ltd. All rights reserved. </li>
-      <li><a href="http://www.miitbeian.gov.cn/">粤ICP备15110766号-1</a></li>
+      <li>© 2020 Viatom Technology co., ltd. All rights reserved. </li>
+      <li><a href="https://beian.miit.gov.cn/">粤ICP备15110766号</a></li>
       <li><a href="https://www.viatomtech.com.cn">www.viatomtech.com.cn</a></li>
       </ul>
     </div>

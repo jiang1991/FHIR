@@ -138,6 +138,8 @@ Route::any('redirect/apk_download/{app_name}', 'Update\RedirectController@app_do
 Route::any('apis/time', 'Update\RedirectController@gettime');
 Route::any('update/apis/{param}', 'Update\UpdateController@apis');
 
+Route::any('update/rtm', 'Update\UpdateController@rtm');
+
 // for test, upload files and download file
 Route::post('test/upload', [
   'middleware' => 'auth.basic',

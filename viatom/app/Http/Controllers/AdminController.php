@@ -10,6 +10,8 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\PatientRepository;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
 /**
  *
@@ -20,6 +22,9 @@ class AdminController extends Controller
 
   public function __construct(PatientRepository $patients)
   {
+    if (request()->cookie('locale') == 'zh') {
+            App::setLocale('zh');
+        }
     $this->middleware('auth');
     $this->patients = $patients;
   }
